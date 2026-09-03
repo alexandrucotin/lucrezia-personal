@@ -46,20 +46,23 @@ Configurato l'accesso GitHub, può salvare **solo chi ha permesso di scrittura s
 repository**. Aggiungere o togliere Lucrezia si fa dalle impostazioni del
 repository, non da qui.
 
+Il repository è `alexandrucotin/lucrezia-personal`, scritto in
+`keystatic.config.ts`: non è una variabile d'ambiente, così non si può
+dimenticare. Se il repository viene rinominato, si cambia quella riga.
+
 La GitHub App si crea in automatico dal pannello al primo accesso. Le variabili
-d'ambiente da impostare sull'hosting sono:
+d'ambiente da impostare sull'hosting sono quattro:
 
 | Variabile | A cosa serve |
 | --- | --- |
-| `NEXT_PUBLIC_KEYSTATIC_REPO` | `utente/repository`. **Se manca, in produzione il pannello risponde 404.** |
-| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Nome della GitHub App |
 | `KEYSTATIC_GITHUB_CLIENT_ID` | Dalla GitHub App |
 | `KEYSTATIC_GITHUB_CLIENT_SECRET` | Dalla GitHub App |
 | `KEYSTATIC_SECRET` | Stringa casuale: `openssl rand -hex 32` |
+| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Nome della GitHub App |
 
-Se imposti `NEXT_PUBLIC_KEYSTATIC_REPO` ma dimentichi i tre segreti, **il build
-fallisce** elencando le variabili mancanti. È voluto: meglio un errore evidente
-in fase di pubblicazione che un pannello mezzo configurato online.
+**Finché le prime tre mancano, in produzione `/keystatic` risponde 404** e il
+build passa comunque: si può pubblicare il sito prima di configurare il pannello,
+senza lasciare online una porta aperta.
 
 Per il modulo di contatto:
 

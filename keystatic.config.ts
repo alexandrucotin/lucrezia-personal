@@ -51,21 +51,23 @@ const meta = fields.object(
   { label: "Ricerca su Google" },
 );
 
-const repo = process.env.NEXT_PUBLIC_KEYSTATIC_REPO as `${string}/${string}` | undefined;
+/* Il repository e' un dato pubblico, sta gia' nel remote git. Tenerlo qui
+   invece che in una variabile d'ambiente toglie una cosa da dimenticare
+   quando si configura l'hosting. Se il repository viene rinominato o
+   spostato, si cambia questa riga. */
+const repo = "alexandrucotin/lucrezia-personal" as const;
 
 export default config({
   /*
-   * La modalita' si decide da una variabile PUBBLICA, non dai segreti: la
-   * configurazione viene letta sia dal server sia dal browser, e leggendo un
-   * segreto lato client si otterrebbe "non definito" — cioe' due modalita'
-   * diverse nei due ambienti.
+   * In sviluppo si lavora sui file locali, in produzione sempre via GitHub.
+   * La distinzione usa NODE_ENV e non un segreto perche' questa configurazione
+   * viene letta anche dal browser, dove un segreto sarebbe "non definito" —
+   * e le due modalita' divergerebbero fra server e client.
    *
-   * Senza NEXT_PUBLIC_KEYSTATIC_REPO il pannello lavora sui file locali, che
-   * e' anche il modo giusto di usarlo in sviluppo.
+   * Che il pannello sia poi *raggiungibile* lo decide lib/keystatic-access.ts.
    */
-  storage: repo
-    ? { kind: "github", repo }
-    : { kind: "local" },
+  storage:
+    process.env.NODE_ENV === "development" ? { kind: "local" } : { kind: "github", repo },
 
   ui: {
     brand: { name: "Testi del sito" },
