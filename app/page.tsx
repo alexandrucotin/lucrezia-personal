@@ -212,23 +212,6 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Banda a tutta larghezza: l'unico punto in cui qualcosa esce dal
-          contenitore. Serve a far respirare, e nomina un mercato. */}
-      <section aria-label="Verona" className="border-t border-rule">
-        <Image
-          src="/images/verona-piazza-delle-erbe.jpg"
-          alt="Facciate affrescate di Piazza delle Erbe a Verona"
-          width={1465}
-          height={2200}
-          sizes="100vw"
-          className="h-[16rem] w-full object-cover object-[center_38%] sm:h-[24rem]"
-        />
-        <div className="shell flex flex-wrap items-baseline justify-between gap-4 py-6">
-          <p className="eyebrow text-ink-soft">Verona, Piazza delle Erbe</p>
-          <p className="eyebrow text-ink-faint">Mercato seguito dal 2021</p>
-        </div>
-      </section>
-
       {/* ---------------------------------------------------------------
           Risultati: unico punto del sito che si legge in orizzontale.
           Le schede corrono fino al bordo destro dello schermo.
