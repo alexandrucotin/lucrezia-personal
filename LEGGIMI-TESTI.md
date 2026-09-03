@@ -50,15 +50,63 @@ Il repository è `alexandrucotin/lucrezia-personal`, scritto in
 `keystatic.config.ts`: non è una variabile d'ambiente, così non si può
 dimenticare. Se il repository viene rinominato, si cambia quella riga.
 
-La GitHub App si crea in automatico dal pannello al primo accesso. Le variabili
-d'ambiente da impostare sull'hosting sono quattro:
+### Creare la GitHub App
 
-| Variabile | A cosa serve |
-| --- | --- |
-| `KEYSTATIC_GITHUB_CLIENT_ID` | Dalla GitHub App |
-| `KEYSTATIC_GITHUB_CLIENT_SECRET` | Dalla GitHub App |
-| `KEYSTATIC_SECRET` | Stringa casuale: `openssl rand -hex 32` |
-| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Nome della GitHub App |
+Keystatic ha una procedura guidata che crea l'App al posto tuo e scrive i segreti
+nel file `.env`. Si esegue **in locale**, prima di pubblicare.
+
+1. Crea `.env.local` con una riga sola:
+
+   ```
+   NEXT_PUBLIC_KEYSTATIC_MODE=github
+   ```
+
+   Serve solo a forzare la modalità GitHub in sviluppo, dove normalmente il
+   pannello lavora sui file locali. In produzione non ha effetto.
+
+2. `npm run dev`, poi apri **`http://127.0.0.1:3000/keystatic/setup`**.
+   L'indirizzo è `127.0.0.1` e non `localhost`: è quello che GitHub accetta
+   come callback OAuth, e Keystatic ci reindirizza da solo.
+
+3. Compila due campi:
+   - **Deployed App URL**: l'indirizzo di produzione, per esempio
+     `https://lucreziaceleste.it`. Se non lo sai ancora, lascialo vuoto e lo
+     aggiungi dopo dalle impostazioni dell'App.
+   - **GitHub organization**: lascialo vuoto, il repository è su un account
+     personale.
+
+4. **Create GitHub App** ti porta su GitHub con l'App già compilata. Il nome
+   proposto è `alexandrucotin Keystatic`. I permessi richiesti sono:
+   _contents: write_ (scrivere i file dei testi), _metadata: read_,
+   _pull requests: read_. Sono i minimi per fare commit sul repository.
+
+5. Conferma, e quando GitHub lo chiede **installa l'App sul repository**
+   `lucrezia-personal`.
+
+6. Vieni riportato indietro e Keystatic scrive da solo `KEYSTATIC_GITHUB_CLIENT_ID`,
+   `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET` e
+   `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` nel file `.env`.
+
+7. Copia quelle quattro variabili nelle impostazioni di Netlify.
+
+> Se al primo login locale GitHub rifiuta il callback, aggiungi
+> `http://127.0.0.1:3000/api/keystatic/github/oauth/callback` fra i _Callback URL_
+> nelle impostazioni dell'App: la procedura ne registra una senza numero di porta.
+
+Finito il setup puoi togliere `NEXT_PUBLIC_KEYSTATIC_MODE` da `.env.local` per
+tornare a lavorare sui file locali, oppure lasciarlo per provare il login vero
+da locale.
+
+### Le variabili
+
+Le variabili d'ambiente da impostare sull'hosting sono quattro:
+
+| Variabile                               | A cosa serve                            |
+| --------------------------------------- | --------------------------------------- |
+| `KEYSTATIC_GITHUB_CLIENT_ID`            | Dalla GitHub App                        |
+| `KEYSTATIC_GITHUB_CLIENT_SECRET`        | Dalla GitHub App                        |
+| `KEYSTATIC_SECRET`                      | Stringa casuale: `openssl rand -hex 32` |
+| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Nome della GitHub App                   |
 
 **Finché le prime tre mancano, in produzione `/keystatic` risponde 404** e il
 build passa comunque: si può pubblicare il sito prima di configurare il pannello,
@@ -66,23 +114,23 @@ senza lasciare online una porta aperta.
 
 Per il modulo di contatto:
 
-| Variabile | A cosa serve |
-| --- | --- |
+| Variabile        | A cosa serve                                                                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `RESEND_API_KEY` | Invio delle email. Senza, in sviluppo il messaggio finisce in console; in produzione il modulo dichiara l'errore e rimanda alla mail diretta. |
-| `CONTACT_TO` | Destinatario. Default: l'email in `content/generale.json`. |
-| `CONTACT_FROM` | Mittente verificato su Resend. |
+| `CONTACT_TO`     | Destinatario. Default: l'email in `content/generale.json`.                                                                                    |
+| `CONTACT_FROM`   | Mittente verificato su Resend.                                                                                                                |
 
 ## Struttura dei file
 
-| File | Contenuto |
-| --- | --- |
-| `content/generale.json` | Identità, contatti, dati fiscali, menu, invito finale |
-| `content/home.json` | Tutta la home |
-| `content/servizi.json` | Pagina servizi, prezzi, e i tre servizi con le loro pagine |
-| `content/metodo.json` | Pagina metodo, le quattro fasi, le domande frequenti |
-| `content/risultati.json` | Numeri, casi studio, testimonianze, clienti |
-| `content/chi-sono.json` | Percorso, credenziali, progetti |
-| `content/contatti.json` | Pagina contatti, modulo, domande frequenti, pagina di ringraziamento |
+| File                     | Contenuto                                                            |
+| ------------------------ | -------------------------------------------------------------------- |
+| `content/generale.json`  | Identità, contatti, dati fiscali, menu, invito finale                |
+| `content/home.json`      | Tutta la home                                                        |
+| `content/servizi.json`   | Pagina servizi, prezzi, e i tre servizi con le loro pagine           |
+| `content/metodo.json`    | Pagina metodo, le quattro fasi, le domande frequenti                 |
+| `content/risultati.json` | Numeri, casi studio, testimonianze, clienti                          |
+| `content/chi-sono.json`  | Percorso, credenziali, progetti                                      |
+| `content/contatti.json`  | Pagina contatti, modulo, domande frequenti, pagina di ringraziamento |
 
 Gli schemi che validano questi file stanno in `lib/content/schema.ts`. Aggiungere
 un campo significa toccare tre punti: il JSON, lo schema, e `keystatic.config.ts`.

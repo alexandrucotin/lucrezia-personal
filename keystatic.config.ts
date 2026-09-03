@@ -57,17 +57,25 @@ const meta = fields.object(
    spostato, si cambia questa riga. */
 const repo = "alexandrucotin/lucrezia-personal" as const;
 
+/*
+ * NEXT_PUBLIC_KEYSTATIC_MODE=github forza la modalita' GitHub anche in
+ * sviluppo. Serve due volte: per la procedura guidata che crea la GitHub App
+ * (vedi LEGGIMI-TESTI.md), e per provare il login vero prima di pubblicare.
+ * In produzione non ha effetto: li' la modalita' e' sempre GitHub.
+ */
+const modalitaLocale =
+  process.env.NODE_ENV === "development" && process.env.NEXT_PUBLIC_KEYSTATIC_MODE !== "github";
+
 export default config({
   /*
    * In sviluppo si lavora sui file locali, in produzione sempre via GitHub.
-   * La distinzione usa NODE_ENV e non un segreto perche' questa configurazione
-   * viene letta anche dal browser, dove un segreto sarebbe "non definito" —
-   * e le due modalita' divergerebbero fra server e client.
+   * La distinzione usa variabili pubbliche e non i segreti, perche' questa
+   * configurazione viene letta anche dal browser: li' un segreto sarebbe
+   * "non definito" e le due modalita' divergerebbero fra server e client.
    *
    * Che il pannello sia poi *raggiungibile* lo decide lib/keystatic-access.ts.
    */
-  storage:
-    process.env.NODE_ENV === "development" ? { kind: "local" } : { kind: "github", repo },
+  storage: modalitaLocale ? { kind: "local" } : { kind: "github", repo },
 
   ui: {
     brand: { name: "Testi del sito" },
