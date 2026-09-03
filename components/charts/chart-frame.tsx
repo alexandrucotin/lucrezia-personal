@@ -9,11 +9,19 @@ export type LegendKey = {
   tone: "data" | "muted";
 };
 
+/** Legenda di scala per le rampe sequenziali: una tinta, dal chiaro allo scuro. */
+export type LegendScale = {
+  colors: string[];
+  low: string;
+  high: string;
+};
+
 /* Anatomia condivisa: legenda, area del disegno, didascalia.
    La legenda sta fuori dall'SVG per restare testo selezionabile e ridimensionabile. */
 export function ChartFrame({
   title,
   legend,
+  scale,
   caption,
   children,
   minWidth,
@@ -22,6 +30,7 @@ export function ChartFrame({
   /** Descrizione testuale per screen reader e per chi non vede l'immagine. */
   title: string;
   legend?: LegendKey[];
+  scale?: LegendScale;
   caption: string;
   children: ReactNode;
   /** Larghezza minima del disegno, sotto la quale scorre in orizzontale. */
@@ -30,6 +39,18 @@ export function ChartFrame({
 }) {
   return (
     <figure className={cn("flex min-w-0 flex-col gap-6", className)}>
+      {scale ? (
+        <div className="flex items-center gap-3">
+          <span className="eyebrow text-ink-soft">{scale.low}</span>
+          <span aria-hidden="true" className="flex gap-0.5">
+            {scale.colors.map((color) => (
+              <span key={color} className="h-3 w-7" style={{ backgroundColor: color }} />
+            ))}
+          </span>
+          <span className="eyebrow text-ink-soft">{scale.high}</span>
+        </div>
+      ) : null}
+
       {legend && legend.length > 0 ? (
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {legend.map((key) => (

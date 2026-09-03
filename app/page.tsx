@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { KpiPanel } from "@/components/charts/kpi-panel";
 import { PickupCurve } from "@/components/charts/pickup-curve";
 import { PortfolioMatrix } from "@/components/charts/portfolio-matrix";
+import { PricingCalendar } from "@/components/charts/pricing-calendar";
+import { CaseScroller } from "@/components/site/case-scroller";
+import { MethodSticky } from "@/components/site/method-sticky";
 import { ActionLink, TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
-import { method, services } from "@/lib/content/services";
+import { services } from "@/lib/content/services";
 import { caseStudies, clients, stats, testimonials, tools } from "@/lib/content/proof";
 import { site } from "@/lib/site";
 
@@ -31,13 +35,21 @@ const symptoms = [
   },
 ];
 
+/* Ogni fase del metodo porta il proprio diagramma. La terza no, di proposito:
+   un diagramma per casella renderebbe la sezione meccanica. */
+const methodDiagrams = [
+  <PortfolioMatrix key="matrice" />,
+  <PricingCalendar key="calendario" />,
+  null,
+  <KpiPanel key="kpi" />,
+];
+
 export default function HomePage() {
   return (
     <>
       {/* ---------------------------------------------------------------
           Hero: nessuna foto di sfondo con testo sopra. Solo tipografia
-          su carta e una scheda dati a lato. È la scelta che allontana
-          di più il sito dall'estetica dei builder — ed è anche la più veloce.
+          su carta e una scheda dati a lato.
       ---------------------------------------------------------------- */}
       <Section as="div" rhythm="loose" className="pt-12 sm:pt-16">
         <div className="shell">
@@ -72,8 +84,6 @@ export default function HomePage() {
               </Reveal>
             </div>
 
-            {/* Scheda tecnica: dichiara subito il perimetro. Chi non rientra
-                se ne accorge qui, e va bene così. */}
             <Reveal delay={0.24} className="lg:col-span-4 lg:pl-8">
               <dl className="border-t border-rule lg:border-t-0 lg:border-l lg:border-rule lg:pl-8">
                 {[
@@ -97,7 +107,6 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Fascia clienti: wordmark tipografici, non loghi. */}
       <Section as="div" tone="deep" rhythm="tight" ruled>
         <div className="shell">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
@@ -116,39 +125,20 @@ export default function HomePage() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          Diagnosi. Il lettore si riconosce prima che gli venda qualcosa.
+          Diagnosi. Il grafico apre la sezione: e' il soggetto, non un
+          allegato. I sintomi scendono sotto in tre colonne a filetto.
       ---------------------------------------------------------------- */}
       <Section id="diagnosi" rhythm="vast" ruled>
         <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <Reveal>
-                <Eyebrow numbered="01">Diagnosi</Eyebrow>
-                <Display level={2} size="d2" className="mt-6">
-                  Tre sintomi che trovo in quasi ogni portafoglio.
-                </Display>
-              </Reveal>
-            </div>
+          <Reveal>
+            <Eyebrow numbered="01">Diagnosi</Eyebrow>
+            <Display level={2} size="d2" className="mt-6 max-w-3xl">
+              Il calendario è pieno. Allora perché il fatturato non sale?
+            </Display>
+          </Reveal>
 
-            <Reveal stagger={0.08} className="lg:col-span-7 lg:col-start-6">
-              {symptoms.map((item) => (
-                <RevealItem key={item.index}>
-                  <div className="grid grid-cols-[2.5rem_1fr] gap-x-4 border-t border-rule py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4rem_1fr]">
-                    <span className="eyebrow tnum pt-2 text-sage">{item.index}</span>
-                    <div>
-                      <h3 className="display text-d4">{item.title}</h3>
-                      <p className="measure mt-3 text-ink-soft">{item.body}</p>
-                    </div>
-                  </div>
-                </RevealItem>
-              ))}
-            </Reveal>
-          </div>
-
-          {/* Il primo sintomo, disegnato. Il grafico non illustra l'argomento:
-              e' l'argomento. */}
-          <Reveal className="mt-20 grid gap-12 border-t border-rule pt-14 lg:mt-24 lg:grid-cols-12">
-            <PickupCurve className="lg:col-span-7" />
+          <Reveal delay={0.08} className="mt-16 grid gap-12 lg:grid-cols-12">
+            <PickupCurve className="lg:col-span-8" />
             <div className="lg:col-span-4 lg:col-start-9">
               <p className="text-ink-soft">
                 Una tariffa che non si muove nei quattro mesi che precedono l&apos;arrivo
@@ -156,16 +146,27 @@ export default function HomePage() {
                 e poi recupera notti con lo sconto quando non c&apos;è più tempo per farne prezzo.
               </p>
               <p className="mt-5 text-sm text-ink-faint">
-                La distanza fra le due curve nelle ultime due settimane è la parte del fatturato
-                che nessuno vede, perché il calendario risulta pieno comunque.
+                Il calendario risulta pieno comunque. È per questo che il problema non si vede.
               </p>
             </div>
+          </Reveal>
+
+          <Reveal stagger={0.08} className="mt-24 grid gap-px border-t border-rule bg-rule sm:grid-cols-3">
+            {symptoms.map((item) => (
+              <RevealItem key={item.index} className="bg-paper sm:px-8 sm:first:pl-0">
+                <div className="py-10">
+                  <span className="eyebrow tnum text-sage">{item.index}</span>
+                  <h3 className="display mt-4 text-d4">{item.title}</h3>
+                  <p className="mt-3 text-sm text-ink-soft">{item.body}</p>
+                </div>
+              </RevealItem>
+            ))}
           </Reveal>
         </div>
       </Section>
 
       {/* ---------------------------------------------------------------
-          Servizi come indice di una monografia, non come tre card uguali.
+          Servizi: indice di una monografia. Ingresso laterale, non dal basso.
       ---------------------------------------------------------------- */}
       <Section id="servizi" tone="surface" rhythm="vast" ruled>
         <div className="shell">
@@ -183,7 +184,7 @@ export default function HomePage() {
 
           <Reveal stagger={0.07} className="mt-16">
             {services.map((service) => (
-              <RevealItem key={service.slug}>
+              <RevealItem key={service.slug} from="left">
                 <Link
                   href={`/servizi/${service.slug}`}
                   className="group grid grid-cols-1 gap-y-4 border-t border-rule py-10 transition-colors last:border-b hover:bg-paper sm:grid-cols-12 sm:gap-x-8"
@@ -211,200 +212,142 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* Banda a tutta larghezza: l'unico punto in cui qualcosa esce dal
+          contenitore. Serve a far respirare, e nomina un mercato. */}
+      <section aria-label="Verona" className="border-t border-rule">
+        <Image
+          src="/images/verona-piazza-delle-erbe.jpg"
+          alt="Facciate affrescate di Piazza delle Erbe a Verona"
+          width={1465}
+          height={2200}
+          sizes="100vw"
+          className="h-[16rem] w-full object-cover object-[center_38%] sm:h-[24rem]"
+        />
+        <div className="shell flex flex-wrap items-baseline justify-between gap-4 py-6">
+          <p className="eyebrow text-ink-soft">Verona, Piazza delle Erbe</p>
+          <p className="eyebrow text-ink-faint">Mercato seguito dal 2021</p>
+        </div>
+      </section>
+
       {/* ---------------------------------------------------------------
-          Risultati su fondo scuro: rottura di ritmo, e i numeri
-          diventano l'unica cosa che si vede.
+          Risultati: unico punto del sito che si legge in orizzontale.
+          Le schede corrono fino al bordo destro dello schermo.
       ---------------------------------------------------------------- */}
       <Section id="risultati" tone="ink" rhythm="vast">
         <div className="shell">
           <Reveal>
-            <Eyebrow numbered="03" className="text-paper-deep/70">
+            <Eyebrow numbered="03" className="text-paper/60">
               Risultati
             </Eyebrow>
             <Display level={2} size="d2" className="mt-6 max-w-2xl">
               Tre portafogli, tre problemi diversi.
             </Display>
+            <p className="eyebrow mt-8 text-paper/45">Trascina o usa le frecce</p>
           </Reveal>
+        </div>
 
-          <Reveal stagger={0.1} className="mt-16">
-            {caseStudies.map((item) => (
-              <RevealItem key={item.slug}>
-                <article className="grid gap-8 border-t border-paper/15 py-12 last:border-b lg:grid-cols-12 lg:gap-8">
-                  <header className="lg:col-span-3">
-                    <p className="display text-d4">{item.client}</p>
-                    <p className="eyebrow tnum mt-3 text-paper/50">
-                      {item.units} unità · {item.market}
-                    </p>
-                    <p className="eyebrow mt-2 text-paper/50">Orizzonte {item.horizon}</p>
-                  </header>
+        <Reveal className="shell-start mt-12">
+          <CaseScroller items={caseStudies} />
+        </Reveal>
 
-                  <div className="lg:col-span-5">
-                    <p className="text-paper/85">{item.problem}</p>
-                    <p className="mt-4 text-sm text-paper/60">{item.action}</p>
-                  </div>
-
-                  <dl className="grid grid-cols-3 gap-6 lg:col-span-4 lg:grid-cols-1 lg:gap-4">
-                    {item.results.map((result) => (
-                      <div key={result.label} className="lg:flex lg:items-baseline lg:gap-4">
-                        <dd className="display tnum text-d4 leading-none text-paper lg:w-28">
-                          {result.value}
-                        </dd>
-                        <dt className="mt-1 text-xs text-paper/55 lg:mt-0">{result.label}</dt>
-                      </div>
-                    ))}
-                  </dl>
-                </article>
-              </RevealItem>
-            ))}
-          </Reveal>
-
-          <Reveal className="mt-14">
-            <p className="text-xs text-paper/40">
-              Dati aggregati e anonimizzati su richiesta dei clienti. Numeri di dettaglio
-              disponibili in call.
-            </p>
-          </Reveal>
+        <div className="shell mt-14">
+          <p className="text-xs text-paper/40">
+            Dati aggregati e anonimizzati su richiesta dei clienti. Numeri di dettaglio disponibili
+            in call.
+          </p>
         </div>
       </Section>
 
       {/* ---------------------------------------------------------------
-          Metodo: quattro fasi, misura strettissima, foto full-bleed a lato.
+          Metodo: indice fisso a sinistra che segue lo scroll, fasi a destra
+          con il proprio diagramma dentro.
       ---------------------------------------------------------------- */}
       <Section id="metodo" tone="deep" rhythm="vast">
         <div className="shell">
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-5">
-              <Reveal>
-                <Eyebrow numbered="04">Metodo</Eyebrow>
-                <Display level={2} size="d2" className="mt-6">
-                  Dai dati al calendario, in quattro fasi.
-                </Display>
-                <Lead className="mt-6">
-                  Nessuna tariffa cambia prima che il piano sia scritto, discusso e approvato.
-                </Lead>
-                <div className="mt-10">
-                  <TextLink href="/metodo">Il metodo nel dettaglio</TextLink>
-                </div>
-              </Reveal>
-
-              {/* Qui c'era una foto decorativa. La matrice fa lo stesso lavoro
-                  visivo dicendo qualcosa: e' l'output della fase 01. */}
-              <Reveal delay={0.15} className="mt-16">
-                <PortfolioMatrix />
-              </Reveal>
-            </div>
-
-            <Reveal stagger={0.08} className="lg:col-span-6 lg:col-start-7">
-              {method.map((phase) => (
-                <RevealItem key={phase.index}>
-                  <div className="border-t border-rule-strong/60 py-8 first:border-t-0 first:pt-0">
-                    <div className="flex items-baseline justify-between gap-6">
-                      <div className="flex items-baseline gap-4">
-                        <span className="eyebrow tnum text-sage">{phase.index}</span>
-                        <h3 className="display text-d3">{phase.title}</h3>
-                      </div>
-                      <span className="eyebrow shrink-0 text-ink-faint">{phase.duration}</span>
-                    </div>
-                    <p className="measure mt-4 text-ink-soft">{phase.body}</p>
-                  </div>
-                </RevealItem>
-              ))}
-            </Reveal>
+          {/* Il titolo compare qui solo sotto lg: sopra lo porta la colonna fissa. */}
+          <div className="mb-4 lg:hidden">
+            <Eyebrow numbered="04">Metodo</Eyebrow>
+            <Display level={2} size="d2" className="mt-6">
+              Dai dati al calendario, in quattro fasi.
+            </Display>
           </div>
+          <MethodSticky diagrams={methodDiagrams} />
         </div>
       </Section>
 
       {/* ---------------------------------------------------------------
-          Chi sono. Ritratto fuori asse, non centrato in un cerchio.
+          Chi sono: la foto esce dal bordo sinistro dello schermo, il testo
+          resta su misura stretta. Nessuna griglia simmetrica.
       ---------------------------------------------------------------- */}
-      <Section id="chi-sono" rhythm="vast" ruled>
-        <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
-            <Reveal className="lg:col-span-4">
-              <figure>
-                <Image
-                  src="/images/lucrezia-celeste-revenue-manager.jpg"
-                  alt="Lucrezia Celeste, revenue manager specializzata in short-term rental"
-                  width={1199}
-                  height={1600}
-                  sizes="(min-width: 1024px) 30vw, 100vw"
-                  className="w-full object-cover"
-                  priority={false}
-                />
-                <figcaption className="eyebrow mt-4 text-ink-faint">
-                  Lucrezia Celeste — {site.role}
-                </figcaption>
-              </figure>
+      <Section id="chi-sono" tone="surface" rhythm="vast" ruled>
+        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-5">
+            <figure>
+              <Image
+                src="/images/lucrezia-celeste-revenue-manager.jpg"
+                alt="Lucrezia Celeste, revenue manager specializzata in short-term rental"
+                width={1199}
+                height={1600}
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="h-[26rem] w-full object-cover object-top sm:h-[34rem] lg:h-[42rem]"
+              />
+            </figure>
+          </Reveal>
+
+          <div className="px-5 sm:px-8 lg:col-span-6 lg:col-start-7 lg:pr-[clamp(1.25rem,5vw,4rem)] lg:pl-0">
+            <Reveal>
+              <Eyebrow numbered="05">Chi sono</Eyebrow>
+              <Display level={2} size="d2" className="mt-6 max-w-xl">
+                Ho pulito appartamenti prima di ottimizzare tariffe.
+              </Display>
             </Reveal>
 
-            <div className="lg:col-span-7 lg:col-start-6">
-              <Reveal>
-                <Eyebrow numbered="05">Chi sono</Eyebrow>
-                <Display level={2} size="d2" className="mt-6">
-                  Ho pulito appartamenti prima di ottimizzare tariffe.
-                </Display>
-              </Reveal>
+            <Reveal delay={0.1}>
+              <div className="measure-wide mt-8 space-y-5 text-ink-soft">
+                <p>
+                  Sono entrata nel settore nel 2021 dall&apos;operatività: avvio di locazioni,
+                  gestione ospiti, cura degli appartamenti, amministrazione. Poi la parte analitica,
+                  su portafogli fino a 120 unità tra Verona, Milano e Londra.
+                </p>
+                <p className="text-ink">
+                  Collaboro anche allo sviluppo di strumenti per il settore — booking engine, CRS,
+                  integrazioni API con i channel manager. Conosco i sistemi anche da dentro, non
+                  solo da utente.
+                </p>
+              </div>
+            </Reveal>
 
-              <Reveal delay={0.1}>
-                <div className="measure-wide mt-8 space-y-5 text-ink-soft">
-                  <p>
-                    Sono entrata nel settore nel 2021 dall&apos;operatività: avvio di locazioni,
-                    gestione ospiti, cura degli appartamenti, amministrazione. Poi la parte
-                    analitica, su portafogli fino a 120 unità tra Verona, Milano e Londra.
-                  </p>
-                  <p>
-                    Questo mi ha dato una cosa che i corsi non danno: so cosa comporta, a valle,
-                    ogni decisione tariffaria. Un min stay cambiato il venerdì è una telefonata al
-                    team delle pulizie il sabato.
-                  </p>
-                  <p className="text-ink">
-                    Collaboro anche allo sviluppo di strumenti per il settore — booking engine, CRS,
-                    integrazioni API con i channel manager. Conosco i sistemi anche da dentro, non
-                    solo da utente.
-                  </p>
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.16}>
-                <div className="mt-10">
-                  <TextLink href="/chi-sono">Il percorso completo</TextLink>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* ---------------------------------------------------------------
-          Testimonianze: una citazione grande, due di supporto. Nessun carosello.
-      ---------------------------------------------------------------- */}
-      <Section tone="surface" rhythm="loose" ruled>
-        <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
-            <Reveal className="lg:col-span-7">
-              <figure>
-                <blockquote className="display text-d3 text-balance italic">
+            <Reveal delay={0.16}>
+              <figure className="measure-wide mt-12 border-l border-sage pl-6">
+                <blockquote className="display text-d4 italic">
                   &laquo;{testimonials[0].quote}&raquo;
                 </blockquote>
-                <figcaption className="eyebrow mt-8 text-ink-faint">
+                <figcaption className="eyebrow mt-4 text-ink-faint">
                   {testimonials[0].role} — {testimonials[0].detail}
                 </figcaption>
               </figure>
             </Reveal>
 
-            <Reveal stagger={0.1} className="lg:col-span-4 lg:col-start-9">
-              {testimonials.slice(1).map((item) => (
-                <RevealItem key={item.detail}>
-                  <figure className="border-t border-rule py-7 first:border-t-0 first:pt-0">
-                    <blockquote className="text-sm text-ink-soft">
-                      &laquo;{item.quote}&raquo;
-                    </blockquote>
-                    <figcaption className="eyebrow mt-4 text-ink-faint">
-                      {item.role} — {item.detail}
-                    </figcaption>
-                  </figure>
-                </RevealItem>
-              ))}
+            <Reveal delay={0.22}>
+              <dl className="mt-12 max-w-lg border-t border-rule">
+                {[
+                  { k: "Formazione", v: "Laurea in Economia" },
+                  { k: "Nel settore", v: "Dal 2021, prima operativa" },
+                  { k: "Portafoglio più grande", v: "120 unità" },
+                  { k: "Strumenti", v: tools.slice(0, 3).join(" · ") },
+                ].map((row) => (
+                  <div
+                    key={row.k}
+                    className="flex items-baseline justify-between gap-6 border-b border-rule py-3.5"
+                  >
+                    <dt className="eyebrow text-ink-faint">{row.k}</dt>
+                    <dd className="text-sm text-ink">{row.v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="mt-10">
+                <TextLink href="/chi-sono">Il percorso completo</TextLink>
+              </div>
             </Reveal>
           </div>
         </div>

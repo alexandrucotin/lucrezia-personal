@@ -10,10 +10,22 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const DISTANCE = 12;
 const THRESHOLD = 0.88;
 
+/* Due gesti invece di uno: la salita per il testo, l'ingresso laterale per
+   gli elenchi a filetto. Basta a togliere l'effetto "stessa animazione
+   quaranta volte". */
 const variants = {
   hidden: { opacity: 0, y: DISTANCE },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
+
+const variantsFromLeft = {
+  hidden: { opacity: 0, x: -22 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: EASE } },
+};
+
+const BY_DIRECTION = { bottom: variants, left: variantsFromLeft };
+
+export type RevealDirection = keyof typeof BY_DIRECTION;
 
 /**
  * Rilevamento della visibilita' fatto a mano invece di IntersectionObserver.
@@ -124,9 +136,17 @@ export function Reveal({ children, className, delay = 0, stagger = 0 }: RevealPr
  * varianti dal genitore, lasciando il figlio fermo per sempre sullo stato
  * iniziale — cioe' invisibile. Solo `variants`.
  */
-export function RevealItem({ children, className }: { children: ReactNode; className?: string }) {
+export function RevealItem({
+  children,
+  className,
+  from = "bottom",
+}: {
+  children: ReactNode;
+  className?: string;
+  from?: RevealDirection;
+}) {
   return (
-    <motion.div data-reveal className={className} variants={variants}>
+    <motion.div data-reveal className={className} variants={BY_DIRECTION[from]}>
       {children}
     </motion.div>
   );

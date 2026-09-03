@@ -81,6 +81,16 @@
   padding-inline: clamp(1.25rem, 5vw, 4rem);
 }
 
+/* Allinea il bordo sinistro al contenuto di .shell lasciando correre il
+   contenuto fino al bordo destro dello schermo. Usa 100% e non 100vw
+   cosi' la barra di scorrimento non provoca un trabocco orizzontale. */
+@utility shell-start {
+  padding-inline-start: max(
+    clamp(1.25rem, 5vw, 4rem),
+    calc((100% - 78rem) / 2 + clamp(1.25rem, 5vw, 4rem))
+  );
+}
+
 @utility measure {
   max-inline-size: 34em;
 }
