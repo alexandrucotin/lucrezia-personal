@@ -31,7 +31,7 @@ export const site = {
     country: "IT",
   },
 
-  markets: ["Verona", "Milano", "Lago di Garda", "Londra"],
+  markets: ["Verona", "Milano", "Torino", "Lago di Garda", "Londra"],
 } as const;
 
 export const nav = [

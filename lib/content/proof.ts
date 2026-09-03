@@ -10,12 +10,13 @@ import type { StatItem } from "@/components/ui/stat";
 
 export const stats: StatItem[] = [
   { value: "120", label: "unità gestite", note: "nel portafoglio più grande seguito" },
-  { value: "4", label: "mercati", note: "Verona, Milano, Lago di Garda, Londra" },
+  { value: "5", label: "mercati", note: "Verona, Milano, Torino, Garda, Londra" },
   { value: "2021", label: "nel settore", note: "prima operativa, poi revenue" },
   // MOCK
   { value: "+18%", label: "RevPAR medio", note: "sui portafogli seguiti, primi 12 mesi" },
 ];
 
+/* I casi studio restano anonimi finche' non arrivano i numeri veri. */
 export type CaseStudy = {
   slug: string;
   client: string;
@@ -111,13 +112,19 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-/** MOCK — nomi di fantasia, resi come wordmark tipografici e non come loghi finti. */
+/**
+ * Portafogli seguiti. Nomi reali: prima della pubblicazione serve il consenso
+ * scritto di ciascuna azienda a essere citata, e va confermata la grafia
+ * esatta del marchio.
+ *
+ * Attenzione: questi nomi non vanno mai accostati ai numeri dei casi studio
+ * qui sotto, che sono ancora ipotesi. Attribuire un risultato inventato a
+ * un'azienda reale e' una dichiarazione falsa su di lei.
+ */
 export const clients = [
-  "Adige Stay",
-  "Casa Verona Suites",
-  "Milano Host Lab",
-  "Garda Rooms",
-  "Borgo Collection",
+  { name: "Bhomy", city: "Torino" },
+  { name: "Domusverona", city: "Verona" },
+  { name: "Italian Flat", city: "Verona" },
 ] as const;
 
 /** Strumenti reali con cui lavora, dal sito attuale. */

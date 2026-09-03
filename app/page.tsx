@@ -98,11 +98,15 @@ export default function HomePage() {
       {/* Fascia clienti: wordmark tipografici, non loghi. */}
       <Section as="div" tone="deep" rhythm="tight" ruled>
         <div className="shell">
-          <p className="eyebrow text-ink-faint">Portafogli seguiti</p>
-          <ul className="mt-6 flex flex-wrap items-baseline gap-x-10 gap-y-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-4">
+            <p className="eyebrow text-ink-faint">Portafogli seguiti</p>
+            <p className="eyebrow text-ink-faint">Da 14 a 120 unità</p>
+          </div>
+          <ul className="mt-6 flex flex-wrap items-baseline gap-x-12 gap-y-5">
             {clients.map((client) => (
-              <li key={client} className="display text-d4 text-ink-soft">
-                {client}
+              <li key={client.name} className="flex items-baseline gap-3">
+                <span className="display text-d4 text-ink">{client.name}</span>
+                <span className="eyebrow text-ink-faint">{client.city}</span>
               </li>
             ))}
           </ul>
