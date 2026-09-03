@@ -116,17 +116,17 @@ export function Reveal({ children, className, delay = 0, stagger = 0 }: RevealPr
   );
 }
 
-/** Figlio di un <Reveal stagger>: eredita il timing dal genitore. */
+/**
+ * Figlio di un <Reveal stagger>: eredita stato e timing dal genitore.
+ *
+ * Qui non va dichiarato ne' `initial` ne' `animate`: basta uno dei due perche'
+ * Motion consideri il componente autonomo e interrompa la propagazione delle
+ * varianti dal genitore, lasciando il figlio fermo per sempre sullo stato
+ * iniziale — cioe' invisibile. Solo `variants`.
+ */
 export function RevealItem({ children, className }: { children: ReactNode; className?: string }) {
-  const animate = !useReducedMotion();
-
   return (
-    <motion.div
-      data-reveal
-      className={className}
-      initial={animate ? "hidden" : false}
-      variants={variants}
-    >
+    <motion.div data-reveal className={className} variants={variants}>
       {children}
     </motion.div>
   );
