@@ -189,3 +189,69 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ------------------------------------------------------------------
+   Reveal allo scroll, in CSS.
+
+   Il server rende tutto VISIBILE. E' il client, dopo il mount, a nascondere
+   soltanto cio' che si trova sotto la piega — dove nessuno lo sta guardando.
+   Conseguenze volute:
+
+   - JavaScript disattivato o bundle che non carica: pagina interamente
+     leggibile, nessuno stato nascosto viene mai applicato.
+   - Nessun attributo scritto sulla radice, quindi nessun disallineamento
+     di idratazione.
+   - La transizione e' dichiarata solo sullo stato visibile, cosi' nascondere
+     e' istantaneo e comparire e' animato.
+
+   Non lo fa una libreria di animazione perche' una transizione CSS che non
+   viene disegnata atterra comunque sullo stato finale, mentre un'animazione
+   guidata da requestAnimationFrame che non riceve fotogrammi resta ferma sul
+   primo fotogramma — cioe' invisibile.
+------------------------------------------------------------------- */
+
+@layer base {
+  [data-reveal][data-hidden],
+  [data-reveal-group][data-hidden] > [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  [data-reveal][data-hidden][data-from="left"],
+  [data-reveal-group][data-hidden] > [data-reveal][data-from="left"] {
+    transform: translateX(-22px);
+  }
+
+  [data-reveal][data-hidden][data-visible],
+  [data-reveal-group][data-hidden][data-visible] > [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 600ms var(--ease-editorial),
+      transform 600ms var(--ease-editorial);
+  }
+
+  /* Ritardo progressivo dei figli diretti: lo stagger non ha bisogno di
+     JavaScript, e non puo' rompersi elemento per elemento. */
+  [data-reveal-group][data-hidden][data-visible] > [data-reveal]:nth-child(2) {
+    transition-delay: 70ms;
+  }
+  [data-reveal-group][data-hidden][data-visible] > [data-reveal]:nth-child(3) {
+    transition-delay: 140ms;
+  }
+  [data-reveal-group][data-hidden][data-visible] > [data-reveal]:nth-child(4) {
+    transition-delay: 210ms;
+  }
+  [data-reveal-group][data-hidden][data-visible] > [data-reveal]:nth-child(n + 5) {
+    transition-delay: 280ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-group] > [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

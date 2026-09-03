@@ -4,6 +4,8 @@ import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
+import { JsonLd } from "@/components/site/json-ld";
+import { rootGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 /* Fraunces come display: serif variabile con optical sizing reale,
@@ -70,12 +72,6 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} antialiased`}
     >
-      <head>
-        {/* Senza JavaScript le animazioni non partono: il contenuto resta visibile. */}
-        <noscript>
-          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
-      </head>
       <body>
         <a
           href="#contenuto"
@@ -83,6 +79,9 @@ export default function RootLayout({
         >
           Salta al contenuto
         </a>
+        {/* Entita' di base: chi e' Lucrezia, cosa vende, dove opera.
+            Presenti una volta sola, valide per tutte le pagine. */}
+        <JsonLd data={rootGraph()} />
         <Header />
         <main id="contenuto">{children}</main>
         <Footer />

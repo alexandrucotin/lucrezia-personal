@@ -1,153 +1,120 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
-
-/* Un solo gesto di movimento in tutto il sito: 12px verso l'alto piu' opacita'.
-   Niente parallax, niente scale, niente blur: il movimento da' ritmo alla
-   lettura, non si fa notare. */
-const EASE = [0.16, 1, 0.3, 1] as const;
-const DISTANCE = 12;
-const THRESHOLD = 0.88;
-
-/* Due gesti invece di uno: la salita per il testo, l'ingresso laterale per
-   gli elenchi a filetto. Basta a togliere l'effetto "stessa animazione
-   quaranta volte". */
-const variants = {
-  hidden: { opacity: 0, y: DISTANCE },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-};
-
-const variantsFromLeft = {
-  hidden: { opacity: 0, x: -22 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: EASE } },
-};
-
-const BY_DIRECTION = { bottom: variants, left: variantsFromLeft };
-
-export type RevealDirection = keyof typeof BY_DIRECTION;
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
- * Rilevamento della visibilita' fatto a mano invece di IntersectionObserver.
+ * Reveal allo scroll.
  *
- * Con `whileInView` il contenuto parte a opacita' 0 e resta invisibile se
- * l'observer non emette mai eventi. Qui la prima verifica e' sincrona al
- * mount, quindi cio' che e' già a schermo compare sempre.
+ * La transizione e' in CSS (vedi globals.css). Qui si decide solo *quando*
+ * nascondere e quando mostrare. Tre scelte deliberate, tutte pagate con dei
+ * bug in questo progetto:
+ *
+ * - Il server rende visibile. Nasconde il client, dopo il mount, e solo cio'
+ *   che sta sotto la piega. Se il bundle non carica, la pagina resta
+ *   leggibile invece di restare bianca.
+ * - Nessun IntersectionObserver: la prima verifica e' sincrona al mount.
+ * - Nessun requestAnimationFrame: se i fotogrammi non arrivano, il controllo
+ *   non verrebbe mai eseguito. Sono letture di geometria, e ogni elemento
+ *   smette di ascoltare appena e' comparso.
  */
-function useInViewport(ref: RefObject<HTMLElement | null>) {
-  const [visible, setVisible] = useState(false);
+const THRESHOLD = 0.88;
+
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState<"open" | "hidden" | "revealed">("open");
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-
-    let frame = 0;
 
     const isInside = () => {
       const rect = element.getBoundingClientRect();
       return rect.top < window.innerHeight * THRESHOLD && rect.bottom > 0;
     };
 
+    /* Gia' a schermo: resta com'e', senza animazione di ingresso. */
+    if (isInside()) return;
+
+    setState("hidden");
+
     const stop = () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      document.removeEventListener("visibilitychange", onScroll);
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
     };
 
-    function onScroll() {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        if (isInside()) {
-          setVisible(true);
-          stop();
-        }
-      });
+    function check() {
+      if (isInside()) {
+        setState("revealed");
+        stop();
+      }
     }
 
-    if (isInside()) {
-      setVisible(true);
-      return;
-    }
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    document.addEventListener("visibilitychange", onScroll);
+    return stop;
+  }, []);
 
-    return () => {
-      cancelAnimationFrame(frame);
-      stop();
-    };
-  }, [ref]);
-
-  return visible;
+  return {
+    ref,
+    hidden: state !== "open" ? "" : undefined,
+    visible: state === "revealed" ? "" : undefined,
+  };
 }
 
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  /** Ritardo in secondi, per sfalsare blocchi vicini. */
   delay?: number;
-  /** Ritardo progressivo tra i figli <RevealItem>, in secondi. */
+  /** Attiva lo stagger sui figli diretti <RevealItem>. */
   stagger?: number;
 };
 
 export function Reveal({ children, className, delay = 0, stagger = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const visible = useInViewport(ref);
-  const animate = !useReducedMotion();
+  const { ref, hidden, visible } = useReveal();
 
   if (stagger > 0) {
     return (
-      <motion.div
+      <div
         ref={ref}
-        data-reveal
+        data-reveal-group=""
+        data-hidden={hidden}
+        data-visible={visible}
         className={className}
-        initial={animate ? "hidden" : false}
-        animate={visible || !animate ? "visible" : "hidden"}
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: stagger, delayChildren: delay } },
-        }}
       >
         {children}
-      </motion.div>
+      </div>
     );
   }
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      data-reveal
+      data-reveal=""
+      data-hidden={hidden}
+      data-visible={visible}
       className={className}
-      initial={animate ? "hidden" : false}
-      animate={visible || !animate ? "visible" : "hidden"}
-      variants={variants}
-      transition={{ duration: 0.6, ease: EASE, delay }}
+      style={delay ? { transitionDelay: `${Math.round(delay * 1000)}ms` } : undefined}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-/**
- * Figlio di un <Reveal stagger>: eredita stato e timing dal genitore.
- *
- * Qui non va dichiarato ne' `initial` ne' `animate`: basta uno dei due perche'
- * Motion consideri il componente autonomo e interrompa la propagazione delle
- * varianti dal genitore, lasciando il figlio fermo per sempre sullo stato
- * iniziale — cioe' invisibile. Solo `variants`.
- */
+/** Figlio diretto di un <Reveal stagger>. Il ritardo lo assegna il CSS. */
 export function RevealItem({
   children,
   className,
-  from = "bottom",
+  from,
 }: {
   children: ReactNode;
   className?: string;
-  from?: RevealDirection;
+  from?: "bottom" | "left";
 }) {
   return (
-    <motion.div data-reveal className={className} variants={BY_DIRECTION[from]}>
+    <div data-reveal="" data-from={from} className={className}>
       {children}
-    </motion.div>
+    </div>
   );
 }

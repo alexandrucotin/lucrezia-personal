@@ -12,7 +12,7 @@ import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { services } from "@/lib/content/services";
-import { caseStudies, clients, stats, testimonials, tools } from "@/lib/content/proof";
+import { caseStudies, clients, stats, tools } from "@/lib/content/proof";
 import { site } from "@/lib/site";
 
 /* Tre sintomi diagnostici: il lettore deve riconoscersi in almeno uno
@@ -259,79 +259,48 @@ export default function HomePage() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          Chi sono: la foto esce dal bordo sinistro dello schermo, il testo
-          resta su misura stretta. Nessuna griglia simmetrica.
+          Chi sono: breve, dentro il contenitore. Il percorso completo sta
+          sulla pagina dedicata, qui basta la persona e due frasi.
       ---------------------------------------------------------------- */}
       <Section id="chi-sono" tone="surface" rhythm="vast" ruled>
-        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
-            <figure>
-              <Image
-                src="/images/lucrezia-celeste-revenue-manager.jpg"
-                alt="Lucrezia Celeste, revenue manager specializzata in short-term rental"
-                width={1199}
-                height={1600}
-                sizes="(min-width: 1024px) 42vw, 100vw"
-                className="h-[26rem] w-full object-cover object-top sm:h-[34rem] lg:h-[42rem]"
-              />
-            </figure>
-          </Reveal>
-
-          <div className="px-5 sm:px-8 lg:col-span-6 lg:col-start-7 lg:pr-[clamp(1.25rem,5vw,4rem)] lg:pl-0">
-            <Reveal>
-              <Eyebrow numbered="05">Chi sono</Eyebrow>
-              <Display level={2} size="d2" className="mt-6 max-w-xl">
-                Ho pulito appartamenti prima di ottimizzare tariffe.
-              </Display>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <div className="measure-wide mt-8 space-y-5 text-ink-soft">
-                <p>
-                  Sono entrata nel settore nel 2021 dall&apos;operatività: avvio di locazioni,
-                  gestione ospiti, cura degli appartamenti, amministrazione. Poi la parte analitica,
-                  su portafogli fino a 120 unità tra Verona, Milano e Londra.
-                </p>
-                <p className="text-ink">
-                  Collaboro anche allo sviluppo di strumenti per il settore — booking engine, CRS,
-                  integrazioni API con i channel manager. Conosco i sistemi anche da dentro, non
-                  solo da utente.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.16}>
-              <figure className="measure-wide mt-12 border-l border-sage pl-6">
-                <blockquote className="display text-d4 italic">
-                  &laquo;{testimonials[0].quote}&raquo;
-                </blockquote>
-                <figcaption className="eyebrow mt-4 text-ink-faint">
-                  {testimonials[0].role} — {testimonials[0].detail}
-                </figcaption>
+        <div className="shell">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-5">
+              <figure>
+                <Image
+                  src="/images/lucrezia-celeste-revenue-manager.jpg"
+                  alt="Lucrezia Celeste, revenue manager specializzata in short-term rental"
+                  width={1199}
+                  height={1600}
+                  sizes="(min-width: 1024px) 38vw, 100vw"
+                  className="h-[24rem] w-full object-cover object-top sm:h-[30rem] lg:h-[34rem]"
+                />
               </figure>
             </Reveal>
 
-            <Reveal delay={0.22}>
-              <dl className="mt-12 max-w-lg border-t border-rule">
-                {[
-                  { k: "Formazione", v: "Laurea in Economia" },
-                  { k: "Nel settore", v: "Dal 2021, prima operativa" },
-                  { k: "Portafoglio più grande", v: "120 unità" },
-                  { k: "Strumenti", v: tools.slice(0, 3).join(" · ") },
-                ].map((row) => (
-                  <div
-                    key={row.k}
-                    className="flex items-baseline justify-between gap-6 border-b border-rule py-3.5"
-                  >
-                    <dt className="eyebrow text-ink-faint">{row.k}</dt>
-                    <dd className="text-sm text-ink">{row.v}</dd>
-                  </div>
-                ))}
-              </dl>
-              <div className="mt-10">
-                <TextLink href="/chi-sono">Il percorso completo</TextLink>
-              </div>
-            </Reveal>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <Reveal>
+                <Eyebrow numbered="05">Chi sono</Eyebrow>
+                <Display level={2} size="d2" className="mt-6 max-w-xl">
+                  Ho pulito appartamenti prima di ottimizzare tariffe.
+                </Display>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <div className="measure-wide mt-8 space-y-5 text-ink-soft">
+                  <p>
+                    Sono entrata nel settore nel 2021 dall&apos;operatività: avvio di locazioni,
+                    gestione ospiti, cura degli appartamenti, amministrazione. Poi la parte
+                    analitica, su portafogli fino a 120 unità tra Verona, Milano e Londra.
+                  </p>
+                  <p className="text-ink">
+                    Collaboro anche allo sviluppo di strumenti per il settore — booking engine, CRS,
+                    integrazioni API con i channel manager. Conosco i sistemi anche da dentro, non
+                    solo da utente.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </Section>
