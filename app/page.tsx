@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { PickupCurve } from "@/components/charts/pickup-curve";
+import { PortfolioMatrix } from "@/components/charts/portfolio-matrix";
 import { ActionLink, TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
@@ -142,6 +144,23 @@ export default function HomePage() {
               ))}
             </Reveal>
           </div>
+
+          {/* Il primo sintomo, disegnato. Il grafico non illustra l'argomento:
+              e' l'argomento. */}
+          <Reveal className="mt-20 grid gap-12 border-t border-rule pt-14 lg:mt-24 lg:grid-cols-12">
+            <PickupCurve className="lg:col-span-7" />
+            <div className="lg:col-span-4 lg:col-start-9">
+              <p className="text-ink-soft">
+                Una tariffa che non si muove nei quattro mesi che precedono l&apos;arrivo
+                intercetta le prenotazioni sbagliate: perde chi avrebbe pagato di più sotto data,
+                e poi recupera notti con lo sconto quando non c&apos;è più tempo per farne prezzo.
+              </p>
+              <p className="mt-5 text-sm text-ink-faint">
+                La distanza fra le due curve nelle ultime due settimane è la parte del fatturato
+                che nessuno vede, perché il calendario risulta pieno comunque.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
@@ -268,20 +287,10 @@ export default function HomePage() {
                 </div>
               </Reveal>
 
-              <Reveal delay={0.15} className="mt-14 hidden lg:block">
-                <figure>
-                  <Image
-                    src="/images/appartamento-short-term-rental.jpg"
-                    alt="Camera di un appartamento in gestione short-term rental"
-                    width={1676}
-                    height={2200}
-                    sizes="(min-width: 1024px) 34vw, 100vw"
-                    className="h-[26rem] w-full object-cover"
-                  />
-                  <figcaption className="eyebrow mt-4 text-ink-faint">
-                    Unità in gestione — Verona
-                  </figcaption>
-                </figure>
+              {/* Qui c'era una foto decorativa. La matrice fa lo stesso lavoro
+                  visivo dicendo qualcosa: e' l'output della fase 01. */}
+              <Reveal delay={0.15} className="mt-16">
+                <PortfolioMatrix />
               </Reveal>
             </div>
 
