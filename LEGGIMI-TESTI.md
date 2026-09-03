@@ -55,7 +55,7 @@ dimenticare. Se il repository viene rinominato, si cambia quella riga.
 Keystatic ha una procedura guidata che crea l'App al posto tuo e scrive i segreti
 nel file `.env`. Si esegue **in locale**, prima di pubblicare.
 
-1. Crea `.env.local` con una riga sola:
+1. Crea `.env.local` con **una riga sola**:
 
    ```
    NEXT_PUBLIC_KEYSTATIC_MODE=github
@@ -63,6 +63,12 @@ nel file `.env`. Si esegue **in locale**, prima di pubblicare.
 
    Serve solo a forzare la modalità GitHub in sviluppo, dove normalmente il
    pannello lavora sui file locali. In produzione non ha effetto.
+
+   > ⚠️ Non copiare `.env.example` dentro `.env.local`. In Next.js `.env.local`
+   > ha priorità su `.env`, e una variabile lasciata **vuota** lì sovrascrive
+   > quella vera. Al passo 6 Keystatic scrive i segreti in `.env`: se le stesse
+   > chiavi esistono vuote in `.env.local`, vincono le vuote e il pannello
+   > risponde 404 senza spiegare perché.
 
 2. `npm run dev`, poi apri **`http://127.0.0.1:3000/keystatic/setup`**.
    L'indirizzo è `127.0.0.1` e non `localhost`: è quello che GitHub accetta
