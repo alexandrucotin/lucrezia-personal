@@ -26,25 +26,40 @@ Qualche nota utile:
 **Se sbagli qualcosa il sito non si rompe.** Nel peggiore dei casi la modifica
 non viene pubblicata e resta online la versione precedente.
 
-## Per lo sviluppatore — configurazione
+## Per lo sviluppatore — accesso e configurazione
 
-In sviluppo Keystatic scrive sui file locali, senza autenticazione:
+Keystatic ha due modalità, e da quale è attiva dipende chi può entrare.
 
-```bash
-npm run dev
-# poi apri http://localhost:3000/keystatic
-```
+**In sviluppo** (`npm run dev`) la modalità è `local`: scrive sui file del disco
+e **non autentica nessuno**. Va bene perché il server sta sulla tua macchina —
+ma `next dev` si espone anche sull'indirizzo di rete locale, quindi su una Wi-Fi
+condivisa chiunque sia sulla stessa rete potrebbe aprire il pannello. Su reti non
+fidate usa `npm run dev -- -H 127.0.0.1`.
 
-In produzione serve una GitHub App, che si crea in automatico dal pannello al
-primo accesso. Le variabili d'ambiente da impostare sull'hosting sono:
+**In produzione** la modalità `local` non è accettabile: sarebbe un pannello di
+amministrazione senza login. Per questo `/keystatic` e `/api/keystatic/*`
+**rispondono 404** finché non è configurato l'accesso con GitHub. Non ci si
+affida al filesystem in sola lettura dell'hosting: è un dettaglio
+dell'infrastruttura, non un controllo di accesso.
+
+Configurato l'accesso GitHub, può salvare **solo chi ha permesso di scrittura sul
+repository**. Aggiungere o togliere Lucrezia si fa dalle impostazioni del
+repository, non da qui.
+
+La GitHub App si crea in automatico dal pannello al primo accesso. Le variabili
+d'ambiente da impostare sull'hosting sono:
 
 | Variabile | A cosa serve |
 | --- | --- |
-| `NEXT_PUBLIC_KEYSTATIC_REPO` | `utente/repository`. **Se manca, il pannello resta in modalità locale.** |
+| `NEXT_PUBLIC_KEYSTATIC_REPO` | `utente/repository`. **Se manca, in produzione il pannello risponde 404.** |
 | `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Nome della GitHub App |
 | `KEYSTATIC_GITHUB_CLIENT_ID` | Dalla GitHub App |
 | `KEYSTATIC_GITHUB_CLIENT_SECRET` | Dalla GitHub App |
 | `KEYSTATIC_SECRET` | Stringa casuale: `openssl rand -hex 32` |
+
+Se imposti `NEXT_PUBLIC_KEYSTATIC_REPO` ma dimentichi i tre segreti, **il build
+fallisce** elencando le variabili mancanti. È voluto: meglio un errore evidente
+in fase di pubblicazione che un pannello mezzo configurato online.
 
 Per il modulo di contatto:
 
