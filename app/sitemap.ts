@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
-import { services } from "@/lib/content/services";
 import { site } from "@/lib/site";
+import { services } from "@/lib/content";
 
 /* Priorita' assegnate per intento commerciale, non per profondita' di URL:
    le pagine servizio valgono quanto la home perche' e' li' che atterrano

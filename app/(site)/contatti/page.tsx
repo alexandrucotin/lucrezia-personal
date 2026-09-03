@@ -6,26 +6,21 @@ import { JsonLd } from "@/components/site/json-ld";
 import { PageHeader } from "@/components/site/page-header";
 import { Eyebrow, Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
-import { faqs } from "@/lib/content/faq";
 import { breadcrumbGraph, faqGraph, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { faqs } from "@/lib/content";
+import { contattiContenuto } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
   { name: "Contatti", path: "/contatti" },
 ];
 
-const steps = [
-  "Mi scrivi due righe sul portafoglio.",
-  "Ci sentiamo trenta minuti, senza slide.",
-  "Ti mando una nota con le prime tre leve che vedo.",
-  "Se ha senso, ti propongo un formato di lavoro.",
-];
+const steps = contattiContenuto.passi;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contatti | Prenota una call di revenue management",
-  description:
-    "Raccontami quante unità gestisci e cosa non sta funzionando. Trenta minuti per capire se ci sono margini di recupero, senza impegno.",
+  title: contattiContenuto.meta.titolo,
+  description: contattiContenuto.meta.descrizione,
   path: "/contatti",
 });
 
@@ -36,9 +31,9 @@ export default function ContattiPage() {
       <JsonLd data={faqGraph(faqs)} />
 
       <PageHeader
-        eyebrow="Contatti"
-        title="Trenta minuti, e sai se ha senso lavorare insieme."
-        lead="Se dai numeri non emerge margine sufficiente te lo dico in call, senza mandarti una proposta. È il modo più rapido di non farci perdere tempo a entrambi."
+        eyebrow={contattiContenuto.pagina.occhiello}
+        title={contattiContenuto.pagina.titolo}
+        lead={contattiContenuto.pagina.sottotitolo}
         trail={trail}
       />
 
@@ -101,10 +96,7 @@ export default function ContattiPage() {
                       </a>
                     </p>
                   </div>
-                  <p className="mt-6 text-xs text-ink-faint">
-                    Rispondo entro un giorno lavorativo. I dati che invii servono solo a
-                    ricontattarti.
-                  </p>
+<p className="mt-6 text-xs text-ink-faint">{contattiContenuto.nota}</p>
                 </div>
               </Reveal>
             </div>

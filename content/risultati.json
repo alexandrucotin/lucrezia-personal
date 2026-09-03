@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "titolo": "Risultati e casi studio | Revenue management affitti brevi",
+    "descrizione": "Tre portafogli seguiti a Verona, Milano e sul Lago di Garda: il problema di partenza, l'intervento e i numeri, con l'orizzonte temporale dichiarato."
+  },
+  "pagina": {
+    "occhiello": "Risultati",
+    "titolo": "Tre portafogli, tre problemi diversi.",
+    "sottotitolo": "Ogni caso riporta il problema di partenza, cosa è stato cambiato e in quanto tempo. Senza l'orizzonte temporale una percentuale non vuol dire niente, quindi è sempre scritto.",
+    "scheda": [
+      {
+        "voce": "Portafogli",
+        "valore": "Da 14 a 120 unità"
+      },
+      {
+        "voce": "Mercati",
+        "valore": "Verona · Milano · Garda"
+      },
+      {
+        "voce": "Dati",
+        "valore": "Aggregati e anonimizzati"
+      }
+    ]
+  },
+  "lettura": {
+    "occhiello": "Come leggere questi numeri",
+    "titolo": "Una percentuale senza contesto non dimostra niente.",
+    "paragrafi": [
+      "I dati sono aggregati e anonimizzati su richiesta dei clienti: i numeri di dettaglio, con il periodo esatto e la base di confronto, li mostro in call a chi sta valutando un progetto.",
+      "Il confronto è sempre sullo stesso periodo dell'anno precedente, a parità di portafoglio. Quando il portafoglio è cambiato durante il periodo, il dato è calcolato solo sulle unità presenti in entrambi gli anni.",
+      "Il terzo caso vale la pena di essere letto due volte: il fatturato è salito del 24% vendendo il 6% di notti in meno. È il tipo di risultato che l'occupancy, da sola, non avrebbe mai mostrato."
+    ]
+  },
+  "invito": {
+    "titolo": "Il tuo portafoglio somiglia a uno di questi?",
+    "testo": "In trenta minuti capiamo se il problema è lo stesso e se i margini di recupero sono paragonabili."
+  },
+  "numeri": [
+    {
+      "value": "120",
+      "label": "unità gestite",
+      "note": "nel portafoglio più grande seguito"
+    },
+    {
+      "value": "5",
+      "label": "mercati",
+      "note": "Verona, Milano, Torino, Garda, Londra"
+    },
+    {
+      "value": "2021",
+      "label": "nel settore",
+      "note": "prima operativa, poi revenue"
+    },
+    {
+      "value": "+18%",
+      "label": "RevPAR medio",
+      "note": "sui portafogli seguiti, primi 12 mesi"
+    }
+  ],
+  "casi": [
+    {
+      "slug": "verona-centro",
+      "client": "Property manager",
+      "units": 42,
+      "market": "Verona, centro storico",
+      "horizon": "8 mesi",
+      "problem": "Tariffa fissa per stagione e min stay identico su tutte le unità. I bilocali venivano svenduti nei weekend di fiera, i monolocali restavano vuoti in settimana.",
+      "action": "Segmentazione del portafoglio in tre cluster tariffari, calendario eventi locale, min stay differenziato per taglia e giorno della settimana.",
+      "results": [
+        {
+          "value": "+19%",
+          "label": "RevPAR"
+        },
+        {
+          "value": "+7 pt",
+          "label": "occupancy"
+        },
+        {
+          "value": "-11%",
+          "label": "notti sotto costo"
+        }
+      ],
+      "quote": "Avevamo i dati, non sapevamo leggerli. In due mesi abbiamo capito quali unità stavamo svendendo."
+    },
+    {
+      "slug": "milano-business",
+      "client": "Azienda short-term rental",
+      "units": 115,
+      "market": "Milano, zona Fiera e Navigli",
+      "horizon": "11 mesi",
+      "problem": "Il 78% delle notti arrivava da un solo canale. Nessun controllo sul mix, cancellazioni alte e ADR schiacciato in bassa stagione.",
+      "action": "Riequilibrio del mix canali, politiche di cancellazione differenziate per finestra di prenotazione, tariffe corporate per i soggiorni lunghi.",
+      "results": [
+        {
+          "value": "+12%",
+          "label": "ADR bassa stagione"
+        },
+        {
+          "value": "-22%",
+          "label": "cancellazioni"
+        },
+        {
+          "value": "54%",
+          "label": "dipendenza dal canale principale, da 78%"
+        }
+      ]
+    },
+    {
+      "slug": "lago-di-garda",
+      "client": "Gestore boutique",
+      "units": 14,
+      "market": "Lago di Garda",
+      "horizon": "una stagione",
+      "problem": "Sconti aggressivi da aprile e a ottobre per riempire il calendario. Il calendario si riempiva, il fatturato no.",
+      "action": "Stop agli sconti a tappeto, prezzi minimi per unità, apertura graduale delle disponibilità e last minute solo sotto i sette giorni.",
+      "results": [
+        {
+          "value": "+24%",
+          "label": "fatturato"
+        },
+        {
+          "value": "-6%",
+          "label": "notti vendute"
+        },
+        {
+          "value": "+32%",
+          "label": "ADR di spalla"
+        }
+      ],
+      "quote": "Vendere meno notti e incassare di più è stato controintuitivo. Ha funzionato."
+    }
+  ],
+  "testimonianze": [
+    {
+      "quote": "La differenza è che Lucrezia è stata operativa. Sa cosa succede davvero quando cambi un min stay il venerdì pomeriggio.",
+      "role": "Founder",
+      "detail": "azienda STR, 115 unità, Milano"
+    },
+    {
+      "quote": "Non ci ha venduto un software. Ci ha insegnato a usare quello che avevamo già pagato e che stavamo usando al trenta per cento.",
+      "role": "Revenue specialist",
+      "detail": "60 unità, Lago di Garda"
+    },
+    {
+      "quote": "Il report iniziale ci ha messo davanti a due anni di decisioni sbagliate, con i numeri. Scomodo e utilissimo.",
+      "role": "Property manager",
+      "detail": "42 unità, Verona"
+    }
+  ],
+  "clienti": [
+    {
+      "name": "Bhomy",
+      "city": "Torino"
+    },
+    {
+      "name": "Domusverona",
+      "city": "Verona"
+    },
+    {
+      "name": "Italian Flat",
+      "city": "Verona"
+    }
+  ]
+}

@@ -6,38 +6,21 @@ import { JsonLd } from "@/components/site/json-ld";
 import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
-import { method } from "@/lib/content/services";
 import { breadcrumbGraph, faqGraph, pageMetadata } from "@/lib/seo";
 import { FaqList } from "@/components/site/faq-list";
+import { method } from "@/lib/content";
+import { metodoContenuto } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
   { name: "Metodo", path: "/metodo" },
 ];
 
-const faq = [
-  {
-    q: "Quando cambiate i primi prezzi?",
-    a: "Non prima della quinta settimana, e solo dopo che il piano è stato approvato. Toccare le tariffe durante la diagnosi renderebbe impossibile capire cosa ha prodotto cosa: si perderebbe il confronto proprio nel momento in cui serve.",
-  },
-  {
-    q: "Cosa succede se non siamo d'accordo sul piano?",
-    a: "Si discute e si riscrive. Il piano è un documento che il tuo team deve poter contestare: se una regola non regge a voce, non entra nel calendario. Non ho interesse a difendere una strategia che non applicherete.",
-  },
-  {
-    q: "Quanto tempo richiede al mio team?",
-    a: "Un'ora per la call iniziale, un'ora per la presentazione della diagnosi, poi circa trenta minuti a settimana per il punto sul pick-up. Nella fase di trasferimento serve di più, perché è formazione.",
-  },
-  {
-    q: "Posso fermarmi dopo la diagnosi?",
-    a: "Sì, ed è il motivo per cui la diagnosi è un servizio a sé. Ricevi il report e le priorità, e decidi se eseguirle con me, internamente, o con qualcun altro.",
-  },
-];
+const faq = metodoContenuto.faq;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Metodo | Come si svolge un progetto di revenue management",
-  description:
-    "Quattro fasi: diagnosi sui dati storici, piano tariffario approvato, esecuzione settimanale sul calendario, trasferimento delle competenze al team.",
+  title: metodoContenuto.meta.titolo,
+  description: metodoContenuto.meta.descrizione,
   path: "/metodo",
 });
 
@@ -48,15 +31,11 @@ export default function MetodoPage() {
       <JsonLd data={faqGraph(faq)} />
 
       <PageHeader
-        eyebrow="Metodo"
-        title="Dai dati al calendario, in quattro fasi."
-        lead="Nessuna tariffa cambia prima che il piano sia scritto, discusso e approvato. È una regola che rallenta l'inizio e rende leggibile tutto il resto."
+        eyebrow={metodoContenuto.pagina.occhiello}
+        title={metodoContenuto.pagina.titolo}
+        lead={metodoContenuto.pagina.sottotitolo}
         trail={trail}
-        aside={[
-          { k: "Prime settimane", v: "Solo lettura, nessuna modifica" },
-          { k: "Piano tariffario", v: "Approvato prima dell'esecuzione" },
-          { k: "Impegno del team", v: "Circa 30 minuti a settimana" },
-        ]}
+        aside={metodoContenuto.pagina.scheda}
       />
 
       <Section rhythm="loose" ruled tone="surface">
@@ -94,15 +73,11 @@ export default function MetodoPage() {
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <Reveal>
-                <Eyebrow>Su cosa si decide</Eyebrow>
+                <Eyebrow>{metodoContenuto.grafico.occhiello}</Eyebrow>
                 <Display level={2} size="d3" className="mt-6">
-                  Il pick-up, non l&apos;occupancy.
+                  {metodoContenuto.grafico.titolo}
                 </Display>
-                <p className="measure mt-6 text-ink-soft">
-                  Un calendario pieno può voler dire che i prezzi erano giusti, oppure che erano
-                  bassi. La differenza si legge nella velocità con cui le prenotazioni entrano
-                  rispetto alla data di arrivo.
-                </p>
+                <p className="measure mt-6 text-ink-soft">{metodoContenuto.grafico.testo}</p>
               </Reveal>
             </div>
 

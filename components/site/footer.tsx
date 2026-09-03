@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { services } from "@/lib/content/services";
 import { nav, site } from "@/lib/site";
+import { services } from "@/lib/content";
+import { generale } from "@/lib/content";
 
 const legalNav = [
   { href: "/privacy", label: "Privacy" },
@@ -17,9 +18,7 @@ export function Footer() {
             <p className="display text-d3 leading-none">{site.name}</p>
             <p className="eyebrow mt-4 text-sage">{site.role}</p>
             <p className="measure mt-6 text-sm text-ink-soft">
-              Consulenza di revenue management per property manager e aziende di short-term rental.
-              {" "}
-              {site.markets.slice(0, 3).join(", ")} e remoto.
+              {generale.footer.descrizione} {site.markets.slice(0, 3).join(", ")} e remoto.
             </p>
           </div>
 

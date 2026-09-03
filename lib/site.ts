@@ -1,42 +1,35 @@
 /**
- * Configurazione del sito.
+ * Identita' del sito, derivata dai testi in content/generale.json.
  *
- * I valori marcati MOCK sono ipotesi mie, da sostituire con i dati reali.
- * Sono tutti concentrati qui e in lib/content/ per rendere la sostituzione
- * una modifica in un punto solo.
+ * I valori marcati MOCK nel file JSON sono ipotesi da sostituire con i dati
+ * reali: dominio, email sul dominio, partita IVA, LinkedIn.
  */
 
+import { generale } from "@/lib/content";
+
+const { identita, contatti, legale } = generale;
+
 export const site = {
-  // MOCK — dominio ipotizzato
-  url: "https://www.lucreziaceleste.it",
-  name: "Lucrezia Celeste",
-  monogram: "LuCe",
-  role: "Revenue Manager Short-Term Rental",
-  tagline: "Revenue & Strategy",
+  url: identita.url,
+  name: identita.nome,
+  monogram: identita.monogramma,
+  role: identita.ruolo,
+  tagline: identita.tagline,
+  description: identita.descrizione,
 
-  // MOCK — email sul dominio invece della Gmail attuale
-  email: "lucrezia@lucreziaceleste.it",
-  phone: "+39 393 138 4561",
-  phoneHref: "+393931384561",
-  whatsapp: "393931384561",
+  email: contatti.email,
+  phone: contatti.telefono,
+  phoneHref: contatti.telefonoHref,
+  linkedin: contatti.linkedin,
 
-  // MOCK — profilo LinkedIn
-  linkedin: "https://www.linkedin.com/in/lucrezia-celeste",
-
-  // MOCK — dati fiscali per footer e privacy policy
   legal: {
-    entity: "Lucrezia Celeste",
-    vat: "IT 0000000000",
-    city: "Verona",
-    country: "IT",
+    entity: legale.entita,
+    vat: legale.partitaIva,
+    city: legale.citta,
+    country: legale.paese,
   },
 
-  markets: ["Verona", "Milano", "Torino", "Lago di Garda", "Londra"],
+  markets: generale.mercati,
 } as const;
 
-export const nav = [
-  { href: "/servizi", label: "Servizi" },
-  { href: "/metodo", label: "Metodo" },
-  { href: "/risultati", label: "Risultati" },
-  { href: "/chi-sono", label: "Chi sono" },
-] as const;
+export const nav = generale.navigazione;

@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { sendEnquiry, type FormState } from "@/app/contatti/actions";
+import { sendEnquiry, type FormState } from "@/lib/actions/contatti";
 import { ActionButton } from "@/components/ui/action";
 import { cn } from "@/lib/utils";
+import { contattiContenuto } from "@/lib/content";
 
 const initial: FormState = { ok: true };
 
@@ -15,13 +16,7 @@ const field =
 
 /* Il campo dimensione portafoglio qualifica il contatto prima della call:
    sotto le dieci unita' il servizio non si ripaga, ed e' meglio saperlo qui. */
-const sizes = [
-  "Meno di 10 unità",
-  "10-30 unità",
-  "31-60 unità",
-  "61-120 unità",
-  "Oltre 120 unità",
-];
+const { etichette, segnaposto, dimensioni: sizes } = contattiContenuto.modulo;
 
 export function ContactForm() {
   const [state, action] = useActionState(sendEnquiry, initial);
@@ -34,23 +29,23 @@ export function ContactForm() {
         </p>
       ) : null}
 
-      <Field name="nome" label="Nome e cognome" error={state.fieldErrors?.nome}>
+      <Field name="nome" label={etichette.nome} error={state.fieldErrors?.nome}>
         <input id="nome" name="nome" type="text" autoComplete="name" required className={field} />
       </Field>
 
-      <Field name="email" label="Email" error={state.fieldErrors?.email}>
+      <Field name="email" label={etichette.email} error={state.fieldErrors?.email}>
         <input
           id="email"
           name="email"
           type="email"
           autoComplete="email"
           required
-          placeholder="tu@azienda.it"
+          placeholder={segnaposto.email}
           className={field}
         />
       </Field>
 
-      <Field name="azienda" label="Azienda" hint="Facoltativo">
+      <Field name="azienda" label={etichette.azienda} hint="Facoltativo">
         <input
           id="azienda"
           name="azienda"
@@ -60,7 +55,7 @@ export function ContactForm() {
         />
       </Field>
 
-      <Field name="unita" label="Unità gestite" error={state.fieldErrors?.unita}>
+      <Field name="unita" label={etichette.unita} error={state.fieldErrors?.unita}>
         <select id="unita" name="unita" required defaultValue="" className={field}>
           <option value="" disabled>
             Seleziona
@@ -73,13 +68,13 @@ export function ContactForm() {
         </select>
       </Field>
 
-      <Field name="mercato" label="Mercato" hint="Città o zona, facoltativo">
+      <Field name="mercato" label={etichette.mercato} hint="Città o zona, facoltativo">
         <input id="mercato" name="mercato" type="text" className={field} />
       </Field>
 
       <Field
         name="messaggio"
-        label="Cosa ti sta dando problemi"
+        label={etichette.messaggio}
         error={state.fieldErrors?.messaggio}
       >
         <textarea
@@ -87,7 +82,7 @@ export function ContactForm() {
           name="messaggio"
           rows={5}
           required
-          placeholder="Quante strutture gestisci, con quali strumenti, e cosa non sta funzionando."
+          placeholder={segnaposto.messaggio}
           className={cn(field, "resize-y")}
         />
       </Field>
@@ -108,7 +103,7 @@ export function ContactForm() {
             className="mt-1 size-4 shrink-0 accent-[var(--color-sage)]"
           />
           <span>
-            Acconsento al trattamento dei dati per essere ricontattato, secondo la{" "}
+            {contattiContenuto.modulo.consenso}{" "}
             <Link href="/privacy" className="underline underline-offset-4 hover:text-ink">
               privacy policy
             </Link>
@@ -130,7 +125,7 @@ function Submit() {
 
   return (
     <ActionButton type="submit" disabled={pending} className="mt-8 w-full sm:w-auto">
-      {pending ? "Invio in corso…" : "Invia la richiesta"}
+      {pending ? contattiContenuto.modulo.inviaInCorso : contattiContenuto.modulo.invia}
     </ActionButton>
   );
 }

@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "titolo": "Lucrezia Celeste, revenue manager short-term rental a Verona",
+    "descrizione": "Revenue manager specializzata in short-term rental dal 2021. Portafogli fino a 120 unità tra Verona, Milano e Londra, con un percorso partito dall'operatività."
+  },
+  "pagina": {
+    "occhiello": "Chi sono",
+    "titolo": "Ho pulito appartamenti prima di ottimizzare tariffe.",
+    "sottotitolo": "Non è un aneddoto simpatico: è la ragione per cui le strategie che propongo si possono eseguire davvero. So cosa succede al team delle pulizie il sabato quando cambio un min stay il venerdì."
+  },
+  "percorso": {
+    "occhiello": "Il percorso",
+    "tappe": [
+      {
+        "anno": "2021",
+        "titolo": "L'operativo",
+        "testo": "Entro nel settore dalla gestione quotidiana: avvio di locazioni, accoglienza ospiti, cura degli appartamenti, pratiche amministrative. È il periodo in cui imparo cosa comporta davvero, a valle, ogni decisione presa a monte."
+      },
+      {
+        "anno": "2022",
+        "titolo": "I primi portafogli",
+        "testo": "Passo dalla singola unità alla gestione di gruppi di immobili. Comincio a lavorare sui canali, sui contenuti degli annunci e sulle prime politiche tariffarie strutturate."
+      },
+      {
+        "anno": "2023",
+        "titolo": "La specializzazione",
+        "testo": "Revenue management come mestiere: pricing dinamico, restrizioni, distribuzione. Lavoro su Verona e Milano, poi su Londra, e imparo quanto cambiano le regole passando da un mercato all'altro."
+      },
+      {
+        "anno": "Oggi",
+        "titolo": "La consulenza",
+        "testo": "Affianco property manager e aziende di short-term rental come revenue manager esterno, su portafogli da 10 a 150 unità, e collaboro allo sviluppo di strumenti per il settore."
+      }
+    ]
+  },
+  "credenziali": [
+    { "voce": "Formazione", "valore": "Laurea in Economia" },
+    { "voce": "Nel settore", "valore": "Dal 2021, prima operativa" },
+    { "voce": "Portafoglio più grande", "valore": "120 unità" }
+  ],
+  "tecnologia": {
+    "occhiello": "Tecnologia",
+    "titolo": "Conosco i sistemi anche da dentro.",
+    "testo": "Collaboro allo sviluppo di strumenti per il settore. Non è il mio mestiere principale, ma cambia il modo in cui leggo i limiti di un gestionale: so quali sono scelte di prodotto e quali sono vincoli veri.",
+    "collaborazione": "In collaborazione con CodeByAlex",
+    "progetti": [
+      {
+        "stato": "Completato",
+        "titolo": "Booking engine e CRS",
+        "testo": "Motore di prenotazione personalizzabile collegato a un CRS per la gestione dei contenuti, a sua volta integrato con il channel manager."
+      },
+      {
+        "stato": "Completato",
+        "titolo": "Integrazione API con KrossBooking",
+        "testo": "L'integrazione via API permette di sviluppare soluzioni complementari al channel manager, disegnate sulle esigenze specifiche dell'azienda."
+      },
+      {
+        "stato": "In corso",
+        "titolo": "Chat unificata",
+        "testo": "OTA, WhatsApp e Gmail in un'unica casella, per togliere al team il costo di saltare fra tre interfacce."
+      }
+    ]
+  },
+  "testimonianze": {
+    "occhiello": "Cosa dicono"
+  },
+  "testoFoto": "Lucrezia Celeste, revenue manager specializzata in short-term rental"
+}

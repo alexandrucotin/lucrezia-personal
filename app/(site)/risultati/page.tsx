@@ -6,8 +6,9 @@ import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
-import { caseStudies, clients, stats } from "@/lib/content/proof";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
+import { caseStudies, clients, stats } from "@/lib/content";
+import { home, risultatiContenuto } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
@@ -15,9 +16,8 @@ const trail = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Risultati e casi studio | Revenue management affitti brevi",
-  description:
-    "Tre portafogli seguiti a Verona, Milano e sul Lago di Garda: il problema di partenza, l'intervento e i numeri, con l'orizzonte temporale dichiarato.",
+  title: risultatiContenuto.meta.titolo,
+  description: risultatiContenuto.meta.descrizione,
   path: "/risultati",
 });
 
@@ -27,15 +27,11 @@ export default function RisultatiPage() {
       <JsonLd data={breadcrumbGraph(trail)} />
 
       <PageHeader
-        eyebrow="Risultati"
-        title="Tre portafogli, tre problemi diversi."
-        lead="Ogni caso riporta il problema di partenza, cosa è stato cambiato e in quanto tempo. Senza l'orizzonte temporale una percentuale non vuol dire niente, quindi è sempre scritto."
+        eyebrow={risultatiContenuto.pagina.occhiello}
+        title={risultatiContenuto.pagina.titolo}
+        lead={risultatiContenuto.pagina.sottotitolo}
         trail={trail}
-        aside={[
-          { k: "Portafogli", v: "Da 14 a 120 unità" },
-          { k: "Mercati", v: "Verona · Milano · Garda" },
-          { k: "Dati", v: "Aggregati e anonimizzati" },
-        ]}
+        aside={risultatiContenuto.pagina.scheda}
       />
 
       <Section rhythm="tight" ruled>
@@ -97,34 +93,31 @@ export default function RisultatiPage() {
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <Reveal>
-                <Eyebrow>Come leggere questi numeri</Eyebrow>
+                <Eyebrow>{risultatiContenuto.lettura.occhiello}</Eyebrow>
                 <Display level={2} size="d3" className="mt-6">
-                  Una percentuale senza contesto non dimostra niente.
+                  {risultatiContenuto.lettura.titolo}
                 </Display>
               </Reveal>
             </div>
 
             <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
               <div className="measure-wide space-y-5 text-ink-soft">
-                <p>
-                  I dati sono aggregati e anonimizzati su richiesta dei clienti: i numeri di
-                  dettaglio, con il periodo esatto e la base di confronto, li mostro in call a chi
-                  sta valutando un progetto.
-                </p>
-                <p>
-                  Il confronto è sempre sullo stesso periodo dell&apos;anno precedente, a parità di
-                  portafoglio. Quando il portafoglio è cambiato durante il periodo, il dato è
-                  calcolato solo sulle unità presenti in entrambi gli anni.
-                </p>
-                <p className="text-ink">
-                  Il terzo caso vale la pena di essere letto due volte: il fatturato è salito del
-                  24% vendendo il 6% di notti in meno. È il tipo di risultato che l&apos;occupancy,
-                  da sola, non avrebbe mai mostrato.
-                </p>
+                {risultatiContenuto.lettura.paragrafi.map((paragrafo, index) => (
+                  <p
+                    key={paragrafo}
+                    className={
+                      index === risultatiContenuto.lettura.paragrafi.length - 1
+                        ? "text-ink"
+                        : undefined
+                    }
+                  >
+                    {paragrafo}
+                  </p>
+                ))}
               </div>
 
               <div className="mt-12">
-                <p className="eyebrow text-ink-faint">Portafogli seguiti</p>
+                <p className="eyebrow text-ink-faint">{home.clienti.occhiello}</p>
                 <ul className="mt-5 flex flex-wrap items-baseline gap-x-10 gap-y-4">
                   {clients.map((client) => (
                     <li key={client.name} className="flex items-baseline gap-3">
@@ -140,8 +133,8 @@ export default function RisultatiPage() {
       </Section>
 
       <CtaBand
-        title="Il tuo portafoglio somiglia a uno di questi?"
-        body="In trenta minuti capiamo se il problema è lo stesso e se i margini di recupero sono paragonabili."
+        title={risultatiContenuto.invito.titolo}
+        body={risultatiContenuto.invito.testo}
       />
     </>
   );

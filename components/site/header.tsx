@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ActionLink } from "@/components/ui/action";
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/lib/site";
+import { generale } from "@/lib/content";
 
 export function Header() {
   const pathname = usePathname();
@@ -62,7 +63,7 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <ActionLink href="/contatti" className="hidden px-6 py-3 lg:inline-flex">
-            Prenota una call
+            {generale.intestazione.pulsante}
           </ActionLink>
 
           <button
@@ -115,7 +116,7 @@ export function Header() {
 
         <div className="shell space-y-6 py-10">
           <ActionLink href="/contatti" onClick={() => setOpen(false)} className="w-full">
-            Prenota una call conoscitiva
+            {generale.invitoFinale.pulsante}
           </ActionLink>
           <div className="space-y-1 text-sm text-ink-soft">
             <p>

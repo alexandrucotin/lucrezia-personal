@@ -6,9 +6,10 @@ import { JsonLd } from "@/components/site/json-ld";
 import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
-import { packages, services } from "@/lib/content/services";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { packages, services } from "@/lib/content";
+import { serviziContenuto } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
@@ -16,9 +17,8 @@ const trail = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Consulenza revenue management affitti brevi | Servizi",
-  description:
-    "Analisi del portafoglio, dynamic pricing e ottimizzazione OTA, formazione del team. Tre formati di lavoro per property manager con 10-150 unità.",
+  title: serviziContenuto.meta.titolo,
+  description: serviziContenuto.meta.descrizione,
   path: "/servizi",
 });
 
@@ -28,15 +28,11 @@ export default function ServiziPage() {
       <JsonLd data={breadcrumbGraph(trail)} />
 
       <PageHeader
-        eyebrow="Aree di intervento"
-        title="Tre modi di lavorare sul tuo revenue."
-        lead="Si può partire da una diagnosi chiusa in sé, affidare l'esecuzione, o portare la competenza dentro l'azienda. Cambia chi tiene il volante, non il metodo."
+        eyebrow={serviziContenuto.pagina.occhiello}
+        title={serviziContenuto.pagina.titolo}
+        lead={serviziContenuto.pagina.sottotitolo}
         trail={trail}
-        aside={[
-          { k: "Perimetro", v: "Portafogli da 10 a 150 unità" },
-          { k: "Formati", v: "Una tantum, continuativo, a progetto" },
-          { k: "Gestionale", v: "Il tuo, senza migrazioni" },
-        ]}
+        aside={serviziContenuto.pagina.scheda}
       />
 
       <Section rhythm="loose" ruled>
@@ -79,14 +75,11 @@ export default function ServiziPage() {
       <Section tone="deep" rhythm="loose" ruled>
         <div className="shell">
           <Reveal>
-            <Eyebrow>Formati e prezzi</Eyebrow>
+            <Eyebrow>{serviziContenuto.prezzi.occhiello}</Eyebrow>
             <Display level={2} size="d2" className="mt-6 max-w-2xl">
-              Quanto costa, prima di parlarne.
+              {serviziContenuto.prezzi.titolo}
             </Display>
-            <p className="measure mt-6 text-ink-soft">
-              Le cifre sono punti di partenza: dipendono da quante unità gestisci, da quanti
-              mercati e da quanto è ordinato lo storico. In call si arriva a un numero preciso.
-            </p>
+            <p className="measure mt-6 text-ink-soft">{serviziContenuto.prezzi.testo}</p>
           </Reveal>
 
           <Reveal stagger={0.08} className="mt-14 grid gap-px border-t border-rule bg-rule lg:grid-cols-3">

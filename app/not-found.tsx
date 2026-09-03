@@ -1,10 +1,14 @@
+import { Footer } from "@/components/site/footer";
+import { Header } from "@/components/site/header";
 import { ActionLink, TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
-import { services } from "@/lib/content/services";
+import { services } from "@/lib/content";
 
 export default function NotFound() {
   return (
-    <Section rhythm="vast">
+    <>
+      <Header />
+      <Section as="main" rhythm="vast">
       <div className="shell">
         <Eyebrow>Errore 404</Eyebrow>
         <Display level={1} size="d1" className="mt-6 max-w-3xl">
@@ -26,10 +30,12 @@ export default function NotFound() {
           ))}
         </div>
 
-        <div className="mt-12">
-          <ActionLink href="/">Torna alla home</ActionLink>
+          <div className="mt-12">
+            <ActionLink href="/">Torna alla home</ActionLink>
+          </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+      <Footer />
+    </>
   );
 }

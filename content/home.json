@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "titolo": "Lucrezia Celeste — Revenue Manager Short-Term Rental",
+    "descrizione": "Consulenza di revenue management per property manager e aziende di short-term rental. Analisi del portafoglio, dynamic pricing e ottimizzazione OTA."
+  },
+  "hero": {
+    "occhiello": "Revenue management · Short-term rental",
+    "titolo": "Il tuo portafoglio lascia revenue sul tavolo.",
+    "titoloEvidenziato": "Il mio lavoro è trovare dove.",
+    "sottotitolo": "Affianco property manager e aziende di short-term rental con 10-150 unità. Leggo i dati che hai già, ricostruisco la strategia di pricing e la eseguo sui canali. Sul tuo gestionale, senza migrazioni.",
+    "pulsantePrimario": "Prenota una call conoscitiva",
+    "pulsanteSecondario": "Come lavoro",
+    "scheda": [
+      {
+        "voce": "Perimetro",
+        "valore": "Portafogli da 10 a 150 unità"
+      },
+      {
+        "voce": "Formato",
+        "valore": "Audit una tantum o continuativo"
+      }
+    ]
+  },
+  "clienti": {
+    "occhiello": "Portafogli seguiti",
+    "nota": "Da 14 a 120 unità"
+  },
+  "diagnosi": {
+    "occhiello": "Diagnosi",
+    "titolo": "Il calendario è pieno. Allora perché il fatturato non sale?",
+    "commentoGrafico": "Una tariffa che non si muove nei quattro mesi che precedono l'arrivo intercetta le prenotazioni sbagliate: perde chi avrebbe pagato di più sotto data, e poi recupera notti con lo sconto quando non c'è più tempo per farne prezzo.",
+    "commentoGraficoSecondario": "Il calendario risulta pieno comunque. È per questo che il problema non si vede.",
+    "sintomi": [
+      {
+        "indice": "01",
+        "titolo": "Il calendario è pieno, il fatturato non sale.",
+        "testo": "Occupancy al 90% e RevPAR fermo significa una cosa sola: stai comprando notti con lo sconto invece di venderle al prezzo che il mercato pagherebbe."
+      },
+      {
+        "indice": "02",
+        "titolo": "Il pricing è dinamico solo di nome.",
+        "testo": "Il tool è attivo, i parametri sono quelli di default dal giorno dell'installazione. Il prezzo lo decide un algoritmo che nessuno ha tarato sul tuo portafoglio."
+      },
+      {
+        "indice": "03",
+        "titolo": "Nessuno sa dire quale unità perde soldi.",
+        "testo": "Il conto economico è aggregato. Dentro la media ci sono appartamenti che ti finanziano e appartamenti che ti costano, e non sai quali."
+      }
+    ]
+  },
+  "servizi": {
+    "occhiello": "Aree di intervento",
+    "titolo": "Tre modi di lavorare sul tuo revenue.",
+    "link": "Tutti i servizi"
+  },
+  "risultati": {
+    "occhiello": "Risultati",
+    "titolo": "Tre portafogli, tre problemi diversi.",
+    "istruzione": "Trascina o usa le frecce",
+    "nota": "Dati aggregati e anonimizzati su richiesta dei clienti. Numeri di dettaglio disponibili in call."
+  },
+  "metodo": {
+    "occhiello": "Metodo",
+    "titolo": "Dai dati al calendario, in quattro fasi.",
+    "sottotitolo": "Nessuna tariffa cambia prima che il piano sia scritto, discusso e approvato.",
+    "link": "Il metodo nel dettaglio"
+  },
+  "chiSono": {
+    "occhiello": "Chi sono",
+    "titolo": "Ho pulito appartamenti prima di ottimizzare tariffe.",
+    "paragrafi": [
+      "Sono entrata nel settore nel 2021 dall'operatività: avvio di locazioni, gestione ospiti, cura degli appartamenti, amministrazione. Poi la parte analitica, su portafogli fino a 120 unità tra Verona, Milano e Londra.",
+      "Collaboro anche allo sviluppo di strumenti per il settore — booking engine, CRS, integrazioni API con i channel manager. Conosco i sistemi anche da dentro, non solo da utente."
+    ],
+    "testoFoto": "Lucrezia Celeste, revenue manager specializzata in short-term rental"
+  },
+  "contatti": {
+    "passi": [
+      "Mi scrivi due righe sul portafoglio.",
+      "Ci sentiamo trenta minuti, senza slide.",
+      "Ti mando una nota con le prime tre leve che vedo.",
+      "Se ha senso, ti propongo un formato di lavoro."
+    ]
+  }
+}

@@ -2,10 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
 
 import "./globals.css";
-import { Footer } from "@/components/site/footer";
-import { Header } from "@/components/site/header";
-import { JsonLd } from "@/components/site/json-ld";
-import { rootGraph } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 /* Fraunces come display: serif variabile con optical sizing reale,
@@ -63,29 +59,14 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
       data-scroll-behavior="smooth"
       className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} antialiased`}
     >
-      <body>
-        <a
-          href="#contenuto"
-          className="eyebrow sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"
-        >
-          Salta al contenuto
-        </a>
-        {/* Entita' di base: chi e' Lucrezia, cosa vende, dove opera.
-            Presenti una volta sola, valide per tutte le pagine. */}
-        <JsonLd data={rootGraph()} />
-        <Header />
-        <main id="contenuto">{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

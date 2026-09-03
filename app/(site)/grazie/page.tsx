@@ -4,6 +4,7 @@ import { ActionLink, TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
+import { contattiContenuto } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Richiesta inviata",
@@ -17,15 +18,11 @@ export default function GraziePage() {
     <Section rhythm="vast">
       <div className="shell">
         <Reveal>
-          <Eyebrow>Richiesta inviata</Eyebrow>
+          <Eyebrow>{contattiContenuto.grazie.occhiello}</Eyebrow>
           <Display level={1} size="d1" className="mt-6 max-w-3xl">
-            Ricevuto. Ti scrivo entro un giorno lavorativo.
+            {contattiContenuto.grazie.titolo}
           </Display>
-          <Lead className="mt-8">
-            Nel frattempo, se vuoi arrivare preparato alla call: le tre cose che guardo per prime
-            sono lo storico degli ultimi dodici mesi, il mix dei canali e la politica di min stay.
-            Se li hai a portata di mano, partiamo più veloci.
-          </Lead>
+          <Lead className="mt-8">{contattiContenuto.grazie.testo}</Lead>
 
           <div className="mt-12 flex flex-wrap items-center gap-6">
             <ActionLink href="/metodo" variant="outline">

@@ -20,7 +20,7 @@ export function PageHeader({
   title: string;
   lead?: string;
   trail: Crumb[];
-  aside?: { k: string; v: string }[];
+  aside?: readonly { voce: string; valore: string }[];
 }) {
   return (
     <Section as="div" rhythm="loose" className="pt-10 sm:pt-12">
@@ -48,9 +48,9 @@ export function PageHeader({
             <Reveal delay={0.16} className="lg:col-span-4 lg:col-start-9">
               <dl className="border-t border-rule">
                 {aside.map((row) => (
-                  <div key={row.k} className="border-b border-rule py-4">
-                    <dt className="eyebrow text-ink-faint">{row.k}</dt>
-                    <dd className="mt-2 text-sm text-ink">{row.v}</dd>
+                  <div key={row.voce} className="border-b border-rule py-4">
+                    <dt className="eyebrow text-ink-faint">{row.voce}</dt>
+                    <dd className="mt-2 text-sm text-ink">{row.valore}</dd>
                   </div>
                 ))}
               </dl>

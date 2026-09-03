@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       /* Pagine utili alle persone ma senza valore in un indice di ricerca. */
-      disallow: ["/grazie", "/privacy", "/cookie"],
+      disallow: ["/grazie", "/privacy", "/cookie", "/keystatic", "/api/"],
     },
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,

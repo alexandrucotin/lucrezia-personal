@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "titolo": "Metodo | Come si svolge un progetto di revenue management",
+    "descrizione": "Quattro fasi: diagnosi sui dati storici, piano tariffario approvato, esecuzione settimanale sul calendario, trasferimento delle competenze al team."
+  },
+  "pagina": {
+    "occhiello": "Metodo",
+    "titolo": "Dai dati al calendario, in quattro fasi.",
+    "sottotitolo": "Nessuna tariffa cambia prima che il piano sia scritto, discusso e approvato. È una regola che rallenta l'inizio e rende leggibile tutto il resto.",
+    "scheda": [
+      {
+        "voce": "Prime settimane",
+        "valore": "Solo lettura, nessuna modifica"
+      },
+      {
+        "voce": "Piano tariffario",
+        "valore": "Approvato prima dell'esecuzione"
+      },
+      {
+        "voce": "Impegno del team",
+        "valore": "Circa 30 minuti a settimana"
+      }
+    ]
+  },
+  "grafico": {
+    "occhiello": "Su cosa si decide",
+    "titolo": "Il pick-up, non l'occupancy.",
+    "testo": "Un calendario pieno può voler dire che i prezzi erano giusti, oppure che erano bassi. La differenza si legge nella velocità con cui le prenotazioni entrano rispetto alla data di arrivo."
+  },
+  "fasi": [
+    {
+      "index": "01",
+      "title": "Diagnosi",
+      "duration": "Settimane 1-3",
+      "body": "Accesso in lettura ai tuoi dati: gestionale, channel manager, estratti OTA. Ricostruisco lo storico e lo confronto con il mercato. Alla fine sai quanto stai lasciando sul tavolo e dove.",
+      "detail": "La prima cosa che faccio non è guardare i prezzi, è guardare cosa è successo quando li avete cambiati. Ricostruisco due anni di storico per unità, isolo le settimane in cui il calendario si è riempito troppo in fretta — quasi sempre significa prezzo basso — e quelle in cui è rimasto vuoto oltre la finestra utile. Poi confronto tutto con il competitor set reale, che non è la media della città ma le venti unità che ti tolgono davvero le prenotazioni.",
+      "output": "Report con la mappa del portafoglio e le prime cinque azioni per impatto"
+    },
+    {
+      "index": "02",
+      "title": "Strategia",
+      "duration": "Settimane 4-5",
+      "body": "Piano tariffario per stagione e per unità, politica di restrizioni, priorità sui canali. Documento condiviso, discusso e approvato prima di toccare qualsiasi prezzo.",
+      "detail": "Il piano si scrive prima e si approva insieme. Contiene le fasce tariffarie per stagione e per cluster di unità, la politica di min stay e restrizioni, il calendario degli eventi locali che spostano la domanda, e le regole di last minute. È un documento che il tuo team deve poter leggere e contestare: se una regola non è difendibile a voce, non entra.",
+      "output": "Piano tariffario approvato, con le regole scritte in modo verificabile"
+    },
+    {
+      "index": "03",
+      "title": "Esecuzione",
+      "duration": "Continuativa",
+      "body": "Implementazione sugli strumenti che usi già. Controllo settimanale del pick-up, correzioni sulle finestre scoperte, gestione della bassa stagione. Report mensile.",
+      "detail": "Ogni settimana guardo il pick-up: quante prenotazioni sono entrate, per quali date, a che prezzo. Le finestre che restano scoperte oltre la soglia si correggono subito, quelle che si riempiono troppo in fretta si alzano. Non è un'attività creativa, è manutenzione: il valore sta nel farla ogni settimana e non ogni tanto.",
+      "output": "Report mensile con scostamento su anno precedente e sulle azioni fatte"
+    },
+    {
+      "index": "04",
+      "title": "Trasferimento",
+      "duration": "Dal terzo mese",
+      "body": "Processi scritti e formazione del team. L'obiettivo dichiarato è che tu possa fare a meno di me sulla routine, e chiamarmi sulle decisioni.",
+      "detail": "Dal terzo mese comincio a scrivere quello che faccio e a insegnarlo. Non per generosità: un portafoglio in cui il revenue dipende da una persona sola è fragile, e se quella persona sono io il rischio ce l'hai comunque. Alla fine il tuo team gestisce la routine e mi chiama sulle decisioni di stagione.",
+      "output": "Processi documentati, dashboard KPI e team autonomo sulla gestione ordinaria"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Quando cambiate i primi prezzi?",
+      "a": "Non prima della quinta settimana, e solo dopo che il piano è stato approvato. Toccare le tariffe durante la diagnosi renderebbe impossibile capire cosa ha prodotto cosa: si perderebbe il confronto proprio nel momento in cui serve."
+    },
+    {
+      "q": "Cosa succede se non siamo d'accordo sul piano?",
+      "a": "Si discute e si riscrive. Il piano è un documento che il tuo team deve poter contestare: se una regola non regge a voce, non entra nel calendario. Non ho interesse a difendere una strategia che non applicherete."
+    },
+    {
+      "q": "Quanto tempo richiede al mio team?",
+      "a": "Un'ora per la call iniziale, un'ora per la presentazione della diagnosi, poi circa trenta minuti a settimana per il punto sul pick-up. Nella fase di trasferimento serve di più, perché è formazione."
+    },
+    {
+      "q": "Posso fermarmi dopo la diagnosi?",
+      "a": "Sì, ed è il motivo per cui la diagnosi è un servizio a sé. Ricevi il report e le priorità, e decidi se eseguirle con me, internamente, o con qualcun altro."
+    }
+  ]
+}

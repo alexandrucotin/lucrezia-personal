@@ -12,8 +12,8 @@ import { PageHeader } from "@/components/site/page-header";
 import { TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
-import { services } from "@/lib/content/services";
 import { breadcrumbGraph, faqGraph, pageMetadata, serviceGraph } from "@/lib/seo";
+import { services } from "@/lib/content";
 
 const diagrams = {
   matrix: PortfolioMatrix,
@@ -69,9 +69,9 @@ export default async function ServizioPage(props: PageProps<"/servizi/[slug]">) 
         lead={service.lead}
         trail={trail}
         aside={[
-          { k: "Servizio", v: service.title },
-          { k: "Durata", v: service.duration },
-          { k: "Perimetro", v: "10-150 unità" },
+          { voce: "Servizio", valore: service.title },
+          { voce: "Durata", valore: service.duration },
+          { voce: "Perimetro", valore: "10-150 unità" },
         ]}
       />
 
