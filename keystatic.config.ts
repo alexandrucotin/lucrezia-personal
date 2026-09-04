@@ -135,6 +135,23 @@ export default config({
         footer: fields.object({ descrizione: paragrafo("Testo del piè di pagina") }, {
           label: "Piè di pagina",
         }),
+        immagini: fields.object(
+          {
+            ritratto: fields.image({
+              label: "Ritratto",
+              description:
+                "Compare in home e nella pagina Chi sono. Va bene qualsiasi proporzione, viene ritagliata. Meglio non superare i 2 MB: ogni foto caricata resta nella cronologia del repository.",
+              directory: "public/images",
+              publicPath: "/images/",
+              validation: { isRequired: true },
+            }),
+            ritrattoDescrizione: paragrafo(
+              "Descrizione della foto",
+              "Letta da chi non vede l'immagine e da Google. Descrivi chi c'è e cosa sta facendo.",
+            ),
+          },
+          { label: "Immagini" },
+        ),
         invitoFinale: fields.object(
           {
             occhiello: testo("Occhiello"),
@@ -216,7 +233,6 @@ export default config({
             occhiello: testo("Occhiello"),
             titolo: paragrafo("Titolo"),
             paragrafi: elencoTesti("Paragrafi", "Paragrafo"),
-            testoFoto: testo("Descrizione della foto", "Letta da chi non vede l'immagine"),
           },
           { label: "Sezione chi sono" },
         ),
@@ -443,7 +459,6 @@ export default config({
         testimonianze: fields.object({ occhiello: testo("Occhiello") }, {
           label: "Sezione testimonianze",
         }),
-        testoFoto: testo("Descrizione della foto"),
       },
     }),
 

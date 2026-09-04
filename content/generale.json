@@ -19,13 +19,38 @@
     "citta": "Verona",
     "paese": "IT"
   },
-  "mercati": ["Verona", "Milano", "Torino", "Lago di Garda", "Londra"],
-  "strumenti": ["PriceLabs", "Smartpricing", "KrossBooking", "Booking.com", "Airbnb", "Vrbo"],
+  "mercati": [
+    "Verona",
+    "Milano",
+    "Torino",
+    "Lago di Garda",
+    "Londra"
+  ],
+  "strumenti": [
+    "PriceLabs",
+    "Smartpricing",
+    "KrossBooking",
+    "Booking.com",
+    "Airbnb",
+    "Vrbo"
+  ],
   "navigazione": [
-    { "href": "/servizi", "label": "Servizi" },
-    { "href": "/metodo", "label": "Metodo" },
-    { "href": "/risultati", "label": "Risultati" },
-    { "href": "/chi-sono", "label": "Chi sono" }
+    {
+      "href": "/servizi",
+      "label": "Servizi"
+    },
+    {
+      "href": "/metodo",
+      "label": "Metodo"
+    },
+    {
+      "href": "/risultati",
+      "label": "Risultati"
+    },
+    {
+      "href": "/chi-sono",
+      "label": "Chi sono"
+    }
   ],
   "footer": {
     "descrizione": "Consulenza di revenue management per property manager e aziende di short-term rental."
@@ -38,5 +63,9 @@
   },
   "intestazione": {
     "pulsante": "Prenota una call"
+  },
+  "immagini": {
+    "ritratto": "/images/lucrezia-celeste-revenue-manager.jpg",
+    "ritrattoDescrizione": "Lucrezia Celeste, revenue manager specializzata in short-term rental"
   }
 }

@@ -34,9 +34,18 @@
     ]
   },
   "credenziali": [
-    { "voce": "Formazione", "valore": "Laurea in Economia" },
-    { "voce": "Nel settore", "valore": "Dal 2021, prima operativa" },
-    { "voce": "Portafoglio più grande", "valore": "120 unità" }
+    {
+      "voce": "Formazione",
+      "valore": "Laurea in Economia"
+    },
+    {
+      "voce": "Nel settore",
+      "valore": "Dal 2021, prima operativa"
+    },
+    {
+      "voce": "Portafoglio più grande",
+      "valore": "120 unità"
+    }
   ],
   "tecnologia": {
     "occhiello": "Tecnologia",
@@ -63,6 +72,5 @@
   },
   "testimonianze": {
     "occhiello": "Cosa dicono"
-  },
-  "testoFoto": "Lucrezia Celeste, revenue manager specializzata in short-term rental"
+  }
 }

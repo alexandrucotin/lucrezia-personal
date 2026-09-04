@@ -22,6 +22,11 @@ Qualche nota utile:
   serve davvero.
 - **Titolo e descrizione per Google** sono quello che si legge nei risultati di
   ricerca. La descrizione funziona meglio intorno ai 155 caratteri.
+- **La foto** si cambia da _Generale e contatti → Immagini_. Va bene qualsiasi
+  proporzione: viene ritagliata, non deformata. Meglio restare sotto i 2 MB,
+  perché ogni foto caricata resta per sempre nella cronologia del progetto.
+  Ricordati di aggiornare anche la _Descrizione della foto_: la leggono Google e
+  chi naviga con uno screen reader.
 
 **Se sbagli qualcosa il sito non si rompe.** Nel peggiore dei casi la modifica
 non viene pubblicata e resta online la versione precedente.

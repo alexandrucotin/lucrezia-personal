@@ -40,6 +40,10 @@ export const generaleSchema = z.object({
   strumenti: z.array(testo).min(1, "serve almeno uno strumento"),
   navigazione: z.array(z.object({ href: testo, label: testo })).min(1),
   footer: z.object({ descrizione: testo }),
+  immagini: z.object({
+    ritratto: testo,
+    ritrattoDescrizione: testo,
+  }),
   invitoFinale: z.object({
     occhiello: testo,
     titolo: testo,
@@ -77,7 +81,6 @@ export const homeSchema = z.object({
     occhiello: testo,
     titolo: testo,
     paragrafi: z.array(testo).min(1),
-    testoFoto: testo,
   }),
   contatti: z.object({ passi: z.array(testo).min(1) }),
 });
@@ -227,7 +230,6 @@ export const chiSonoSchema = z.object({
     progetti: z.array(z.object({ stato: testo, titolo: testo, testo })).min(1),
   }),
   testimonianze: z.object({ occhiello: testo }),
-  testoFoto: testo,
 });
 
 /** Valida un file di contenuto e ferma il build con un messaggio leggibile. */

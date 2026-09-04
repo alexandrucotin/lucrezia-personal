@@ -235,14 +235,16 @@ export default function HomePage() {
         <div className="shell">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
-              <figure>
+              {/* `fill` dentro un contenitore di altezza nota: la foto si puo'
+                  sostituire dal pannello con una di proporzioni qualsiasi e
+                  viene ritagliata, mai deformata. */}
+              <figure className="relative h-[24rem] w-full sm:h-[30rem] lg:h-[34rem]">
                 <Image
-                  src="/images/lucrezia-celeste-revenue-manager.jpg"
-                  alt={home.chiSono.testoFoto}
-                  width={1199}
-                  height={1600}
+                  src={generale.immagini.ritratto}
+                  alt={generale.immagini.ritrattoDescrizione}
+                  fill
                   sizes="(min-width: 1024px) 38vw, 100vw"
-                  className="h-[24rem] w-full object-cover object-top sm:h-[30rem] lg:h-[34rem]"
+                  className="object-cover object-top"
                 />
               </figure>
             </Reveal>

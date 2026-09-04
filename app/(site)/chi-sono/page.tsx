@@ -8,8 +8,7 @@ import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
-import { testimonials, tools } from "@/lib/content";
-import { chiSonoContenuto } from "@/lib/content";
+import { chiSonoContenuto, generale, testimonials, tools } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
@@ -53,15 +52,18 @@ export default function ChiSonoPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
               <figure>
-                <Image
-                  src="/images/lucrezia-celeste-revenue-manager.jpg"
-                  alt={chiSonoContenuto.testoFoto}
-                  width={1199}
-                  height={1600}
-                  sizes="(min-width: 1024px) 38vw, 100vw"
-                  className="w-full object-cover"
-                  priority
-                />
+                {/* Proporzione fissa 3:4: qualunque foto caricata dal pannello
+                    entra nello stesso spazio, ritagliata e non deformata. */}
+                <div className="relative aspect-[3/4] w-full">
+                  <Image
+                    src={generale.immagini.ritratto}
+                    alt={generale.immagini.ritrattoDescrizione}
+                    fill
+                    sizes="(min-width: 1024px) 38vw, 100vw"
+                    className="object-cover object-top"
+                    priority
+                  />
+                </div>
                 <figcaption className="eyebrow mt-4 text-ink-faint">
                   {site.name} — {site.role}
                 </figcaption>
