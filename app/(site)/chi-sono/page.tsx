@@ -8,7 +8,7 @@ import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
-import { chiSonoContenuto, generale, testimonials, tools } from "@/lib/content";
+import { chiSonoContenuto, testimonials, tools } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
@@ -56,8 +56,8 @@ export default function ChiSonoPage() {
                     entra nello stesso spazio, ritagliata e non deformata. */}
                 <div className="relative aspect-[3/4] w-full">
                   <Image
-                    src={generale.immagini.ritratto}
-                    alt={generale.immagini.ritrattoDescrizione}
+                    src={chiSonoContenuto.foto.immagine}
+                    alt={chiSonoContenuto.foto.descrizione}
                     fill
                     sizes="(min-width: 1024px) 38vw, 100vw"
                     className="object-cover object-top"

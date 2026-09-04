@@ -4,6 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "predev": "node scripts/genera-elenco-foto.mjs",
+    "prebuild": "node scripts/genera-elenco-foto.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

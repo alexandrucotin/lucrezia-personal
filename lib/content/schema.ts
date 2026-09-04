@@ -11,6 +11,14 @@ import { z } from "zod";
  */
 
 const testo = z.string().min(1, "non può restare vuoto");
+
+/* Il campo foto del pannello e' condizionale — "scegli fra quelle del sito"
+   oppure "caricane una nuova" — quindi arriva come { discriminant, value }.
+   Entrambi i rami producono un percorso, percio' si appiattisce subito a
+   stringa: le pagine non devono sapere come e' stata scelta la foto. */
+const foto = z
+  .object({ discriminant: z.enum(["esistente", "nuova"]), value: testo })
+  .transform((v) => v.value);
 const voceValore = z.object({ voce: testo, valore: testo });
 const domanda = z.object({ q: testo, a: testo });
 const meta = z.object({ titolo: testo, descrizione: testo });
@@ -40,10 +48,6 @@ export const generaleSchema = z.object({
   strumenti: z.array(testo).min(1, "serve almeno uno strumento"),
   navigazione: z.array(z.object({ href: testo, label: testo })).min(1),
   footer: z.object({ descrizione: testo }),
-  immagini: z.object({
-    ritratto: testo,
-    ritrattoDescrizione: testo,
-  }),
   invitoFinale: z.object({
     occhiello: testo,
     titolo: testo,
@@ -81,6 +85,8 @@ export const homeSchema = z.object({
     occhiello: testo,
     titolo: testo,
     paragrafi: z.array(testo).min(1),
+    immagine: foto,
+    immagineDescrizione: testo,
   }),
   contatti: z.object({ passi: z.array(testo).min(1) }),
 });
@@ -217,6 +223,7 @@ export const contattiSchema = z.object({
 export const chiSonoSchema = z.object({
   meta,
   pagina: z.object({ occhiello: testo, titolo: testo, sottotitolo: testo }),
+  foto: z.object({ immagine: foto, descrizione: testo }),
   percorso: z.object({
     occhiello: testo,
     tappe: z.array(z.object({ anno: testo, titolo: testo, testo })).min(1),

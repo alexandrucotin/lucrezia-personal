@@ -240,8 +240,8 @@ export default function HomePage() {
                   viene ritagliata, mai deformata. */}
               <figure className="relative h-[24rem] w-full sm:h-[30rem] lg:h-[34rem]">
                 <Image
-                  src={generale.immagini.ritratto}
-                  alt={generale.immagini.ritrattoDescrizione}
+                  src={home.chiSono.immagine}
+                  alt={home.chiSono.immagineDescrizione}
                   fill
                   sizes="(min-width: 1024px) 38vw, 100vw"
                   className="object-cover object-top"

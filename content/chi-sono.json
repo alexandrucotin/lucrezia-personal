@@ -8,6 +8,13 @@
     "titolo": "Ho pulito appartamenti prima di ottimizzare tariffe.",
     "sottotitolo": "Non è un aneddoto simpatico: è la ragione per cui le strategie che propongo si possono eseguire davvero. So cosa succede al team delle pulizie il sabato quando cambio un min stay il venerdì."
   },
+  "foto": {
+    "immagine": {
+      "discriminant": "esistente",
+      "value": "/images/lucrezia-celeste-revenue-manager.jpg"
+    },
+    "descrizione": "Lucrezia Celeste, revenue manager specializzata in short-term rental"
+  },
   "percorso": {
     "occhiello": "Il percorso",
     "tappe": [
