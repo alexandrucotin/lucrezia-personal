@@ -10,8 +10,8 @@
   },
   "foto": {
     "immagine": {
-      "discriminant": "esistente",
-      "value": "/images/lucrezia-celeste-revenue-manager.jpg"
+      "discriminant": "nuova",
+      "value": "/images/foto/immagine/value.png"
     },
     "descrizione": "Lucrezia Celeste, revenue manager specializzata in short-term rental"
   },
@@ -20,18 +20,18 @@
     "tappe": [
       {
         "anno": "2021",
-        "titolo": "L'operativo",
-        "testo": "Entro nel settore dalla gestione quotidiana: avvio di locazioni, accoglienza ospiti, cura degli appartamenti, pratiche amministrative. È il periodo in cui imparo cosa comporta davvero, a valle, ogni decisione presa a monte."
-      },
-      {
-        "anno": "2022",
-        "titolo": "I primi portafogli",
-        "testo": "Passo dalla singola unità alla gestione di gruppi di immobili. Comincio a lavorare sui canali, sui contenuti degli annunci e sulle prime politiche tariffarie strutturate."
+        "titolo": "La gestione operativa",
+        "testo": "Entro nel settore dalla gestione quotidiana: avvio di locazioni, accoglienza ospiti, cura degli appartamenti, pratiche amministrative. "
       },
       {
         "anno": "2023",
+        "titolo": "La gestione strategica",
+        "testo": "Passo dalla visione operativa a quella strategica. Comincio a lavorare sui canali, sui contenuti degli annunci e sulle prime politiche tariffarie strutturate."
+      },
+      {
+        "anno": "2024",
         "titolo": "La specializzazione",
-        "testo": "Revenue management come mestiere: pricing dinamico, restrizioni, distribuzione. Lavoro su Verona e Milano, poi su Londra, e imparo quanto cambiano le regole passando da un mercato all'altro."
+        "testo": "Una formazione sul Revenue Management costruita tra teoria e pratica: dalla gestione del pricing dinamico alle restrizioni e ai diversi canali di vendita. Ho lavorato su mercati differenti, imparando a riconoscere quanto cambino domanda, stagionalità e strategie necessarie da un mercato all’altro."
       },
       {
         "anno": "Oggi",
@@ -47,10 +47,10 @@
     },
     {
       "voce": "Nel settore",
-      "valore": "Dal 2021, prima operativa"
+      "valore": "Dal 2021"
     },
     {
-      "voce": "Portafoglio più grande",
+      "voce": "Portafoglio più grande seguito",
       "valore": "120 unità"
     }
   ],
