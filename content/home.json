@@ -29,13 +29,13 @@
     "sintomi": [
       {
         "indice": "01",
-        "titolo": "Ho analizzato il mio portafoglio sia nel dettaglio che nel suo complesso?",
+        "titolo": "Analizzo le performance dei singoli immobili e del portafoglio nel suo insieme?",
         "testo": "Ogni appartamento è unico nel suo genere. Per questo è fondamentale conoscerne i punti di forza e di debolezza, i costi e il livello di desiderabilità sul mercato.\n"
       },
       {
         "indice": "02",
-        "titolo": "Il pricing è dinamico solo di nome.",
-        "testo": "Il tool è attivo, i parametri sono quelli di default dal giorno dell'installazione. Il prezzo lo decide un algoritmo che nessuno ha tarato sul tuo portafoglio."
+        "titolo": "La tua strategia di pricing si adatta all’andamento della domanda durante l’anno o rimane invariata?",
+        "testo": "Mantenere la stessa strategia durante tutto l’anno può limitare il potenziale del tuo portafoglio. Monitorare costantemente la domanda di mercato permette di capire cosa non sta funzionando e dove è possibile migliorare il margine.\n"
       },
       {
         "indice": "03",
