@@ -24,8 +24,8 @@
   "diagnosi": {
     "occhiello": "Analisi",
     "titolo": "Come ottimizzo al meglio il mio portafoglio?",
-    "commentoGrafico": "Utilizzare il Pricing dinamico è un ottimo inizio, ma personalizzarlo in base alle esigenze aziendali è ciò che fa la differenza.",
-    "commentoGraficoSecondario": "Il calendario risulta pieno comunque. È per questo che il problema non si vede.",
+    "commentoGrafico": "Il pricing dinamico è un ottimo punto di partenza. Ma è quando viene adattato alle caratteristiche e agli obiettivi della tua attività che può fare davvero la differenza.\n",
+    "commentoGraficoSecondario": "Ogni mercato e ogni tipologia di appartamento hanno caratteristiche diverse: applicare lo stesso approccio a tutti significa rinunciare a parte delle opportunità.\n",
     "sintomi": [
       {
         "indice": "01",
