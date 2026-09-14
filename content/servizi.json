@@ -60,6 +60,15 @@
           "5 sessioni di formazione"
         ],
         "highlight": false
+      },
+      {
+        "name": "Audit di Aggiornamento",
+        "price": "da 200€",
+        "unit": "una tantum",
+        "duration": "1 settimana",
+        "body": "Un’analisi aggiuntiva del portafoglio per verificare l’andamento delle performance, del pricing e del posizionamento rispetto al mercato. Individuiamo eventuali criticità e nuove opportunità, definendo le priorità di intervento.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*",
+        "items": [],
+        "highlight": false
       }
     ]
   },
