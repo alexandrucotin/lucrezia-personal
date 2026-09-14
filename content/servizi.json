@@ -37,16 +37,15 @@
         "highlight": false
       },
       {
-        "name": "Revenue continuativo",
+        "name": "Continuativo",
         "price": "da 900 €",
         "unit": "al mese",
         "duration": "minimo 6 mesi",
-        "body": "Gestione operativa di pricing e canali. È il formato che scelgono i portafogli sopra le trenta unità.",
+        "body": "Analisi completa del portafoglio, e definizione delle strategie future.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*",
         "items": [
-          "Tutto l'Audit, incluso",
-          "Pricing e restrizioni gestiti",
-          "Revisione settimanale",
-          "Report mensile"
+          "Servizi inclusi nel pacchetto \"Audit\"",
+          "Determinazione degli obiettivi e pianificazione strategica",
+          "Revisione settimanale"
         ],
         "highlight": true
       },
@@ -55,11 +54,10 @@
         "price": "da 2.500 €",
         "unit": "a progetto",
         "duration": "6-8 settimane",
-        "body": "Per chi vuole la competenza in casa. Setup, processi e formazione, poi il team cammina da solo.",
+        "body": "Analisi completa del portafoglio, definizione degli obiettivi e formazione del personale per sviluppare competenze e strumenti utili alla gestione autonoma del Revenue Management.\n\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*",
         "items": [
-          "Setup stack completo",
-          "Processi documentati",
-          "4 sessioni di formazione"
+          "Configurazione degli strumenti e dei software necessari\n",
+          "5 sessioni di formazione"
         ],
         "highlight": false
       }
