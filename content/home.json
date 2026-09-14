@@ -28,14 +28,14 @@
     "commentoGraficoSecondario": "Ogni mercato e ogni tipologia di appartamento sono diversi e rispondono a stimoli differenti. Applicare la stessa strategia a tutti significa rinunciare a parte dei ricavi.\n",
     "sintomi": [
       {
-        "indice": "01",
-        "titolo": "Analizzi le performance dei singoli immobili e del portafoglio nel suo insieme?",
-        "testo": "Ogni appartamento è unico nel suo genere. Per questo è fondamentale conoscerne i punti di forza e di debolezza, i costi e il livello di desiderabilità sul mercato.\n"
-      },
-      {
         "indice": "03",
         "titolo": "Sai capire cosa sta frenando l’occupazione del tuo portafoglio?",
         "testo": "Una bassa occupazione non dipende necessariamente dal prezzo. Conosci il tuo target e sai come sei posizionato nel mercato di riferimento?\n"
+      },
+      {
+        "indice": "01",
+        "titolo": "Analizzi le performance dei singoli immobili e del portafoglio nel suo insieme?",
+        "testo": "Ogni appartamento è unico nel suo genere. Per questo è fondamentale conoscerne i punti di forza e di debolezza, i costi e il livello di desiderabilità sul mercato.\n"
       },
       {
         "indice": "02",
