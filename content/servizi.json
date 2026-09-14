@@ -9,16 +9,12 @@
     "sottotitolo": "Si può partire da una diagnosi chiusa in sé, affidare l'esecuzione, o portare la competenza dentro l'azienda. Cambia chi tiene il volante, non il metodo.",
     "scheda": [
       {
-        "voce": "Perimetro",
-        "valore": "Portafogli da 10 a 150 unità"
+        "voce": "Dimensione del Portafogli",
+        "valore": "Da 10 a 150 unità"
       },
       {
-        "voce": "Formati",
-        "valore": "Una tantum, continuativo, a progetto"
-      },
-      {
-        "voce": "Gestionale",
-        "valore": "Il tuo, senza migrazioni"
+        "voce": "Pacchetti disponibili",
+        "valore": "Consulenza una tantum, continuativa o a progetto"
       }
     ]
   },
