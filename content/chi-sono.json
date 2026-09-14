@@ -57,7 +57,7 @@
   "tecnologia": {
     "occhiello": "Tecnologia",
     "titolo": "Collaboro alla strutturazione e al testing di software dedicati al settore extralberghiero.\n",
-    "testo": "Collaboro allo sviluppo di strumenti per il settore. Non è il mio mestiere principale, ma cambia il modo in cui leggo i limiti di un gestionale: so quali sono scelte di prodotto e quali sono vincoli veri.",
+    "testo": "Collaboro allo sviluppo di strumenti dedicati al settore extralberghiero. Un’esperienza che mi permette di comprendere meglio i limiti dei gestionali e distinguere ciò che dipende dalle scelte di prodotto da ciò che rappresenta un reale vincolo operativo.\n",
     "collaborazione": "In collaborazione con CodeByAlex",
     "progetti": [
       {
@@ -73,7 +73,7 @@
       {
         "stato": "In corso",
         "titolo": "Chat unificata",
-        "testo": "OTA, WhatsApp e Gmail in un'unica casella, per togliere al team il costo di saltare fra tre interfacce."
+        "testo": "OTA, WhatsApp e Gmail in un'unica inbox"
       }
     ]
   },
