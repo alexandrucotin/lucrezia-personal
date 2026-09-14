@@ -33,14 +33,14 @@
         "testo": "Ogni appartamento è unico nel suo genere. Per questo è fondamentale conoscerne i punti di forza e di debolezza, i costi e il livello di desiderabilità sul mercato.\n"
       },
       {
-        "indice": "02",
-        "titolo": "La tua strategia di pricing si adatta all’andamento della domanda durante l’anno o rimane invariata?",
-        "testo": "Mantenere la stessa strategia durante tutto l’anno può limitare il potenziale del tuo portafoglio. Monitorare costantemente la domanda di mercato permette di capire cosa non sta funzionando e dove è possibile migliorare il margine.\n"
-      },
-      {
         "indice": "03",
         "titolo": "Sai capire cosa sta frenando l’occupazione del tuo portafoglio?",
         "testo": "Una bassa occupazione non dipende necessariamente dal prezzo. Conosci il tuo target e sai come sei posizionato nel mercato di riferimento?\n"
+      },
+      {
+        "indice": "02",
+        "titolo": "La tua strategia di pricing si adatta all’andamento della domanda durante l’anno o rimane invariata?",
+        "testo": "Mantenere la stessa strategia durante tutto l’anno può limitare il potenziale del tuo portafoglio. Monitorare costantemente la domanda di mercato permette di capire cosa non sta funzionando e dove è possibile migliorare il margine.\n"
       }
     ]
   },
