@@ -57,7 +57,7 @@ const immagine = () =>
       esistente: fields.select({
         label: "Foto del sito",
         options: [...fotoDisponibili],
-        defaultValue: fotoDisponibili[0].value,
+        defaultValue: fotoDisponibili[0]?.value ?? "",
       }),
       nuova: fields.image({
         label: "Nuova foto",

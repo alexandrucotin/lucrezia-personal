@@ -62,7 +62,7 @@ export const homeSchema = z.object({
   hero: z.object({
     occhiello: testo,
     titolo: testo,
-    titoloEvidenziato: testo,
+    titoloEvidenziato: z.string(),
     sottotitolo: testo,
     pulsantePrimario: testo,
     pulsanteSecondario: testo,

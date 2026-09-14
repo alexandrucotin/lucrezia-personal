@@ -12,7 +12,7 @@ import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { site } from "@/lib/site";
-import { caseStudies, clients, home, services, stats, tools } from "@/lib/content";
+import { caseStudies, clients, home, services, stats } from "@/lib/content";
 import { generale } from "@/lib/content";
 
 /* Ogni fase del metodo porta il proprio diagramma. La terza no, di proposito:
@@ -25,6 +25,11 @@ const methodDiagrams = [
 ];
 
 export default function HomePage() {
+  /* Il titolo puo' avere o non avere una seconda parte evidenziata. Se c'e' e
+     comincia con punteggiatura, lo spazio prima non ci va. */
+  const evidenziato = home.hero.titoloEvidenziato.trim();
+  const separatoreTitolo = /^[.,;:!?]/.test(evidenziato) ? "" : " ";
+
   return (
     <>
       {/* ---------------------------------------------------------------
@@ -42,7 +47,12 @@ export default function HomePage() {
               <Reveal delay={0.06}>
                 <h1 className="display mt-7 text-d1">
                   {home.hero.titolo}
-                  <span className="text-sage"> {home.hero.titoloEvidenziato}</span>
+                  {evidenziato ? (
+                    <span className="text-sage">
+                      {separatoreTitolo}
+                      {evidenziato}
+                    </span>
+                  ) : null}
                 </h1>
               </Reveal>
 
@@ -60,21 +70,23 @@ export default function HomePage() {
               </Reveal>
             </div>
 
-            <Reveal delay={0.24} className="lg:col-span-4 lg:pl-8">
-              <dl className="border-t border-rule lg:border-t-0 lg:border-l lg:border-rule lg:pl-8">
-                {[
-                  home.hero.scheda[0],
-                  { voce: "Mercati", valore: site.markets.join(" · ") },
-                  { voce: "Strumenti", valore: tools.slice(0, 3).join(" · ") },
-                  home.hero.scheda[1],
-                ].map((row) => (
-                  <div key={row.voce} className="border-b border-rule py-5 first:pt-6 lg:first:pt-0">
-                    <dt className="eyebrow text-ink-faint">{row.voce}</dt>
-                    <dd className="mt-2 text-sm text-ink">{row.valore}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
+            {/* La scheda mostra esattamente le voci che stanno nel pannello, e
+                sparisce se non ce ne sono: e' contenuto che si puo' svuotare. */}
+            {home.hero.scheda.length > 0 ? (
+              <Reveal delay={0.24} className="lg:col-span-4 lg:pl-8">
+                <dl className="border-t border-rule lg:border-t-0 lg:border-l lg:border-rule lg:pl-8">
+                  {home.hero.scheda.map((row) => (
+                    <div
+                      key={row.voce}
+                      className="border-b border-rule py-5 first:pt-6 lg:first:pt-0"
+                    >
+                      <dt className="eyebrow text-ink-faint">{row.voce}</dt>
+                      <dd className="mt-2 text-sm text-ink">{row.valore}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            ) : null}
           </div>
 
           <Reveal className="mt-20 sm:mt-28">
