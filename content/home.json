@@ -65,12 +65,12 @@
     "occhiello": "Chi sono",
     "titolo": "Ho pulito appartamenti prima di ottimizzare tariffe.",
     "paragrafi": [
-      "Sono entrata nel settore nel 2021 dall'operatività: avvio di locazioni, gestione ospiti, cura degli appartamenti, amministrazione. Poi la parte analitica, su portafogli fino a 120 unità tra Verona, Milano e Londra.",
-      "Collaboro anche allo sviluppo di strumenti per il settore — booking engine, CRS, integrazioni API con i channel manager. Conosco i sistemi anche da dentro, non solo da utente."
+      "Lavoro nel settore extralberghiero dal 2021 e negli anni mi sono specializzata nella gestione strategica degli appartamenti, arrivando a gestire un portafoglio di oltre 120 unità.",
+      "Collaboro con uno sviluppatore per integrare e personalizzare software già esistenti, come Booking Engine e CRS, collegabili ai Channel Manager, offrendo soluzioni pensate per esigenze specifiche."
     ],
     "immagine": {
-      "discriminant": "esistente",
-      "value": "/images/lucrezia-celeste-revenue-manager.jpg"
+      "discriminant": "nuova",
+      "value": "/images/chiSono/immagine/value.png"
     },
     "immagineDescrizione": "Lucrezia Celeste, revenue manager specializzata in short-term rental"
   },
