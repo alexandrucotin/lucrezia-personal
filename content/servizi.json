@@ -19,9 +19,9 @@
     ]
   },
   "prezzi": {
-    "occhiello": "Formati e prezzi",
-    "titolo": "Quanto costa, prima di parlarne.",
-    "testo": "Le cifre sono punti di partenza: dipendono da quante unità gestisci, da quanti mercati e da quanto è ordinato lo storico. In call si arriva a un numero preciso.",
+    "occhiello": "Pacchetti disponibili",
+    "titolo": "I pacchetti di consulenza ",
+    "testo": "Le cifre indicate sono punti di partenza e dipendono dal numero di unità gestite, dai mercati coinvolti e dalla completezza dello storico disponibile. Il prezzo viene definito in base alla struttura e alle esigenze del portafoglio.",
     "pacchetti": [
       {
         "name": "Audit",
