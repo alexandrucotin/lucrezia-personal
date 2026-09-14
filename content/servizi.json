@@ -25,14 +25,14 @@
     "pacchetti": [
       {
         "name": "Audit",
-        "price": "da 1.200 €",
+        "price": "da 250 €",
         "unit": "una tantum",
-        "duration": "3 settimane",
-        "body": "Analisi completa del portafoglio, benchmark e report con le priorità. Si chiude con una call di presentazione dei risultati.",
+        "duration": "1-3 settimane",
+        "body": "Analisi completa del portafoglio, benchmark e report con le principali priorità di intervento. La consulenza si conclude con una call di presentazione e condivisione dei risultati.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*\n",
         "items": [
-          "Audit KPI 24 mesi",
-          "Benchmark competitor set",
-          "Report + call"
+          "Analisi KPI degli ultimi 12 mesi",
+          "Benchmark del mercato e dei competitor.",
+          "Valutazione finale + call"
         ],
         "highlight": false
       },
