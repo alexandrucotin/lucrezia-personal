@@ -18,13 +18,13 @@
     ]
   },
   "clienti": {
-    "occhiello": "Portafogli seguiti",
+    "occhiello": "Portafogli seguiti ad oggi",
     "nota": "Da 10 a 120 unità"
   },
   "diagnosi": {
-    "occhiello": "Diagnosi",
-    "titolo": "Il calendario è pieno. Allora perché il fatturato non sale?",
-    "commentoGrafico": "Una tariffa che non si muove nei quattro mesi che precedono l'arrivo intercetta le prenotazioni sbagliate: perde chi avrebbe pagato di più sotto data, e poi recupera notti con lo sconto quando non c'è più tempo per farne prezzo.",
+    "occhiello": "Analisi",
+    "titolo": "Come ottimizzo al meglio il mio portafoglio?",
+    "commentoGrafico": "Utilizzare il Pricing dinamico è un ottimo inizio, ma personalizzarlo in base alle esigenze aziendali è ciò che fa la differenza.",
     "commentoGraficoSecondario": "Il calendario risulta pieno comunque. È per questo che il problema non si vede.",
     "sintomi": [
       {
