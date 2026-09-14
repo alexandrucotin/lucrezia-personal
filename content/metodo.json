@@ -31,52 +31,40 @@
     {
       "index": "01",
       "title": "Diagnosi",
-      "duration": "Settimane 1-3",
-      "body": "Accesso in lettura ai tuoi dati: gestionale, channel manager, estratti OTA. Ricostruisco lo storico e lo confronto con il mercato. Alla fine sai quanto stai lasciando sul tavolo e dove.",
-      "detail": "La prima cosa che faccio non è guardare i prezzi, è guardare cosa è successo quando li avete cambiati. Ricostruisco due anni di storico per unità, isolo le settimane in cui il calendario si è riempito troppo in fretta — quasi sempre significa prezzo basso — e quelle in cui è rimasto vuoto oltre la finestra utile. Poi confronto tutto con il competitor set reale, che non è la media della città ma le venti unità che ti tolgono davvero le prenotazioni.",
-      "output": "Report con la mappa del portafoglio e le prime cinque azioni per impatto"
+      "duration": "Settimane 1-2",
+      "body": "Lettura dei tuoi dati: gestionale, channel manager ed estratti OTA.\n\nRicostruisco lo storico delle performance e lo confronto con il mercato per individuare dove stai perdendo opportunità di fatturato e quali margini di miglioramento puoi sfruttare.\n",
+      "detail": "01 — Raccolta dei dati\n\nAccesso ai dati della struttura: gestionale, channel manager, Booking.com, Airbnb e altri canali di vendita.\n\nRaccolgo lo storico di prenotazioni, prezzi, occupazione, soggiorni, cancellazioni e performance dei diversi canali.\n\n02 — Analisi delle KPI\n\nAnalizzo occupazione, ADR, RevPAR, fatturato e distribuzione delle prenotazioni, individuando stagionalità, periodi di maggiore domanda e momenti di debolezza.\n\n03 — Confronto con il mercato\n\nConfronto le performance della struttura con quelle dei competitor, utilizzando dati di mercato per comprendere se prezzi e occupazione sono in linea con la domanda o se esistono margini di miglioramento.\n",
+      "output": "Comprensione del portafoglio e del suo posizionamento"
     },
     {
       "index": "02",
-      "title": "Strategia",
-      "duration": "Settimane 4-5",
-      "body": "Piano tariffario per stagione e per unità, politica di restrizioni, priorità sui canali. Documento condiviso, discusso e approvato prima di toccare qualsiasi prezzo.",
-      "detail": "Il piano si scrive prima e si approva insieme. Contiene le fasce tariffarie per stagione e per cluster di unità, la politica di min stay e restrizioni, il calendario degli eventi locali che spostano la domanda, e le regole di last minute. È un documento che il tuo team deve poter leggere e contestare: se una regola non è difendibile a voce, non entra.",
-      "output": "Piano tariffario approvato, con le regole scritte in modo verificabile"
+      "title": " Definizione delle strategie",
+      "duration": "1-2 settimane",
+      "body": "Definiamo una strategia in linea con gli obiettivi aziendali, le caratteristiche del portafoglio e ciò che è concretamente realizzabile.\n\nL’obiettivo è trasformare l’analisi in azioni sostenibili e applicabili nella gestione quotidiana.",
+      "detail": "Il piano viene costruito prima e condiviso con il tuo team, così che ogni scelta sia chiara, motivata e concretamente applicabile.\n\nDefiniamo:\n\nfasce tariffarie per stagione e per unità o cluster di unità;\npolitiche di minimum stay e restrizioni;\npriorità e strategia sui diversi canali di vendita;\ncalendario degli eventi e dei periodi che influenzano la domanda;\nregole di last minute e gestione delle disponibilità;\ncriteri per adeguare prezzi e restrizioni in base all’andamento delle prenotazioni.\n\nIl piano deve essere uno strumento operativo, non un documento teorico. Per questo ogni regola viene discussa e condivisa con il team: se una scelta non è comprensibile, motivabile e applicabile nella gestione quotidiana, viene rivista.",
+      "output": "Piano strategico approvato"
     },
     {
       "index": "03",
       "title": "Esecuzione",
-      "duration": "Continuativa",
-      "body": "Implementazione sugli strumenti che usi già. Controllo settimanale del pick-up, correzioni sulle finestre scoperte, gestione della bassa stagione. Report mensile.",
-      "detail": "Ogni settimana guardo il pick-up: quante prenotazioni sono entrate, per quali date, a che prezzo. Le finestre che restano scoperte oltre la soglia si correggono subito, quelle che si riempiono troppo in fretta si alzano. Non è un'attività creativa, è manutenzione: il valore sta nel farla ogni settimana e non ogni tanto.",
-      "output": "Report mensile con scostamento su anno precedente e sulle azioni fatte"
-    },
-    {
-      "index": "04",
-      "title": "Trasferimento",
-      "duration": "Dal terzo mese",
-      "body": "Processi scritti e formazione del team. L'obiettivo dichiarato è che tu possa fare a meno di me sulla routine, e chiamarmi sulle decisioni.",
-      "detail": "Dal terzo mese comincio a scrivere quello che faccio e a insegnarlo. Non per generosità: un portafoglio in cui il revenue dipende da una persona sola è fragile, e se quella persona sono io il rischio ce l'hai comunque. Alla fine il tuo team gestisce la routine e mi chiama sulle decisioni di stagione.",
-      "output": "Processi documentati, dashboard KPI e team autonomo sulla gestione ordinaria"
+      "duration": "1 settimana",
+      "body": "Implementazione delle strategie sui software aziendali. Monitoraggio del corretto funzionamento delle strategie applicate.\n",
+      "detail": "Implemento le strategie definite direttamente sui software aziendali e sugli strumenti utilizzati per la gestione delle prenotazioni e delle tariffe.\n\nConfiguro prezzi, restrizioni, minimum stay, disponibilità e regole di vendita secondo il piano concordato, verificando che ogni impostazione sia correttamente applicata.\n\nMonitoro il corretto funzionamento delle strategie e l’andamento delle prenotazioni per verificare che le regole producano gli effetti attesi.",
+      "output": "Piano strategico attivo"
     }
   ],
   "faq": [
     {
-      "q": "Quando cambiate i primi prezzi?",
-      "a": "Non prima della quinta settimana, e solo dopo che il piano è stato approvato. Toccare le tariffe durante la diagnosi renderebbe impossibile capire cosa ha prodotto cosa: si perderebbe il confronto proprio nel momento in cui serve."
+      "q": "Posso apportare modifiche durante la fase di diagnosi?",
+      "a": "Modifiche significative alle strategie, alle tariffe o alle restrizioni possono infatti influenzare direttamente i risultati.\n\nPer mantenere l’analisi attendibile, è necessario sapere quando e quali cambiamenti vengono effettuati."
     },
     {
-      "q": "Cosa succede se non siamo d'accordo sul piano?",
-      "a": "Si discute e si riscrive. Il piano è un documento che il tuo team deve poter contestare: se una regola non regge a voce, non entra nel calendario. Non ho interesse a difendere una strategia che non applicherete."
+      "q": "Il piano strategico viene concordato insieme?",
+      "a": "Sì. Il piano strategico viene discusso e approvato insieme prima di essere implementato.\n\nOgni scelta viene motivata sulla base dei dati, dell’andamento del mercato e degli obiettivi aziendali. Se una proposta non è in linea con le esigenze o con la gestione della struttura, viene valutata e modificata prima dell’applicazione."
     },
     {
-      "q": "Quanto tempo richiede al mio team?",
-      "a": "Un'ora per la call iniziale, un'ora per la presentazione della diagnosi, poi circa trenta minuti a settimana per il punto sul pick-up. Nella fase di trasferimento serve di più, perché è formazione."
-    },
-    {
-      "q": "Posso fermarmi dopo la diagnosi?",
-      "a": "Sì, ed è il motivo per cui la diagnosi è un servizio a sé. Ricevi il report e le priorità, e decidi se eseguirle con me, internamente, o con qualcun altro."
+      "q": "Posso modificare il piano strategico dopo l'implementazione?",
+      "a": "Si, è possibile apportare modifiche che rientrano nella strategia già concordata, come l’adeguamento di prezzi, restrizioni, minimum stay o altre impostazioni operative in base all’andamento della domanda e delle prenotazioni.\n\nSe invece viene richiesto un cambiamento della strategia concordata, con nuove logiche di prezzo, nuove regole di vendita o una diversa impostazione delle restrizioni, è necessaria una nuova implementazione. Questa attività non è inclusa nel preventivo concordato e sarà valutata separatamente."
     }
   ]
 }
