@@ -68,7 +68,7 @@
       {
         "stato": "Completato",
         "titolo": "Integrazione API con KrossBooking",
-        "testo": "L'integrazione via API permette di sviluppare soluzioni complementari al channel manager, disegnate sulle esigenze specifiche dell'azienda."
+        "testo": "L'integrazione via API permette di sviluppare soluzioni complementari al channel manager, disegnate sulle esigenze specifiche dell'azienda.\n\n*Possibilità di integrazione con altri Channel Manager*"
       },
       {
         "stato": "In corso",
