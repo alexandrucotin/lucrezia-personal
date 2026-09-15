@@ -190,7 +190,11 @@ export default config({
             href: testo("Indirizzo"),
             label: testo("Voce di menu"),
           }),
-          { label: "Menu", itemLabel: (props) => props.fields.label.value }
+          {
+            label: "Menu",
+            itemLabel: (props) => props.fields.label.value,
+            validation: { length: { min: 1 } },
+          }
         ),
         footer: fields.object(
           { descrizione: paragrafo("Testo del piè di pagina") },
@@ -259,6 +263,7 @@ export default config({
               {
                 label: "Sintomi",
                 itemLabel: (props) => props.fields.titolo.value,
+                validation: { length: { min: 1 } },
               }
             ),
           },
@@ -342,6 +347,7 @@ export default config({
               {
                 label: "Pacchetti",
                 itemLabel: (props) => props.fields.name.value,
+                validation: { length: { min: 1 } },
               }
             ),
           },
@@ -378,7 +384,11 @@ export default config({
             metaDescription: paragrafo("Descrizione per Google"),
             faq: domande,
           }),
-          { label: "Servizi", itemLabel: (props) => props.fields.title.value }
+          {
+            label: "Servizi",
+            itemLabel: (props) => props.fields.title.value,
+            validation: { length: { min: 1 } },
+          }
         ),
       },
     }),
@@ -415,7 +425,11 @@ export default config({
             detail: paragrafo("Testo esteso"),
             output: paragrafo("Cosa esce da questa fase"),
           }),
-          { label: "Fasi", itemLabel: (props) => props.fields.title.value }
+          {
+            label: "Fasi",
+            itemLabel: (props) => props.fields.title.value,
+            validation: { length: { min: 1 } },
+          }
         ),
         faq: domande,
       },
@@ -459,6 +473,7 @@ export default config({
           {
             label: "Numeri in evidenza",
             itemLabel: (props) => props.fields.value.value,
+            validation: { length: { min: 1 } },
           }
         ),
         casi: fields.array(
@@ -478,6 +493,7 @@ export default config({
               {
                 label: "Risultati",
                 itemLabel: (props) => props.fields.label.value,
+                validation: { length: { min: 1 } },
               }
             ),
             quote: fields.text({ label: "Citazione", multiline: true }),
@@ -485,6 +501,7 @@ export default config({
           {
             label: "Casi studio",
             itemLabel: (props) => props.fields.client.value,
+            validation: { length: { min: 1 } },
           }
         ),
         testimonianze: fields.array(
@@ -535,7 +552,11 @@ export default config({
                 titolo: testo("Titolo"),
                 testo: paragrafo("Testo"),
               }),
-              { label: "Tappe", itemLabel: (props) => props.fields.anno.value }
+              {
+                label: "Tappe",
+                itemLabel: (props) => props.fields.anno.value,
+                validation: { length: { min: 1 } },
+              }
             ),
           },
           { label: "Il percorso" }
@@ -556,6 +577,7 @@ export default config({
               {
                 label: "Progetti",
                 itemLabel: (props) => props.fields.titolo.value,
+                validation: { length: { min: 1 } },
               }
             ),
           },

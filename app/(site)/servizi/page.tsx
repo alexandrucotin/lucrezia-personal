@@ -92,16 +92,18 @@ export default function ServiziPage() {
                     {item.unit} · {item.duration}
                   </p>
                   <p className="mt-6 text-sm text-ink-soft">{item.body}</p>
-                  <ul className="mt-8 space-y-2.5 border-t border-rule pt-6 text-sm text-ink">
-                    {item.items.map((line) => (
+                  {item.items.length > 0 ? (
+                    <ul className="mt-8 space-y-2.5 border-t border-rule pt-6 text-sm text-ink">
+                      {item.items.map((line) => (
                       <li key={line} className="flex gap-3">
                         <span aria-hidden="true" className="text-sage">
                           —
                         </span>
                         {line}
-                      </li>
-                    ))}
-                  </ul>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </div>
               </RevealItem>
             ))}

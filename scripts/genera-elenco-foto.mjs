@@ -14,15 +14,31 @@ import { join } from "node:path";
 const CARTELLA = "public/images";
 const ESTENSIONI = /\.(jpe?g|png|webp|avif)$/i;
 
-const file = readdirSync(CARTELLA)
-  .filter((nome) => ESTENSIONI.test(nome))
+/* Ricorsivo: il pannello salva le foto caricate in sottocartelle che derivano
+   dalla posizione del campo (per esempio images/chiSono/immagine/value.png).
+   Guardando solo il primo livello, una foto appena caricata non sarebbe mai
+   comparsa nell'elenco di quelle riutilizzabili. */
+function cerca(cartella) {
+  return readdirSync(cartella, { withFileTypes: true }).flatMap((voce) => {
+    const percorso = join(cartella, voce.name);
+    if (voce.isDirectory()) return cerca(percorso);
+    return ESTENSIONI.test(voce.name) ? [percorso] : [];
+  });
+}
+
+const file = cerca(CARTELLA)
+  .map((percorso) => percorso.slice(CARTELLA.length + 1))
   .sort();
 
-const etichetta = (nome) =>
-  nome
-    .replace(ESTENSIONI, "")
-    .replace(/[-_]/g, " ")
-    .replace(/^./, (c) => c.toUpperCase());
+/* Le foto caricate si chiamano tutte "value": senza il percorso davanti
+   sarebbero voci identiche e indistinguibili nel menu a tendina. */
+const etichetta = (percorso) => {
+  const senzaEstensione = percorso.replace(ESTENSIONI, "");
+  const pezzi = senzaEstensione.split("/");
+  return pezzi.length === 1
+    ? pezzi[0].replace(/[-_]/g, " ").replace(/^./, (c) => c.toUpperCase())
+    : `${pezzi.slice(0, -1).join(" / ")} — caricata`;
+};
 
 const contenuto = `// File generato da scripts/genera-elenco-foto.mjs — non modificare a mano.
 

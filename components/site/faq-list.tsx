@@ -15,6 +15,9 @@ export function FaqList({
   title?: string;
   eyebrow?: string;
 }) {
+  /* Nessuna domanda: sparisce tutto il blocco, titolo compreso. */
+  if (items.length === 0) return null;
+
   return (
     <div className="grid gap-12 lg:grid-cols-12">
       <div className="lg:col-span-4">
