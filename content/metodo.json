@@ -5,20 +5,20 @@
   },
   "pagina": {
     "occhiello": "Metodo",
-    "titolo": "Le Fasi della consulenza.",
-    "sottotitolo": "Nessuna tariffa cambia prima che il piano sia scritto, discusso e approvato. È una regola che rallenta l'inizio e rende leggibile tutto il resto.",
+    "titolo": "Le Fasi principali della consulenza.",
+    "sottotitolo": "Ogni fase viene condivisa con il team di competenza per allineare le esigenze in modo personalizzato",
     "scheda": [
       {
-        "voce": "Prime settimane",
-        "valore": "Solo lettura, nessuna modifica"
+        "voce": "Prima Fase",
+        "valore": "Analisi delle strutture"
       },
       {
-        "voce": "Piano tariffario",
-        "valore": "Approvato prima dell'esecuzione"
+        "voce": "Seconda Fase",
+        "valore": "Definizione strategica"
       },
       {
-        "voce": "Impegno del team",
-        "valore": "Circa 30 minuti a settimana"
+        "voce": "Terza Fase",
+        "valore": "Implementazione delle strategie"
       }
     ]
   },
