@@ -63,7 +63,7 @@
       },
       {
         "name": "Audit di Aggiornamento",
-        "price": "da 200€",
+        "price": "da 350€",
         "unit": "una tantum",
         "duration": "1 settimana",
         "body": "Un’analisi aggiuntiva del portafoglio per verificare l’andamento delle performance, del pricing e del posizionamento rispetto al mercato. Individuiamo eventuali criticità e nuove opportunità, definendo le priorità di intervento.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*",
@@ -83,16 +83,14 @@
       "lead": "Tutti i portafogli possono essere valutati con i KPI, insieme ci soffermeremo ad indagare le cause di un buon rendimento o di un rendimento in negativo. In entrambi i casi scopriremo se gli obiettivi aziendali sono adeguati, sovrastimati o sottostimati.",
       "deliverables": [
         "Audit dei KPI storici: RevPAR, ADR, occupancy, lead time, lunghezza media del soggiorno",
-        "Benchmark sul competitor set reale, non sulla media di città",
+        "Benchmark sul competitor set",
         "Mappa del potenziale inespresso per singola unità, con stima in euro",
-        "Analisi del mix canali e del costo di distribuzione effettivo",
-        "Report con le prime cinque azioni ordinate per impatto"
+        "Analisi del mix canali e del costo di distribuzione effettivo"
       ],
       "forWhom": [
-        "Hai fra le 10 e le 150 unità e almeno dodici mesi di storico",
-        "Sospetti di lasciare margine sul tavolo ma non sai dove",
-        "Devi decidere se vale la pena assumere un revenue manager interno",
-        "Stai per prendere in gestione un nuovo blocco di immobili"
+        "Hai fra le 10 e le 150 unità e almeno dodici mesi di storico e vuoi verificare l'andamento del tuo portafoglio",
+        "Sei insoddisfatto dei tuoi risultati e vorresti applicare una nuova strategia per la prossima stagione.",
+        "Ti sei posto degli obiettivi aziendali ma non riesci a conseguirne il risultato sperato."
       ],
       "notFor": "Se gestisci meno di dieci unità, il margine di manovra è troppo stretto perché l'analisi si ripaghi. Preferisco dirlo prima che dopo.",
       "needs": [
@@ -116,7 +114,7 @@
         },
         {
           "q": "Il report resta mio anche se non proseguiamo?",
-          "a": "Sì. È un lavoro chiuso in sé: paghi l'analisi, ricevi il documento e le priorità, e sei libero di eseguirle da solo o con chiunque preferisca."
+          "a": "Sì. Paghi l'analisi, ricevi il documento e le priorità, e sei libero di eseguirle in autonomia o con me se preferisci un supporto continuativo."
         }
       ]
     },
