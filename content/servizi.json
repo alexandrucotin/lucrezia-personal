@@ -153,15 +153,15 @@
       "faq": [
         {
           "q": "Devo cambiare channel manager o PMS?",
-          "a": "No. Lavoro sugli strumenti che hai già. Se durante il lavoro emerge che il tuo stack ti sta costando opportunità te lo dico con i numeri, ma la migrazione non è mai una condizione per iniziare."
+          "a": "No. Lavoro sugli strumenti che hai già. Se durante l'analisi dei costi emerge che il tuo stack ti sta costando troppo possiamo valutare un'alternativa, ma la migrazione non è mai una condizione per iniziare."
         },
         {
           "q": "Chi decide i prezzi, tu o io?",
-          "a": "La strategia si approva insieme, all'inizio e a ogni cambio di stagione. Dentro quei paletti le correzioni settimanali le faccio io, altrimenti servirebbe la tua firma su ogni singolo giorno di calendario e il vantaggio del dinamico sparirebbe."
+          "a": "La strategia si approva insieme, all'inizio e a cadenza decisa in caso di continuità. I prezzi giornalieri e le correzioni settimanali sono fatte a seguito di decisioni condivise dal team di competenza."
         },
         {
           "q": "Come si misura se sta funzionando?",
-          "a": "Su RevPAR e sul confronto con lo stesso periodo dell'anno precedente, non sull'occupancy. Il report mensile mostra lo scostamento e cosa l'ha prodotto, incluse le settimane andate peggio."
+          "a": "Ogni settimana verifichiamo l'andamento delle prenotazioni, verifichiamo i KPI e lasciamo circa 3 settimane di \"lavoro\" al software per permettergli di recuperare sufficienti informazioni legate alla strategia applicata."
         }
       ]
     },
