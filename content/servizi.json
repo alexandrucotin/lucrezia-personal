@@ -123,7 +123,7 @@
       "index": "02",
       "eyebrow": "Esecuzione",
       "title": "Definizione degli obiettivi aziendali",
-      "claim": "Di sicuro hai già individuato degli obiettivi aziendali, ma in caso contrario possiamo pianificarli insieme.\nIn entrambi i casi valuteremo la fattibilità degli obiettivi per ritararli secondo le possibilità aziendali.",
+      "claim": "Valutiamo la fattibilità degli obiettivi per ritararli secondo le possibilità aziendali.",
       "summary": "Gli obiettivi possono essere singoli: migliorare il fatturato; migliorare l'occupazione; migliorare l'ADR; tagliare i costi.\nL'obiettivo migliore in assoluto è quello che considera tutti gli aspetti e che viene plasmato in base alla struttura aziendale esistente.",
       "lead": "Conoscere i costi delle strutture e il margine disponibile per ognuna di esse ci permette di stimare degli obiettivi reali e concreti, confrontarli con il mercato e di posizionarci correttamente sui canali di distribuzione.",
       "deliverables": [
@@ -131,14 +131,13 @@
         "Calendario tariffario stagionale, con eventi e finestre di domanda locale",
         "Politica di min stay, restrizioni e regole di last minute",
         "Ottimizzazione dei contenuti e del posizionamento sulle OTA",
-        "Revisione settimanale del pick-up e correzioni in corsa",
+        "Revisione settimanale del pick-up di mercato.",
         "Report mensile con scostamento su budget e anno precedente"
       ],
       "forWhom": [
-        "Hai un tool di pricing attivo ma nessuno lo tara davvero",
-        "Il tuo team è bravo sull'operativo e non ha tempo per il revenue",
-        "Vuoi una figura responsabile del risultato, non un consiglio una tantum",
-        "Sei sopra le trenta unità e il pricing manuale non regge più"
+        "Hai un tool di pricing attivo ma non sai come utilizzarlo",
+        "Il tuo team non prevede una figura dedicata al revenue",
+        "Sei stanco di modificare i prezzi manualmente e vorresti affidarti ad un software di price dinamico, ma non sai come orientarti"
       ],
       "notFor": "Se cerchi qualcuno che imposti tutto una volta e sparisca, questo non è il formato giusto: il revenue è una manutenzione, non un'installazione.",
       "needs": [
