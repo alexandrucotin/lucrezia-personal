@@ -97,12 +97,12 @@
       ]
     },
     {
-      "slug": "lago-di-garda",
-      "client": "Gestore boutique",
-      "units": 14,
-      "market": "Lago di Garda",
-      "horizon": "una stagione",
-      "problem": "Sconti aggressivi da aprile e a ottobre per riempire il calendario. Il calendario si riempiva, il fatturato no.",
+      "slug": "Verona",
+      "client": "Margine di profittabilità",
+      "units": 120,
+      "market": "Veneto - Milano",
+      "horizon": "10 mesi",
+      "problem": "Unità in perdita in alta stagione",
       "action": "Stop agli sconti a tappeto, prezzi minimi per unità, apertura graduale delle disponibilità e last minute solo sotto i sette giorni.",
       "results": [
         {
