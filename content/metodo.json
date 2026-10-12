@@ -24,8 +24,8 @@
   },
   "grafico": {
     "occhiello": "Su cosa si decide",
-    "titolo": "Il pick-up, non l'occupancy.",
-    "testo": "Un calendario pieno può voler dire che i prezzi erano giusti, oppure che erano bassi. La differenza si legge nella velocità con cui le prenotazioni entrano rispetto alla data di arrivo."
+    "titolo": "Ogni settimana verifichiamo il pick-up di mercato per adeguare le nostre tariffe.",
+    "testo": "Prevedere con anticipo gli andamenti di mercato è molto difficile, ma adeguare le nostre strategie alla richiesta del mercato è ciò che può fare la differenza tra noi e la concorrenza."
   },
   "fasi": [
     {
@@ -41,7 +41,7 @@
       "title": " Definizione delle strategie",
       "duration": "1-2 settimane",
       "body": "Definiamo una strategia in linea con gli obiettivi aziendali, le caratteristiche del portafoglio e ciò che è concretamente realizzabile.\n\nL’obiettivo è trasformare l’analisi in azioni sostenibili e applicabili nella gestione quotidiana.",
-      "detail": "Il piano viene costruito prima e condiviso con il tuo team, così che ogni scelta sia chiara, motivata e concretamente applicabile.\n\nDefiniamo:\n\nfasce tariffarie per stagione e per unità o cluster di unità;\npolitiche di minimum stay e restrizioni;\npriorità e strategia sui diversi canali di vendita;\ncalendario degli eventi e dei periodi che influenzano la domanda;\nregole di last minute e gestione delle disponibilità;\ncriteri per adeguare prezzi e restrizioni in base all’andamento delle prenotazioni.\n\nIl piano deve essere uno strumento operativo, non un documento teorico. Per questo ogni regola viene discussa e condivisa con il team: se una scelta non è comprensibile, motivabile e applicabile nella gestione quotidiana, viene rivista.",
+      "detail": "Il piano viene costruito prima e condiviso con il tuo team, così che ogni scelta sia chiara, motivata e concretamente applicabile.\n\nDefiniamo:\n\n- fasce tariffarie per stagione e per unità o cluster di unità;\n- politiche di minimum stay e restrizioni;\n- priorità e strategia sui diversi canali di vendita;\n- calendario degli eventi e dei periodi che influenzano la domanda;\n- regole di last minute e gestione delle disponibilità;\n- criteri per adeguare prezzi e restrizioni in base all’andamento delle prenotazioni.\n\nIl piano deve essere uno strumento operativo, non un documento teorico. Per questo ogni regola viene discussa e condivisa con il team: se una scelta non è comprensibile, motivabile e applicabile nella gestione quotidiana, viene rivista.",
       "output": "Piano strategico approvato"
     },
     {
@@ -49,7 +49,7 @@
       "title": "Esecuzione",
       "duration": "1 settimana",
       "body": "Implementazione delle strategie sui software aziendali. Monitoraggio del corretto funzionamento delle strategie applicate.\n",
-      "detail": "Implemento le strategie definite direttamente sui software aziendali e sugli strumenti utilizzati per la gestione delle prenotazioni e delle tariffe.\n\nConfiguro prezzi, restrizioni, minimum stay, disponibilità e regole di vendita secondo il piano concordato, verificando che ogni impostazione sia correttamente applicata.\n\nMonitoro il corretto funzionamento delle strategie e l’andamento delle prenotazioni per verificare che le regole producano gli effetti attesi.",
+      "detail": "Implemento le strategie definite direttamente sui software aziendali e sugli strumenti utilizzati per la gestione delle prenotazioni e delle tariffe.\n\nAiuto il team a configurare: prezzi, restrizioni, minimum stay, disponibilità e regole di vendita secondo il piano concordato, verificando che ogni impostazione sia correttamente applicata.\n\nMonitoro il corretto funzionamento delle strategie e l’andamento delle prenotazioni per verificare che le regole producano gli effetti attesi.",
       "output": "Piano strategico attivo"
     }
   ],
