@@ -5,12 +5,12 @@
   },
   "pagina": {
     "occhiello": "Risultati",
-    "titolo": "Tre portafogli, tre problemi diversi.",
-    "sottotitolo": "Ogni caso riporta il problema di partenza, cosa è stato cambiato e in quanto tempo. Senza l'orizzonte temporale una percentuale non vuol dire niente, quindi è sempre scritto.",
+    "titolo": "Case Study pratici",
+    "sottotitolo": "Come vengono applicati i servizi offerti in modo concreto",
     "scheda": [
       {
         "voce": "Portafogli",
-        "valore": "Da 14 a 120 unità"
+        "valore": "Da 10 a 120 unità"
       },
       {
         "voce": "Mercati",
@@ -33,7 +33,7 @@
   },
   "invito": {
     "titolo": "Il tuo portafoglio somiglia a uno di questi?",
-    "testo": "In trenta minuti capiamo se il problema è lo stesso e se i margini di recupero sono paragonabili."
+    "testo": "Se hai riscontrato delle somiglianze con i casi studio citati possiamo analizzare il tuo portafogli insieme."
   },
   "numeri": [
     {
@@ -50,11 +50,6 @@
       "value": "2021",
       "label": "nel settore",
       "note": "prima operativa, poi revenue"
-    },
-    {
-      "value": "+18%",
-      "label": "RevPAR medio",
-      "note": "sui portafogli seguiti, primi 12 mesi"
     }
   ],
   "casi": [
