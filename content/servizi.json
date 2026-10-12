@@ -123,9 +123,9 @@
       "index": "02",
       "eyebrow": "Esecuzione",
       "title": "Definizione degli obiettivi aziendali",
-      "claim": "La strategia non vale niente se non arriva sul calendario.",
-      "summary": "Costruisco il piano tariffario e lo eseguo: prezzi dinamici, restrizioni, min stay, gestione della bassa stagione e dei buchi di calendario. Sul tuo gestionale, senza migrazioni.",
-      "lead": "Il piano tariffario più intelligente del mondo non serve a niente se resta in un documento. Questo è il servizio in cui la strategia diventa il prezzo che l'ospite vede stanotte su Booking, e resta tarata settimana dopo settimana.",
+      "claim": "Di sicuro hai già individuato degli obiettivi aziendali, ma in caso contrario possiamo pianificarli insieme.\nIn entrambi i casi valuteremo la fattibilità degli obiettivi per ritararli secondo le possibilità aziendali.",
+      "summary": "Gli obiettivi possono essere singoli: migliorare il fatturato; migliorare l'occupazione; migliorare l'ADR; tagliare i costi.\nL'obiettivo migliore in assoluto è quello che considera tutti gli aspetti e che viene plasmato in base alla struttura aziendale esistente.",
+      "lead": "Conoscere i costi delle strutture e il margine disponibile per ognuna di esse ci permette di stimare degli obiettivi reali e concreti, confrontarli con il mercato e di posizionarci correttamente sui canali di distribuzione.",
       "deliverables": [
         "Setup e taratura dello strumento di dynamic pricing (PriceLabs, Smartpricing)",
         "Calendario tariffario stagionale, con eventi e finestre di domanda locale",
