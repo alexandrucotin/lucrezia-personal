@@ -78,11 +78,11 @@
       "quote": "Pensavo che aumentare il minimum stay avrebbe limitato la visibilità sui canali di vendita, invece ha portato ad un miglioramento generale delle prenotazioni entrate"
     },
     {
-      "slug": "milano-business",
-      "client": "Azienda short-term rental",
-      "units": 115,
-      "market": "Milano, zona Fiera e Navigli",
-      "horizon": "11 mesi",
+      "slug": "Verona",
+      "client": "Strategie non STR",
+      "units": 70,
+      "market": "Verona",
+      "horizon": "1 mese",
       "problem": "Il 78% delle notti arrivava da un solo canale. Nessun controllo sul mix, cancellazioni alte e ADR schiacciato in bassa stagione.",
       "action": "Riequilibrio del mix canali, politiche di cancellazione differenziate per finestra di prenotazione, tariffe corporate per i soggiorni lunghi.",
       "results": [
