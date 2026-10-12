@@ -142,18 +142,5 @@
       "detail": "42 unità, Verona"
     }
   ],
-  "clienti": [
-    {
-      "name": "Bhomy",
-      "city": "Torino"
-    },
-    {
-      "name": "Domusverona",
-      "city": "Verona"
-    },
-    {
-      "name": "Italian Flat",
-      "city": "Verona"
-    }
-  ]
+  "clienti": []
 }
