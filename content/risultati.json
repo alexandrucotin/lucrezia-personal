@@ -5,8 +5,8 @@
   },
   "pagina": {
     "occhiello": "Risultati",
-    "titolo": "Case Study pratici",
-    "sottotitolo": "Come vengono applicati i servizi offerti in modo concreto",
+    "titolo": "Case Study",
+    "sottotitolo": "Alcuni esempi di come vengono applicate le strategie in ambiti diversi, con obiettivi diversi, in mercati diversi.",
     "scheda": [
       {
         "voce": "Portafogli",
@@ -97,13 +97,13 @@
       ]
     },
     {
-      "slug": "Verona",
-      "client": "Margine di profittabilità",
+      "slug": "Verona - Milano - Garda",
+      "client": "Suddivisione dei Cluster Strategici",
       "units": 120,
-      "market": "Veneto - Milano",
+      "market": "Verona - Milano - Garda",
       "horizon": "10 mesi",
-      "problem": "Unità in perdita in alta stagione",
-      "action": "Stop agli sconti a tappeto, prezzi minimi per unità, apertura graduale delle disponibilità e last minute solo sotto i sette giorni.",
+      "problem": "Tutte le unità presenti nel portafoglio rispondevano alla stessa logica strategica. Questo può impedire la massimizzazione dei profitti.",
+      "action": "Suddivisione delle unità in base alla tipologia di struttura, applicazione di strategie distinte per gruppo: prezzo di partenza, min stay, tariffe disponibili.",
       "results": [
         {
           "value": "+24%",
