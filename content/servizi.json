@@ -109,8 +109,8 @@
           "a": "Dodici mesi sono il minimo per avere un confronto stagionale sensato, ventiquattro sono l'ideale perché permettono di distinguere una tendenza da un anno anomalo. Con meno di dodici mesi si può fare comunque, ma il report sarà più prudente nelle conclusioni."
         },
         {
-          "q": "Che differenza c'è rispetto ai report che mi dà già il mio tool?",
-          "a": "I tool di pricing riportano quello che è successo. Qui la domanda è un'altra: quanto avresti potuto incassare, unità per unità, e quale decisione ha prodotto lo scarto. È un lavoro di interpretazione, non di estrazione."
+          "q": "Che differenza c'è rispetto ai report che mi dà già il mio PMS?",
+          "a": "I tool di pricing riportano i dati numerici rispetto al passato. Insieme effettuiamo un'analisi dei dati per comprendere le cause dei risultati ottenuti (in positivo o negativo) per comprendere se sia possibile mantenerli o COME migliorarli."
         },
         {
           "q": "Il report resta mio anche se non proseguiamo?",
