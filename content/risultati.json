@@ -83,20 +83,16 @@
       "units": 70,
       "market": "Verona",
       "horizon": "1 mese",
-      "problem": "Il 78% delle notti arrivava da un solo canale. Nessun controllo sul mix, cancellazioni alte e ADR schiacciato in bassa stagione.",
-      "action": "Riequilibrio del mix canali, politiche di cancellazione differenziate per finestra di prenotazione, tariffe corporate per i soggiorni lunghi.",
+      "problem": "La strategia applicata al portafogli aziendale non considerava le dinamiche di mercato legate agli sconti Last Minute tipici degli STR. \nUn mese di alta stagione aveva occupazione sotto la soglia di mercato indicata per la booking window.",
+      "action": "Inserimento di politiche last minute, inserimento di tool specifici di prezzo legati all'occupazione. \nI risultati citati si sono verificati in 7gg dall'inserimento delle politiche.",
       "results": [
         {
-          "value": "+12%",
-          "label": "ADR bassa stagione"
+          "value": "+24k",
+          "label": "Fatturato sul mese target"
         },
         {
-          "value": "-22%",
-          "label": "cancellazioni"
-        },
-        {
-          "value": "54%",
-          "label": "dipendenza dal canale principale, da 78%"
+          "value": "+6pt",
+          "label": "%occupazione rispetto al mercato sul mese target"
         }
       ]
     },
