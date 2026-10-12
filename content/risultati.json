@@ -54,28 +54,28 @@
   ],
   "casi": [
     {
-      "slug": "verona-centro",
-      "client": "Property manager",
-      "units": 42,
+      "slug": "Verona",
+      "client": "Minimum Stay",
+      "units": 60,
       "market": "Verona, centro storico",
-      "horizon": "8 mesi",
-      "problem": "Tariffa fissa per stagione e min stay identico su tutte le unità. I bilocali venivano svenduti nei weekend di fiera, i monolocali restavano vuoti in settimana.",
-      "action": "Segmentazione del portafoglio in tre cluster tariffari, calendario eventi locale, min stay differenziato per taglia e giorno della settimana.",
+      "horizon": "6 mesi",
+      "problem": "La gestione in property manager aveva fissato il miminum stay pari a 1 notte per tutto l'anno. I costi di gestione della singola notte erano troppo alti.",
+      "action": "L'inserimento di un minimum stay pari a 2 notti per il Venerdì di tutte le unità per l'alta stagione ed un soggiorno minimo di 2 notti per le unità con una max occupancy più alta ha permesso un miglioramento della length of stay con un abbattimento dei costi di gestione su 2 o più notti.",
       "results": [
         {
-          "value": "+19%",
-          "label": "RevPAR"
+          "value": "+4%",
+          "label": "RevPar rispetto all'anno precedente"
         },
         {
-          "value": "+7 pt",
-          "label": "occupancy"
+          "value": "10%",
+          "label": "LOS (length of stay)"
         },
         {
-          "value": "-11%",
-          "label": "notti sotto costo"
+          "value": "-10%",
+          "label": "Impatto del costo delle pulizie sulla singola notte"
         }
       ],
-      "quote": "Avevamo i dati, non sapevamo leggerli. In due mesi abbiamo capito quali unità stavamo svendendo."
+      "quote": "Pensavo che aumentare il minimum stay avrebbe limitato la visibilità sui canali di vendita, invece ha portato ad un miglioramento generale delle prenotazioni entrate"
     },
     {
       "slug": "milano-business",
