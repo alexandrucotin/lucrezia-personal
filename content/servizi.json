@@ -25,7 +25,7 @@
     "pacchetti": [
       {
         "name": "Audit",
-        "price": "da 250 €",
+        "price": "da 650 €",
         "unit": "una tantum",
         "duration": "1-3 settimane",
         "body": "Analisi completa del portafoglio, benchmark e report con le principali priorità di intervento. La consulenza si conclude con una call di presentazione e condivisione dei risultati.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*\n",
@@ -38,12 +38,12 @@
       },
       {
         "name": "Continuativo",
-        "price": "da 900 €",
+        "price": "da 300 €",
         "unit": "al mese",
         "duration": "minimo 6 mesi",
         "body": "Analisi completa del portafoglio, e definizione delle strategie future.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*",
         "items": [
-          "Servizi inclusi nel pacchetto \"Audit\"",
+          "previo obbligo acquisto pacchetto \"Audit\"",
           "Determinazione degli obiettivi e pianificazione strategica",
           "Revisione settimanale"
         ],
@@ -173,8 +173,8 @@
       "index": "03",
       "eyebrow": "Autonomia",
       "title": "Affiancamento e formazione",
-      "claim": "Deve funzionare anche nelle settimane in cui non ci sono io.",
-      "summary": "Se il revenue dipende da una persona sola, è un rischio. Metto il tuo team in condizione di leggere i dati e prendere decisioni tariffarie da solo, con processi scritti e una dashboard che si guarda in cinque minuti.",
+      "claim": "Il tuo team deve essere autonomo nell'utilizzo degli strumenti principali\n",
+      "summary": "Metto il tuo team in condizione di leggere i dati e prendere decisioni tariffarie in autonomia. Questo passaggio è fondamentale se vuoi minimizzare gli errori e la necessità di consulenze esterne frequenti. ",
       "lead": "Alcuni portafogli non hanno bisogno di un revenue manager esterno a tempo indeterminato: hanno bisogno che qualcuno metta ordine, scriva i processi e insegni al team a leggerli. Poi si toglie di mezzo.",
       "deliverables": [
         "Setup da zero dello stack di revenue management",
