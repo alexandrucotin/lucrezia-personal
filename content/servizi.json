@@ -174,17 +174,14 @@
       "summary": "Metto il tuo team in condizione di leggere i dati e prendere decisioni tariffarie in autonomia. Questo passaggio è fondamentale se vuoi minimizzare gli errori e la necessità di consulenze esterne frequenti. ",
       "lead": "Vuoi formare una figura di revenue manager interna oppure imparare tu stesso quali strategie applicare e che strumenti usare per renderle operative?",
       "deliverables": [
-        "Setup da zero dello stack di revenue management",
-        "Processi documentati: chi guarda cosa, quando, e con quale soglia di intervento",
-        "Quattro sessioni di formazione sul portafoglio reale, non su casi teorici",
-        "Dashboard KPI con le sole metriche su cui si decide",
-        "Tre mesi di supporto asincrono dopo la consegna"
+        "Cinque sessioni di formazione",
+        "Interpretazione autonoma delle KPI ",
+        "Formazione degli strumenti di base e della logica su cui si basa il tuo PMS"
       ],
       "forWhom": [
         "Hai già una persona interna che potrebbe occuparsi di revenue",
         "Vuoi ridurre la dipendenza da consulenti esterni",
-        "Il know-how oggi è nella testa di una persona sola",
-        "Stai strutturando l'azienda e ti servono processi scritti"
+        "Stai strutturando l'azienda e ti serve tempo per individuare la figura adeguata"
       ],
       "notFor": "Se non c'è nessuno in azienda che possa dedicare qualche ora a settimana al revenue, la formazione non attecchisce. Meglio il formato continuativo.",
       "needs": [
@@ -200,11 +197,11 @@
       "faq": [
         {
           "q": "La formazione è in presenza o da remoto?",
-          "a": "Da remoto per impostazione, in presenza a Verona o Milano se preferisci e il calendario lo permette. Le sessioni si fanno sul vostro portafoglio, con i vostri dati aperti davanti: non sono lezioni."
+          "a": "Da remoto per impostazione, in presenza a Verona o Milano se preferisci e il calendario lo permette. Le sessioni si fanno sul vostro portafoglio, con i vostri dati aperti davanti: non sono lezioni teoriche."
         },
         {
           "q": "Cosa resta al team alla fine?",
-          "a": "I processi scritti, la dashboard configurata, le registrazioni delle sessioni e tre mesi in cui potete scrivermi. L'obiettivo dichiarato è che dopo non vi serva più."
+          "a": "I processi scritti, la dashboard configurata, le registrazioni delle sessioni e due mesi in cui potete richiedere ulteriore supporto."
         }
       ]
     }
