@@ -1,7 +1,7 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/site/cta-band";
+import { FotoRitagliata } from "@/components/site/foto-ritagliata";
 import { JsonLd } from "@/components/site/json-ld";
 import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
@@ -60,11 +60,13 @@ export default async function ChiSonoPage() {
                 {/* Proporzione fissa 3:4: qualunque foto caricata dal pannello
                     entra nello stesso spazio, ritagliata e non deformata. */}
                 <div className="relative aspect-[3/4] w-full">
-                  <Image
-                    src={chiSonoContenuto.foto.immagine}
+                  <FotoRitagliata
+                    foto={chiSonoContenuto.foto.immagine}
                     alt={chiSonoContenuto.foto.descrizione}
-                    fill
-                    sizes="(min-width: 1024px) 38vw, 100vw"
+                    riquadri={[
+                      { media: "(min-width: 1024px)", larghezza: "38vw", proporzione: 3 / 4 },
+                      { larghezza: "100vw", proporzione: 3 / 4 },
+                    ]}
                     className="object-cover object-top"
                     priority
                   />

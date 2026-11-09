@@ -165,6 +165,26 @@ export const foto = (name: string, label = "Foto"): Field => ({
   },
 })
 
+/* Foto che si puo' anche non mettere: se manca, il sito usa quello che
+   c'era prima (la testata senza sfondo, il grafico disegnato). */
+export const fotoFacoltativa = (name: string, label: string, description: string): Field => ({
+  name,
+  label,
+  type: "upload",
+  relationTo: "media",
+  admin: { description },
+})
+
+/* Interruttore per mostrare o nascondere un blocco. Spento, il blocco
+   sparisce dal sito ma i suoi testi restano salvati nel pannello. */
+export const mostra = (name: string, label: string, description: string): Field => ({
+  name,
+  label,
+  type: "checkbox",
+  defaultValue: false,
+  admin: { description },
+})
+
 export const descrizioneFoto = (name: string): Field => ({
   name,
   label: "Descrizione della foto (facoltativa)",

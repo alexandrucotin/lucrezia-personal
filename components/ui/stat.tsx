@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -21,12 +21,15 @@ export function Stat({ value, label, note, className }: StatItem & { className?:
 }
 
 /* Riga di statistiche separate da filetti verticali da 1px.
-   Su mobile diventa una griglia 2x2, i filetti si adattano. */
+   Da tablet in su le colonne sono tante quante le voci del pannello, e
+   insieme riempiono sempre tutta la larghezza: tre numeri non lasciano un
+   buco a destra, cinque non vanno a capo. Su mobile restano due per riga. */
 export function StatRow({ items, className }: { items: readonly StatItem[]; className?: string }) {
   return (
     <dl
+      style={{ "--colonne": Math.max(items.length, 1) } as CSSProperties}
       className={cn(
-        "grid grid-cols-2 gap-x-8 gap-y-10 border-t border-rule pt-10 md:grid-cols-4 md:gap-x-0",
+        "grid grid-cols-2 gap-x-8 gap-y-10 border-t border-rule pt-10 md:grid-cols-[repeat(var(--colonne),minmax(0,1fr))] md:gap-x-0",
         className,
       )}
     >

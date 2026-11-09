@@ -7,6 +7,8 @@ import { PickupCurve } from "@/components/charts/pickup-curve";
 import { PortfolioMatrix } from "@/components/charts/portfolio-matrix";
 import { PricingCalendar } from "@/components/charts/pricing-calendar";
 import { CaseScroller } from "@/components/site/case-scroller";
+import { FotoRitagliata } from "@/components/site/foto-ritagliata";
+import { ImmagineGrafico } from "@/components/site/immagine-grafico";
 import { MethodSticky } from "@/components/site/method-sticky";
 import { TestoRicco } from "@/components/site/testo-ricco";
 import { ActionLink, TextLink } from "@/components/ui/action";
@@ -14,6 +16,7 @@ import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { getContenuti } from "@/lib/content";
+import { cn } from "@/lib/utils";
 import type { SezioneHome } from "@/lib/content/sezioni-home";
 
 /* Ogni fase del metodo porta il proprio diagramma. La terza no, di proposito:
@@ -32,6 +35,7 @@ export default async function HomePage() {
   /* Il titolo puo' avere o non avere una seconda parte evidenziata. Se c'e' e
      comincia con punteggiatura, lo spazio prima non ci va. */
   const evidenziato = home.hero.titoloEvidenziato.trim();
+  const sfondo = home.hero.sfondo;
   const separatoreTitolo = /^[.,;:!?]/.test(evidenziato) ? "" : " ";
 
   /* Le sezioni dopo l'apertura, nell'ordine e con le assenze decise dal
@@ -79,7 +83,11 @@ export default async function HomePage() {
             </Reveal>
 
             <Reveal delay={0.08} className="mt-16 grid gap-12 lg:grid-cols-12">
-              <PickupCurve className="lg:col-span-8" />
+              {home.diagnosi.immagineGrafico ? (
+                <ImmagineGrafico immagine={home.diagnosi.immagineGrafico} className="lg:col-span-8" />
+              ) : (
+                <PickupCurve className="lg:col-span-8" />
+              )}
               <div className="lg:col-span-4 lg:col-start-9">
                 <p className="text-ink-soft">{home.diagnosi.commentoGrafico}</p>
                 <p className="mt-5 text-sm text-ink-faint">
@@ -224,11 +232,14 @@ export default async function HomePage() {
                     sostituire dal pannello con una di proporzioni qualsiasi e
                     viene ritagliata, mai deformata. */}
                 <figure className="relative h-[24rem] w-full sm:h-[30rem] lg:h-[34rem]">
-                  <Image
-                    src={home.chiSono.immagine}
+                  <FotoRitagliata
+                    foto={home.chiSono.immagine}
                     alt={home.chiSono.immagineDescrizione}
-                    fill
-                    sizes="(min-width: 1024px) 38vw, 100vw"
+                    riquadri={[
+                      { media: "(min-width: 1024px)", larghezza: "38vw", altezza: "34rem" },
+                      { media: "(min-width: 640px)", larghezza: "100vw", altezza: "30rem" },
+                      { larghezza: "100vw", altezza: "24rem" },
+                    ]}
                     className="object-cover object-top"
                   />
                 </figure>
@@ -318,63 +329,108 @@ export default async function HomePage() {
   return (
     <>
       {/* ---------------------------------------------------------------
-          Hero: nessuna foto di sfondo con testo sopra. Solo tipografia
-          su carta e una scheda dati a lato.
+          Hero. Di base solo tipografia su carta e una scheda dati a lato.
+          Se dal pannello arriva una foto di sfondo, la si mostra molto
+          sfocata sotto un velo scuro e il testo passa in chiaro: sfocata,
+          anche una foto non nitidissima regge, e il testo resta leggibile.
       ---------------------------------------------------------------- */}
-      <Section as="div" rhythm="loose" className="pt-12 sm:pt-16">
-        <div className="shell">
-          <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-8">
-              <Reveal>
-                <Eyebrow>{home.hero.occhiello}</Eyebrow>
-              </Reveal>
+      <Section as="div" rhythm="loose" className={cn("pt-12 sm:pt-16", sfondo && "pt-0 sm:pt-0")}>
+        <div className={cn(sfondo && "relative isolate overflow-hidden bg-ink py-24 sm:py-32")}>
+          {sfondo ? (
+            <>
+              {/* Decorativa: alt vuoto. Sfocata, una risoluzione bassa
+                  basta e pesa meno. */}
+              <Image
+                src={sfondo.url}
+                alt=""
+                fill
+                priority
+                sizes="50vw"
+                className="-z-20 scale-110 object-cover blur-xl"
+              />
+              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/50" />
+            </>
+          ) : null}
 
-              <Reveal delay={0.06}>
-                <h1 className="display mt-7 text-d1">
-                  {home.hero.titolo}
-                  {evidenziato ? (
-                    <span className="text-sage">
-                      {separatoreTitolo}
-                      {evidenziato}
-                    </span>
-                  ) : null}
-                </h1>
-              </Reveal>
+          <div className="shell">
+            <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-8">
+                <Reveal>
+                  <Eyebrow className={cn(sfondo && "text-paper/80")}>{home.hero.occhiello}</Eyebrow>
+                </Reveal>
 
-              <Reveal delay={0.12}>
-<Lead className="mt-8">{home.hero.sottotitolo}</Lead>
-              </Reveal>
+                <Reveal delay={0.06}>
+                  <h1 className={cn("display mt-7 text-d1", sfondo && "text-paper")}>
+                    {home.hero.titolo}
+                    {evidenziato ? (
+                      <span className={sfondo ? "text-sage-tint" : "text-sage"}>
+                        {separatoreTitolo}
+                        {evidenziato}
+                      </span>
+                    ) : null}
+                  </h1>
+                </Reveal>
 
-              <Reveal delay={0.18}>
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <ActionLink href="/contatti">{home.hero.pulsantePrimario}</ActionLink>
-                  <ActionLink href="/servizi" variant="ghost">
-                    {home.hero.pulsanteSecondario}
-                  </ActionLink>
-                </div>
-              </Reveal>
-            </div>
+                <Reveal delay={0.12}>
+                  <Lead className={cn("mt-8", sfondo && "text-paper/85")}>
+                    {home.hero.sottotitolo}
+                  </Lead>
+                </Reveal>
 
-            {/* La scheda mostra esattamente le voci che stanno nel pannello, e
-                sparisce se non ce ne sono: e' contenuto che si puo' svuotare. */}
-            {home.hero.scheda.length > 0 ? (
-              <Reveal delay={0.24} className="lg:col-span-4 lg:pl-8">
-                <dl className="border-t border-rule lg:border-t-0 lg:border-l lg:border-rule lg:pl-8">
-                  {home.hero.scheda.map((row) => (
-                    <div
-                      key={row.voce}
-                      className="border-b border-rule py-5 first:pt-6 lg:first:pt-0"
+                <Reveal delay={0.18}>
+                  <div className="mt-10 flex flex-wrap items-center gap-4">
+                    <ActionLink href="/contatti" variant={sfondo ? "inverse" : "solid"}>
+                      {home.hero.pulsantePrimario}
+                    </ActionLink>
+                    <ActionLink
+                      href="/servizi"
+                      variant="ghost"
+                      className={cn(
+                        sfondo &&
+                          "border-paper/40 text-paper hover:border-paper hover:bg-paper/10"
+                      )}
                     >
-                      <dt className="eyebrow text-ink-faint">{row.voce}</dt>
-                      <dd className="mt-2 text-sm text-ink">{row.valore}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </Reveal>
-            ) : null}
-          </div>
+                      {home.hero.pulsanteSecondario}
+                    </ActionLink>
+                  </div>
+                </Reveal>
+              </div>
 
-          <Reveal className="mt-20 sm:mt-28">
+              {/* La scheda mostra esattamente le voci che stanno nel pannello, e
+                  sparisce se non ce ne sono: e' contenuto che si puo' svuotare. */}
+              {home.hero.scheda.length > 0 ? (
+                <Reveal delay={0.24} className="lg:col-span-4 lg:pl-8">
+                  <dl
+                    className={cn(
+                      "border-t border-rule lg:border-t-0 lg:border-l lg:border-rule lg:pl-8",
+                      sfondo && "border-paper/25 lg:border-paper/25"
+                    )}
+                  >
+                    {home.hero.scheda.map((row) => (
+                      <div
+                        key={row.voce}
+                        className={cn(
+                          "border-b border-rule py-5 first:pt-6 lg:first:pt-0",
+                          sfondo && "border-paper/25"
+                        )}
+                      >
+                        <dt className={cn("eyebrow", sfondo ? "text-paper/70" : "text-ink-faint")}>
+                          {row.voce}
+                        </dt>
+                        <dd className={cn("mt-2 text-sm", sfondo ? "text-paper" : "text-ink")}>
+                          {row.valore}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </Reveal>
+              ) : null}
+            </div>
+          </div>
+        </div>
+
+        <div className="shell">
+          <Reveal className={sfondo ? "mt-16 sm:mt-20" : "mt-20 sm:mt-28"}>
             <StatRow items={stats} />
           </Reveal>
         </div>

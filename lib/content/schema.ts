@@ -58,11 +58,34 @@ const facoltativo = z
 
 /* La foto arriva come documento della libreria (con descrizione propria);
    la descrizione scritta accanto, se c'e', vince su quella della libreria.
-   Le pagine ricevono un percorso e un testo alternativo, come prima. */
-const foto = z.object({ url: testo, alt: testo })
+   Le pagine ricevono la foto (percorso e misure) e un testo alternativo.
+   Le misure servono a scaricarla abbastanza grande quando viene ritagliata. */
+const foto = z.object({
+  url: testo,
+  alt: testo,
+  width: z.number().nullish(),
+  height: z.number().nullish(),
+})
 const descrizioneFoto = z.string().nullish()
+
+/* Foto facoltativa: Payload manda null quando non c'e'. Serve anche la
+   misura, per disegnarla nelle sue proporzioni senza ritagliarla. */
+const fotoFacoltativa = z
+  .object({
+    url: testo,
+    alt: testo,
+    width: z.number().nullish(),
+    height: z.number().nullish(),
+  })
+  .nullish()
+  .transform((v) =>
+    v ? { url: v.url, alt: v.alt, width: v.width ?? 1600, height: v.height ?? 900 } : null
+  )
+
+/* Interruttore: assente o null vale "spento". */
+const interruttore = z.boolean().nullish().transform(Boolean)
 const conDescrizione = (immagine: z.infer<typeof foto>, descrizione?: string | null) => ({
-  immagine: immagine.url,
+  immagine: { url: immagine.url, width: immagine.width, height: immagine.height },
   descrizione: descrizione?.trim() || immagine.alt,
 })
 
@@ -125,6 +148,7 @@ export const homeSchema = z.object({
     pulsantePrimario: testo,
     pulsanteSecondario: testo,
     scheda: z.array(voceValore),
+    sfondo: fotoFacoltativa,
   }),
   clienti: z.object({ occhiello: testo, nota: testo }),
   diagnosi: z.object({
@@ -132,6 +156,7 @@ export const homeSchema = z.object({
     titolo: testo,
     commentoGrafico: testo,
     commentoGraficoSecondario: testo,
+    immagineGrafico: fotoFacoltativa,
     sintomi: z.array(z.object({ indice: testo, titolo: testo, testo })),
   }),
   servizi: z.object({ occhiello: testo, titolo: testo, link: testo }),
@@ -172,6 +197,7 @@ const servizio = z.object({
   lead: testo,
   deliverables: testi,
   forWhom: testi,
+  mostraPerChiNonE: interruttore,
   notFor: ricco,
   needs: testi,
   diagram: z
@@ -220,7 +246,7 @@ export const metodoSchema = z.object({
     sottotitolo: testo,
     scheda: z.array(voceValore),
   }),
-  grafico: z.object({ occhiello: testo, titolo: testo, testo: ricco }),
+  grafico: z.object({ occhiello: testo, titolo: testo, testo: ricco, immagine: fotoFacoltativa }),
   fasi: z.array(
     z.object({
       index: testo,
@@ -243,6 +269,7 @@ export const risultatiSchema = z.object({
     scheda: z.array(voceValore),
   }),
   lettura: z.object({
+    mostra: interruttore,
     occhiello: testo,
     titolo: testo,
     paragrafi: testiRicchi,

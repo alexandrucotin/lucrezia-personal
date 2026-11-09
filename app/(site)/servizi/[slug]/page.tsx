@@ -133,10 +133,16 @@ export default async function ServizioPage(props: PageProps<"/servizi/[slug]">) 
             </Reveal>
 
             <Reveal delay={0.1} className="lg:col-span-5 lg:col-start-8">
-              <Eyebrow className="text-ochre">Per chi non è</Eyebrow>
-              <TestoRicco data={service.notFor} className="measure mt-8 text-lead text-ink" />
+              {/* "Per chi non è" si accende e si spegne dal pannello, servizio
+                  per servizio. Spento, la colonna tiene solo "Cosa serve da te". */}
+              {service.mostraPerChiNonE ? (
+                <>
+                  <Eyebrow className="text-ochre">Per chi non è</Eyebrow>
+                  <TestoRicco data={service.notFor} className="measure mt-8 text-lead text-ink" />
+                </>
+              ) : null}
 
-              <div className="mt-12">
+              <div className={service.mostraPerChiNonE ? "mt-12" : undefined}>
                 <Eyebrow className="text-ink-faint">Cosa serve da te</Eyebrow>
                 <ul className="mt-6 space-y-3 text-sm text-ink-soft">
                   {service.needs.map((item) => (

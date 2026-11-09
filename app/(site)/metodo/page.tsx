@@ -8,6 +8,7 @@ import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, faqGraph, pageMetadata } from "@/lib/seo";
 import { FaqList } from "@/components/site/faq-list";
+import { ImmagineGrafico } from "@/components/site/immagine-grafico";
 import { TestoRicco } from "@/components/site/testo-ricco";
 import { getContenuti } from "@/lib/content";
 
@@ -89,7 +90,11 @@ export default async function MetodoPage() {
             </div>
 
             <Reveal delay={0.08} className="lg:col-span-8">
-              <PickupCurve />
+              {metodoContenuto.grafico.immagine ? (
+                <ImmagineGrafico immagine={metodoContenuto.grafico.immagine} />
+              ) : (
+                <PickupCurve />
+              )}
             </Reveal>
           </div>
         </div>

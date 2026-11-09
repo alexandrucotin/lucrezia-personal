@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Breadcrumbs, type Crumb } from "@/components/site/breadcrumbs";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
+import { cn } from "@/lib/utils";
 
 /**
  * Apertura delle pagine interne. Una scheda dati opzionale a lato tiene il
@@ -15,15 +16,18 @@ export function PageHeader({
   lead,
   trail,
   aside,
+  className,
 }: {
   eyebrow: string;
   title: string;
   lead?: string;
   trail: Crumb[];
   aside?: readonly { voce: string; valore: string }[];
+  /** Per stringere lo spazio sotto, quando subito dopo viene altro contenuto. */
+  className?: string;
 }) {
   return (
-    <Section as="div" rhythm="loose" className="pt-10 sm:pt-12">
+    <Section as="div" rhythm="loose" className={cn("pt-10 sm:pt-12", className)}>
       <div className="shell">
         <Reveal>
           <Breadcrumbs trail={trail} />

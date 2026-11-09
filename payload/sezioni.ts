@@ -8,8 +8,10 @@ import {
   elenco,
   elencoTesti,
   foto,
+  fotoFacoltativa,
   gruppo,
   meta,
+  mostra,
   paragrafo,
   testo,
   testoRicco,
@@ -148,6 +150,11 @@ export const home = sezione("home", "Home", "Pagine", "/", [
     testo("pulsantePrimario", "Pulsante principale"),
     testo("pulsanteSecondario", "Pulsante secondario"),
     voceValore(),
+    fotoFacoltativa(
+      "sfondo",
+      "Foto di sfondo",
+      "Facoltativa. Compare molto sfocata dietro il titolo, che diventa bianco. Meglio una foto orizzontale e luminosa. Lascia vuoto per avere la testata chiara, senza foto."
+    ),
   ]),
   gruppo("clienti", "Fascia clienti", [testo("occhiello", "Occhiello"), testo("nota", "Nota a destra")]),
   gruppo("diagnosi", "Diagnosi", [
@@ -155,6 +162,11 @@ export const home = sezione("home", "Home", "Pagine", "/", [
     paragrafo("titolo", "Titolo"),
     paragrafo("commentoGrafico", "Commento accanto al grafico"),
     paragrafo("commentoGraficoSecondario", "Seconda riga del commento"),
+    fotoFacoltativa(
+      "immagineGrafico",
+      "Immagine al posto del grafico",
+      "Facoltativa. Se la carichi, prende il posto del grafico disegnato. Lascia vuoto per tenere il grafico."
+    ),
     elenco(
       "sintomi",
       "Sintomi",
@@ -224,12 +236,18 @@ export const servizi = sezione("servizi", "Servizi", "Pagine", "/servizi", [
       paragrafo("lead", "Apertura della pagina dedicata"),
       elencoTesti("deliverables", "Cosa ricevi", "Voce"),
       elencoTesti("forWhom", "Per chi è", "Voce"),
+      mostra(
+        "mostraPerChiNonE",
+        "Mostra \"Per chi non è\"",
+        "Spento, la colonna \"Per chi non è\" non compare nella pagina del servizio. Il testo resta salvato qui sotto."
+      ),
       testoRicco("notFor", "Per chi non è"),
       elencoTesti("needs", "Cosa serve da te", "Voce"),
       {
         name: "diagram",
         label: "Grafico",
         type: "select",
+        admin: { description: "Lascia vuoto (con la x a destra) per non mostrare nessun grafico." },
         options: [
           { label: "Matrice del portafoglio", value: "matrix" },
           { label: "Calendario tariffario", value: "calendar" },
@@ -253,6 +271,11 @@ export const metodo = sezione("metodo", "Metodo", "Pagine", "/metodo", [
     testo("occhiello", "Occhiello"),
     testo("titolo", "Titolo"),
     testoRicco("testo", "Testo"),
+    fotoFacoltativa(
+      "immagine",
+      "Immagine al posto del grafico",
+      "Facoltativa. Se la carichi, prende il posto del grafico disegnato. Lascia vuoto per tenere il grafico."
+    ),
   ]),
   elenco(
     "fasi",
@@ -274,6 +297,11 @@ export const risultati = sezione("risultati", "Risultati", "Pagine", "/risultati
   meta(),
   apertura(true),
   gruppo("lettura", "Come leggere i numeri", [
+    mostra(
+      "mostra",
+      "Mostra questa sezione",
+      "Il riquadro \"Una percentuale senza contesto...\" sotto i casi studio. Spento, non compare sul sito."
+    ),
     testo("occhiello", "Occhiello"),
     paragrafo("titolo", "Titolo"),
     elencoTesti("paragrafi", "Paragrafi", "Paragrafo", { ricco: true }),

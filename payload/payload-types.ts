@@ -379,6 +379,10 @@ export interface Home {
           id?: string | null;
         }[]
       | null;
+    /**
+     * Facoltativa. Compare molto sfocata dietro il titolo, che diventa bianco. Meglio una foto orizzontale e luminosa. Lascia vuoto per avere la testata chiara, senza foto.
+     */
+    sfondo?: (number | null) | Media;
   };
   clienti: {
     occhiello: string;
@@ -389,6 +393,10 @@ export interface Home {
     titolo: string;
     commentoGrafico: string;
     commentoGraficoSecondario: string;
+    /**
+     * Facoltativa. Se la carichi, prende il posto del grafico disegnato. Lascia vuoto per tenere il grafico.
+     */
+    immagineGrafico?: (number | null) | Media;
     sintomi?:
       | {
           indice: string;
@@ -553,6 +561,10 @@ export interface Servizi {
               id?: string | null;
             }[]
           | null;
+        /**
+         * Spento, la colonna "Per chi non è" non compare nella pagina del servizio. Il testo resta salvato qui sotto.
+         */
+        mostraPerChiNonE?: boolean | null;
         notFor: {
           root: {
             type: string;
@@ -574,6 +586,9 @@ export interface Servizi {
               id?: string | null;
             }[]
           | null;
+        /**
+         * Lascia vuoto (con la x a destra) per non mostrare nessun grafico.
+         */
         diagram?: ('matrix' | 'calendar' | 'kpi') | null;
         keyword: string;
         duration: string;
@@ -656,6 +671,10 @@ export interface Metodo {
       };
       [k: string]: unknown;
     };
+    /**
+     * Facoltativa. Se la carichi, prende il posto del grafico disegnato. Lascia vuoto per tenere il grafico.
+     */
+    immagine?: (number | null) | Media;
   };
   fasi?:
     | {
@@ -739,6 +758,10 @@ export interface Risultati {
       | null;
   };
   lettura: {
+    /**
+     * Il riquadro "Una percentuale senza contesto..." sotto i casi studio. Spento, non compare sul sito.
+     */
+    mostra?: boolean | null;
     occhiello: string;
     titolo: string;
     paragrafi?:
@@ -1113,6 +1136,7 @@ export interface HomeSelect<T extends boolean = true> {
               valore?: T;
               id?: T;
             };
+        sfondo?: T;
       };
   clienti?:
     | T
@@ -1127,6 +1151,7 @@ export interface HomeSelect<T extends boolean = true> {
         titolo?: T;
         commentoGrafico?: T;
         commentoGraficoSecondario?: T;
+        immagineGrafico?: T;
         sintomi?:
           | T
           | {
@@ -1259,6 +1284,7 @@ export interface ServiziSelect<T extends boolean = true> {
               testo?: T;
               id?: T;
             };
+        mostraPerChiNonE?: T;
         notFor?: T;
         needs?:
           | T
@@ -1316,6 +1342,7 @@ export interface MetodoSelect<T extends boolean = true> {
         occhiello?: T;
         titolo?: T;
         testo?: T;
+        immagine?: T;
       };
   fasi?:
     | T
@@ -1368,6 +1395,7 @@ export interface RisultatiSelect<T extends boolean = true> {
   lettura?:
     | T
     | {
+        mostra?: T;
         occhiello?: T;
         titolo?: T;
         paragrafi?:

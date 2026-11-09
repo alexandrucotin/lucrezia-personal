@@ -12,6 +12,7 @@
   --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-eyebrow: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 
   --color-ink: #241f1c;
   --color-ink-soft: #6b635c;
@@ -31,7 +32,8 @@
   /* Scala tipografica fluida. I titoli hanno interlinea < 1 per densita' editoriale. */
   --text-eyebrow: 0.6875rem;
   --text-eyebrow--line-height: 1.45;
-  --text-eyebrow--letter-spacing: 0.16em;
+  /* Montserrat e' gia' larga di suo: spaziatura piu' stretta del monospace. */
+  --text-eyebrow--letter-spacing: 0.12em;
 
   --text-d1: clamp(2.5rem, 0.9rem + 5.6vw, 6rem);
   --text-d1--line-height: 0.94;
@@ -100,7 +102,7 @@
 }
 
 @utility eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-eyebrow);
   font-size: var(--text-eyebrow);
   font-weight: 500;
   letter-spacing: var(--text-eyebrow--letter-spacing);

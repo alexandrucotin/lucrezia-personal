@@ -37,6 +37,9 @@ export default async function RisultatiPage() {
         lead={risultatiContenuto.pagina.sottotitolo}
         trail={trail}
         aside={risultatiContenuto.pagina.scheda}
+        /* I numeri seguono subito: lo spazio sotto il testo resta in
+           proporzione al testo, senza un vuoto prima della riga dei numeri. */
+        className="pb-12 sm:pb-16"
       />
 
       <Section rhythm="tight" ruled>
@@ -93,48 +96,51 @@ export default async function RisultatiPage() {
         </div>
       </Section>
 
-      <Section rhythm="loose" ruled tone="deep">
-        <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-5">
-              <Reveal>
-                <Eyebrow>{risultatiContenuto.lettura.occhiello}</Eyebrow>
-                <Display level={2} size="d3" className="mt-6">
-                  {risultatiContenuto.lettura.titolo}
-                </Display>
+      {/* "Come leggere i numeri": si accende dal pannello. Spenta di base. */}
+      {risultatiContenuto.lettura.mostra ? (
+        <Section rhythm="loose" ruled tone="deep">
+          <div className="shell">
+            <div className="grid gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-5">
+                <Reveal>
+                  <Eyebrow>{risultatiContenuto.lettura.occhiello}</Eyebrow>
+                  <Display level={2} size="d3" className="mt-6">
+                    {risultatiContenuto.lettura.titolo}
+                  </Display>
+                </Reveal>
+              </div>
+
+              <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
+                <div className="measure-wide space-y-5 text-ink-soft">
+                  {risultatiContenuto.lettura.paragrafi.map((paragrafo, index) => (
+                    <TestoRicco
+                      key={index}
+                      data={paragrafo}
+                      className={
+                        index === risultatiContenuto.lettura.paragrafi.length - 1
+                          ? "text-ink"
+                          : undefined
+                      }
+                    />
+                  ))}
+                </div>
+
+                <div className="mt-12">
+                  <p className="eyebrow text-ink-faint">{home.clienti.occhiello}</p>
+                  <ul className="mt-5 flex flex-wrap items-baseline gap-x-10 gap-y-4">
+                    {clients.map((client) => (
+                      <li key={client.name} className="flex items-baseline gap-3">
+                        <span className="display text-d4 text-ink">{client.name}</span>
+                        <span className="eyebrow text-ink-faint">{client.city}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </Reveal>
             </div>
-
-            <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
-              <div className="measure-wide space-y-5 text-ink-soft">
-                {risultatiContenuto.lettura.paragrafi.map((paragrafo, index) => (
-                  <TestoRicco
-                    key={index}
-                    data={paragrafo}
-                    className={
-                      index === risultatiContenuto.lettura.paragrafi.length - 1
-                        ? "text-ink"
-                        : undefined
-                    }
-                  />
-                ))}
-              </div>
-
-              <div className="mt-12">
-                <p className="eyebrow text-ink-faint">{home.clienti.occhiello}</p>
-                <ul className="mt-5 flex flex-wrap items-baseline gap-x-10 gap-y-4">
-                  {clients.map((client) => (
-                    <li key={client.name} className="flex items-baseline gap-3">
-                      <span className="display text-d4 text-ink">{client.name}</span>
-                      <span className="eyebrow text-ink-faint">{client.city}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
           </div>
-        </div>
-      </Section>
+        </Section>
+      ) : null}
 
       <CtaBand
         title={risultatiContenuto.invito.titolo}

@@ -18,7 +18,9 @@ export async function Footer() {
             <p className="display text-d3 leading-none">{site.name}</p>
             <p className="eyebrow mt-4 text-sage">{site.role}</p>
             <p className="measure mt-6 text-sm text-ink-soft">
-              {generale.footer.descrizione} {site.markets.slice(0, 3).join(", ")} e remoto.
+              {/* Tutto e solo il testo del pannello: niente aggiunte dal codice,
+                  cosi' quello che si scrive e' esattamente quello che si legge. */}
+              {generale.footer.descrizione}
             </p>
           </div>
 

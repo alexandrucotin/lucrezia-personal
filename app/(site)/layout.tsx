@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Inter, Montserrat } from "next/font/google";
 
 import "../globals.css";
 import { BarraAnteprima } from "@/components/site/barra-anteprima";
@@ -24,12 +24,21 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-/* Il monospace porta il registro "analitico": eyebrow, etichette, dati. */
+/* Il monospace resta per i grafici: assi, etichette, dati. */
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500"],
   display: "swap",
   variable: "--font-plex-mono",
+});
+
+/* Montserrat per le scritte piccole in maiuscolo (occhielli, etichette,
+   didascalie): una sans geometrica, piu' morbida del monospace. */
+const montserrat = Montserrat({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500"],
+  display: "swap",
+  variable: "--font-montserrat",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -80,7 +89,7 @@ export default async function SiteLayout({ children }: LayoutProps<"/">) {
     <html
       lang="it"
       data-scroll-behavior="smooth"
-      className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} ${montserrat.variable} antialiased`}
     >
       <body>
         <a
