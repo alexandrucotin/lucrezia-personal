@@ -350,6 +350,15 @@ export interface Home {
      */
     descrizione: string;
   };
+  /**
+   * Trascina le righe per cambiare l'ordine delle sezioni. Per nascondere una sezione elimina la sua riga; per farla ricomparire aggiungi una riga e sceglila. L'apertura resta sempre in cima.
+   */
+  ordine?:
+    | {
+        sezione: 'clienti' | 'diagnosi' | 'servizi' | 'risultati' | 'metodo' | 'chiSono' | 'contatti';
+        id?: string | null;
+      }[]
+    | null;
   hero: {
     occhiello: string;
     /**
@@ -411,7 +420,21 @@ export interface Home {
     titolo: string;
     paragrafi?:
       | {
-          testo: string;
+          testo: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          };
           id?: string | null;
         }[]
       | null;
@@ -432,6 +455,7 @@ export interface Home {
         }[]
       | null;
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -469,7 +493,21 @@ export interface Servizi {
   prezzi: {
     occhiello: string;
     titolo: string;
-    testo: string;
+    testo: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
     pacchetti?:
       | {
           name: string;
@@ -515,7 +553,21 @@ export interface Servizi {
               id?: string | null;
             }[]
           | null;
-        notFor: string;
+        notFor: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
         needs?:
           | {
               testo: string;
@@ -530,13 +582,28 @@ export interface Servizi {
         faq?:
           | {
               q: string;
-              a: string;
+              a: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              };
               id?: string | null;
             }[]
           | null;
         id?: string | null;
       }[]
     | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -574,7 +641,21 @@ export interface Metodo {
   grafico: {
     occhiello: string;
     titolo: string;
-    testo: string;
+    testo: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
   };
   fasi?:
     | {
@@ -582,7 +663,21 @@ export interface Metodo {
         title: string;
         duration: string;
         body: string;
-        detail: string;
+        detail: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
         output: string;
         id?: string | null;
       }[]
@@ -590,10 +685,25 @@ export interface Metodo {
   faq?:
     | {
         q: string;
-        a: string;
+        a: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
         id?: string | null;
       }[]
     | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -633,7 +743,21 @@ export interface Risultati {
     titolo: string;
     paragrafi?:
       | {
-          testo: string;
+          testo: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          };
           id?: string | null;
         }[]
       | null;
@@ -688,6 +812,7 @@ export interface Risultati {
         id?: string | null;
       }[]
     | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -731,7 +856,21 @@ export interface ChiSono {
       | {
           anno: string;
           titolo: string;
-          testo: string;
+          testo: {
+            root: {
+              type: string;
+              children: {
+                type: any;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          };
           id?: string | null;
         }[]
       | null;
@@ -746,7 +885,21 @@ export interface ChiSono {
   tecnologia: {
     occhiello: string;
     titolo: string;
-    testo: string;
+    testo: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
     collaborazione: string;
     progetti?:
       | {
@@ -763,6 +916,7 @@ export interface ChiSono {
   testimonianze: {
     occhiello: string;
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -823,7 +977,21 @@ export interface Contatti {
   faq?:
     | {
         q: string;
-        a: string;
+        a: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
         id?: string | null;
       }[]
     | null;
@@ -832,6 +1000,7 @@ export interface Contatti {
     titolo: string;
     testo: string;
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -907,6 +1076,7 @@ export interface Generale {
   intestazione: {
     pulsante: string;
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -920,6 +1090,12 @@ export interface HomeSelect<T extends boolean = true> {
     | {
         titolo?: T;
         descrizione?: T;
+      };
+  ordine?:
+    | T
+    | {
+        sezione?: T;
+        id?: T;
       };
   hero?:
     | T
@@ -1007,6 +1183,7 @@ export interface HomeSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1103,6 +1280,7 @@ export interface ServiziSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1157,6 +1335,7 @@ export interface MetodoSelect<T extends boolean = true> {
         a?: T;
         id?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1247,6 +1426,7 @@ export interface RisultatiSelect<T extends boolean = true> {
         city?: T;
         id?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1316,6 +1496,7 @@ export interface ChiSonoSelect<T extends boolean = true> {
     | {
         occhiello?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1388,6 +1569,7 @@ export interface ContattiSelect<T extends boolean = true> {
         titolo?: T;
         testo?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1460,6 +1642,7 @@ export interface GeneraleSelect<T extends boolean = true> {
     | {
         pulsante?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

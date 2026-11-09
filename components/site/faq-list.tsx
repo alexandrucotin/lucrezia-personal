@@ -1,3 +1,6 @@
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+
+import { TestoRicco } from "@/components/site/testo-ricco";
 import { Display, Eyebrow } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -11,7 +14,7 @@ export function FaqList({
   title = "Domande che mi fanno prima di iniziare",
   eyebrow = "Domande",
 }: {
-  items: readonly { q: string; a: string }[];
+  items: readonly { q: string; a: SerializedEditorState }[];
   title?: string;
   eyebrow?: string;
 }) {
@@ -42,7 +45,7 @@ export function FaqList({
                   +
                 </span>
               </summary>
-              <p className="measure pb-7 text-ink-soft">{item.a}</p>
+              <TestoRicco data={item.a} className="measure pb-7 text-ink-soft" />
             </details>
           ))}
         </div>

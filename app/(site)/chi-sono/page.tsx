@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
+import { TestoRicco } from "@/components/site/testo-ricco";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
 import { getContenuti } from "@/lib/content";
 
@@ -86,7 +87,7 @@ export default async function ChiSonoPage() {
                       <span className="eyebrow tnum pt-1.5 text-sage">{step.anno}</span>
                       <div>
                         <h2 className="display text-d4">{step.titolo}</h2>
-                        <p className="measure mt-3 text-sm text-ink-soft">{step.testo}</p>
+                        <TestoRicco data={step.testo} className="measure mt-3 text-sm text-ink-soft" />
                       </div>
                     </div>
                   </RevealItem>
@@ -122,7 +123,10 @@ export default async function ChiSonoPage() {
                 <Display level={2} size="d3" className="mt-6">
                   {chiSonoContenuto.tecnologia.titolo}
                 </Display>
-                <p className="measure mt-6 text-ink-soft">{chiSonoContenuto.tecnologia.testo}</p>
+                <TestoRicco
+                  data={chiSonoContenuto.tecnologia.testo}
+                  className="measure mt-6 text-ink-soft"
+                />
                 <p className="eyebrow mt-8 text-ink-faint">
                   {chiSonoContenuto.tecnologia.collaborazione}
                 </p>

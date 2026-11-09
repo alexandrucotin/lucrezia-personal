@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
+import { TestoRicco } from "@/components/site/testo-ricco";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import { getContenuti } from "@/lib/content";
@@ -83,7 +84,10 @@ export default async function ServiziPage() {
             <Display level={2} size="d2" className="mt-6 max-w-2xl">
               {serviziContenuto.prezzi.titolo}
             </Display>
-            <p className="measure mt-6 text-ink-soft">{serviziContenuto.prezzi.testo}</p>
+            <TestoRicco
+              data={serviziContenuto.prezzi.testo}
+              className="measure mt-6 text-ink-soft"
+            />
           </Reveal>
 
           <Reveal stagger={0.08} className="mt-14 grid gap-px border-t border-rule bg-rule lg:grid-cols-3">

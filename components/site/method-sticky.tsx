@@ -21,9 +21,19 @@ const ACTIVE_LINE = 0.42;
 export function MethodSticky({
   method,
   diagrams,
+  numero,
+  occhiello,
+  titolo,
+  sottotitolo,
+  link,
 }: {
   method: Fase[];
   diagrams: (ReactNode | null)[];
+  numero: string;
+  occhiello: string;
+  titolo: string;
+  sottotitolo: string;
+  link: string;
 }) {
   const [active, setActive] = useState(0);
   const blocks = useRef<(HTMLLIElement | null)[]>([]);
@@ -61,13 +71,11 @@ export function MethodSticky({
       {/* Su mobile diventa una barra compatta in cima, con lo stesso ruolo. */}
       <div className="sticky top-20 z-20 -mx-5 border-b border-rule bg-paper-deep px-5 py-4 sm:-mx-8 sm:px-8 lg:top-28 lg:col-span-4 lg:mx-0 lg:self-start lg:border-b-0 lg:px-0 lg:py-0">
         <div className="hidden lg:block">
-          <Eyebrow numbered="04">Metodo</Eyebrow>
+          <Eyebrow numbered={numero}>{occhiello}</Eyebrow>
           <Display level={2} size="d2" className="mt-6">
-            Dai dati al calendario, in quattro fasi.
+            {titolo}
           </Display>
-          <Lead className="mt-6">
-            Nessuna tariffa cambia prima che il piano sia scritto, discusso e approvato.
-          </Lead>
+          <Lead className="mt-6">{sottotitolo}</Lead>
         </div>
 
         <div className="flex items-center gap-5 lg:mt-12 lg:block">
@@ -113,7 +121,7 @@ export function MethodSticky({
         </div>
 
         <div className="mt-10 hidden lg:block">
-          <TextLink href="/metodo">Il metodo nel dettaglio</TextLink>
+          <TextLink href="/metodo">{link}</TextLink>
         </div>
       </div>
 

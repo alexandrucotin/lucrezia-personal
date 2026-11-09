@@ -1,3 +1,12 @@
+import {
+  BoldFeature,
+  FixedToolbarFeature,
+  InlineToolbarFeature,
+  ItalicFeature,
+  LinkFeature,
+  ParagraphFeature,
+  lexicalEditor,
+} from "@payloadcms/richtext-lexical"
 import type { Field } from "payload"
 
 /**
@@ -24,6 +33,38 @@ export const paragrafo = (name: string, label: string, description?: string): Fi
   label,
   type: "textarea",
   required: true,
+  ...descrizione(description),
+})
+
+/**
+ * Editor dei testi lunghi: solo grassetto, corsivo e link. Niente titoli,
+ * elenchi, colori o dimensioni: quelli li decide la grafica del sito, e
+ * lasciarli liberi e' il modo piu' rapido per farlo sembrare un template.
+ */
+const editorTesti = lexicalEditor({
+  features: () => [
+    ParagraphFeature(),
+    BoldFeature(),
+    ItalicFeature(),
+    /* Solo link a indirizzi scritti a mano (anche interni, come /metodo):
+       niente collegamenti a documenti del pannello. */
+    LinkFeature({
+      enabledCollections: [],
+      fields: ({ defaultFields }) =>
+        defaultFields.filter((campo) => !["linkType", "doc"].includes(campo.name ?? "")),
+    }),
+    FixedToolbarFeature(),
+    InlineToolbarFeature(),
+  ],
+})
+
+/** Testo lungo con grassetto, corsivo e link. */
+export const testoRicco = (name: string, label: string, description?: string): Field => ({
+  name,
+  label,
+  type: "richText",
+  required: true,
+  editor: editorTesti,
   ...descrizione(description),
 })
 
@@ -76,12 +117,12 @@ export const elencoTesti = (
   name: string,
   label: string,
   voce: string,
-  { multilinea = true }: { multilinea?: boolean } = {}
+  { multilinea = true, ricco = false }: { multilinea?: boolean; ricco?: boolean } = {}
 ): Field =>
   elenco(
     name,
     label,
-    [multilinea ? paragrafo("testo", voce) : testo("testo", voce)],
+    [ricco ? testoRicco("testo", voce) : multilinea ? paragrafo("testo", voce) : testo("testo", voce)],
     { etichetta: "testo" }
   )
 
@@ -94,7 +135,7 @@ export const domande = (): Field =>
   elenco(
     "faq",
     "Domande frequenti",
-    [testo("q", "Domanda"), paragrafo("a", "Risposta")],
+    [testo("q", "Domanda"), testoRicco("a", "Risposta")],
     { etichetta: "q" }
   )
 

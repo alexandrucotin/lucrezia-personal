@@ -5,10 +5,36 @@ un database (Neon), le foto su Cloudflare R2.
 
 ## Per Lucrezia: il pannello
 
-Vai su **`indirizzo-del-sito/admin`**, accedi con email e password, scegli la
-pagina dal menu, cambia il testo e premi **Salva**.
+Vai su **`indirizzo-del-sito/admin`**, accedi con email e password e scegli la
+pagina dal menu.
 
-La modifica compare sul sito subito, alla prima visita della pagina.
+### Bozza, anteprima, pubblicazione
+
+- **Salva bozza** tiene le modifiche nel pannello senza toccare il sito.
+- **Anteprima** (l'icona con la freccia, accanto a "Salva bozza") apre la
+  pagina del sito con le bozze al posto dei testi pubblicati. In basso compare
+  una barra arancione: finché la vedi, stai guardando l'anteprima e non il
+  sito vero. "Esci dall'anteprima" torna al sito pubblicato. L'anteprima mostra
+  l'ultima bozza **salvata**: salva prima di aprirla.
+- **Pubblica modifiche** manda online. La modifica compare alla prima visita
+  della pagina.
+- **Versioni** (in alto) elenca le ultime 30 versioni: da lì puoi rivedere una
+  versione precedente e ripristinarla.
+
+### Le sezioni della home
+
+In _Home → Sezioni della home_ c'è l'elenco delle sezioni dopo l'apertura.
+Trascinale per cambiare l'ordine; elimina una riga per nascondere una
+sezione, aggiungi una riga per farla ricomparire. I numeri (01, 02…) si
+aggiornano da soli.
+
+### Grassetto, corsivo e link
+
+I testi lunghi (risposte alle domande frequenti, paragrafi, "Per chi non è",
+le fasi del metodo, il percorso) hanno una piccola barra: **B** grassetto,
+_I_ corsivo, e il simbolo della catena per i link. Per un link a una pagina del
+sito basta scrivere la parte finale, per esempio `/contatti`. Titoli e testi
+brevi restano semplici di proposito: il loro aspetto lo decide la grafica.
 
 Qualche nota utile:
 
@@ -40,13 +66,22 @@ non compare e resta online la versione precedente della pagina.
 - `payload.config.ts` configura il pannello: database, foto, lingua italiana.
 - `payload/sezioni.ts` definisce le sezioni del pannello, una per pagina più
   "Generale e contatti". La loro forma ricalca quella dei vecchi file
-  `content/*.json`.
+  `content/*.json` di Keystatic.
 - `lib/content/` legge le sezioni dal database, le valida con zod
   (`schema.ts`) e le consegna alle pagine. Le pagine chiamano
   `await getContenuti()` e non sanno da dove arrivano i dati.
 - Le pagine sono statiche: i testi si leggono al build e restano in cache.
-  Quando qualcuno salva dal pannello, `payload/rivalida.ts` invalida la cache e
-  la pagina si rigenera alla visita successiva.
+  Quando qualcuno **pubblica** dal pannello, `payload/rivalida.ts` invalida la
+  cache e la pagina si rigenera alla visita successiva. Le bozze non la toccano.
+- Le sezioni hanno le bozze attive (`versions.drafts`). `/anteprima` attiva il
+  draft mode di Next solo per chi ha fatto l'accesso al pannello; in draft mode
+  `getContenuti()` legge le bozze, senza cache. `/anteprima/esci` lo spegne.
+- I testi con formattazione sono campi `richText` (Lexical) con solo
+  grassetto, corsivo e link (`payload/campi.ts`), disegnati da
+  `components/site/testo-ricco.tsx`. Dove serve testo semplice (dati
+  strutturati) si usa `lib/content/testo-semplice.ts`.
+- L'ordine delle sezioni della home sta in `home.ordine`; l'elenco delle
+  sezioni possibili in `lib/content/sezioni-home.ts`.
 - Le foto le serve Payload da `/api/media/file/...`. Il bucket R2 resta
   privato.
 
@@ -91,18 +126,24 @@ npx payload migrate:create nome-della-modifica
 
 e committala insieme al codice (cartella `payload/migrazioni/`).
 
-### Primo avvio su un database nuovo
+### Lavorare in locale con i testi veri
 
-1. Imposta le variabili d'ambiente.
-2. `npx payload migrate` crea le tabelle.
-3. `npm run importa-testi` copia nel database i testi di `content/*.json` e le
-   foto di `public/images`. Non lanciarlo quando il pannello è già in uso:
-   sovrascrive i testi.
-4. Apri `/admin`: la prima volta chiede di creare il primo utente. Gli altri si
-   aggiungono da _Impostazioni → Utenti_.
+I testi stanno solo nel database di produzione. Per averli in locale si copia
+Neon in un database Postgres sul proprio computer (serve `pg_dump` della
+stessa versione di Neon, oggi la 18):
 
-I file `content/*.json` servono solo per questa importazione: una volta
-importati in produzione si possono cancellare.
+```bash
+createdb lucrezia_dev
+pg_dump --no-owner --no-privileges --schema=public "$DATABASE_URL_NEON" | psql -d lucrezia_dev
+```
+
+con `DATABASE_URL_NEON` senza `-pooler`. Poi in `.env` si punta
+`DATABASE_URL` a `postgres://utente@localhost:5432/lucrezia_dev`. Le foto
+restano su R2: con le variabili R2 in `.env` si vedono anche in locale, ma
+attenzione che quelle caricate in locale finiscono nello stesso bucket.
+
+Prima di pubblicare una migrazione conviene provarla così, su una copia: è
+come sono state provate quelle in `payload/migrazioni/`.
 
 ### Aggiungere un campo
 

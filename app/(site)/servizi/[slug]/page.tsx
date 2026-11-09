@@ -12,8 +12,9 @@ import { PageHeader } from "@/components/site/page-header";
 import { TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
+import { TestoRicco } from "@/components/site/testo-ricco";
 import { breadcrumbGraph, faqGraph, pageMetadata, serviceGraph } from "@/lib/seo";
-import { getContenuti } from "@/lib/content";
+import { getContenuti, getContenutiPubblicati } from "@/lib/content";
 
 const diagrams = {
   matrix: PortfolioMatrix,
@@ -22,7 +23,7 @@ const diagrams = {
 };
 
 export async function generateStaticParams() {
-  const { services } = await getContenuti();
+  const { services } = await getContenutiPubblicati();
   return services.map((service) => ({ slug: service.slug }));
 }
 
@@ -133,7 +134,7 @@ export default async function ServizioPage(props: PageProps<"/servizi/[slug]">) 
 
             <Reveal delay={0.1} className="lg:col-span-5 lg:col-start-8">
               <Eyebrow className="text-ochre">Per chi non è</Eyebrow>
-              <p className="measure mt-8 text-lead text-ink">{service.notFor}</p>
+              <TestoRicco data={service.notFor} className="measure mt-8 text-lead text-ink" />
 
               <div className="mt-12">
                 <Eyebrow className="text-ink-faint">Cosa serve da te</Eyebrow>

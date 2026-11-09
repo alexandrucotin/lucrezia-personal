@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
+import { TestoRicco } from "@/components/site/testo-ricco";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
 import { getContenuti } from "@/lib/content";
 
@@ -107,16 +108,15 @@ export default async function RisultatiPage() {
             <Reveal delay={0.08} className="lg:col-span-6 lg:col-start-7">
               <div className="measure-wide space-y-5 text-ink-soft">
                 {risultatiContenuto.lettura.paragrafi.map((paragrafo, index) => (
-                  <p
-                    key={paragrafo}
+                  <TestoRicco
+                    key={index}
+                    data={paragrafo}
                     className={
                       index === risultatiContenuto.lettura.paragrafi.length - 1
                         ? "text-ink"
                         : undefined
                     }
-                  >
-                    {paragrafo}
-                  </p>
+                  />
                 ))}
               </div>
 

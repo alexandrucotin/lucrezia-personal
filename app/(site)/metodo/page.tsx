@@ -8,6 +8,7 @@ import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, faqGraph, pageMetadata } from "@/lib/seo";
 import { FaqList } from "@/components/site/faq-list";
+import { TestoRicco } from "@/components/site/testo-ricco";
 import { getContenuti } from "@/lib/content";
 
 const trail = [
@@ -57,7 +58,7 @@ export default async function MetodoPage() {
 
                   <div className="lg:col-span-6">
                     <p className="text-lead text-ink">{phase.body}</p>
-                    <p className="measure mt-5 text-ink-soft">{phase.detail}</p>
+                    <TestoRicco data={phase.detail} className="measure mt-5 text-ink-soft" />
                   </div>
 
                   <div className="lg:col-span-3">
@@ -80,7 +81,10 @@ export default async function MetodoPage() {
                 <Display level={2} size="d3" className="mt-6">
                   {metodoContenuto.grafico.titolo}
                 </Display>
-                <p className="measure mt-6 text-ink-soft">{metodoContenuto.grafico.testo}</p>
+                <TestoRicco
+                  data={metodoContenuto.grafico.testo}
+                  className="measure mt-6 text-ink-soft"
+                />
               </Reveal>
             </div>
 

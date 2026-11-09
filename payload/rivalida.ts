@@ -20,7 +20,9 @@ function rivalida(context: Record<string, unknown>) {
   revalidateTag(TAG_CONTENUTI, { expire: 0 })
 }
 
+/* Una bozza non cambia il sito: si rigenera solo quando si pubblica. */
 export const rivalidaDopoSalvataggio: GlobalAfterChangeHook = ({ doc, req }) => {
+  if ((doc as { _status?: string })._status === "draft") return doc
   rivalida(req.context)
   return doc
 }

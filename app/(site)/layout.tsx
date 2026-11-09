@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
 
 import "../globals.css";
+import { BarraAnteprima } from "@/components/site/barra-anteprima";
 import { JsonLd } from "@/components/site/json-ld";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
@@ -73,7 +74,7 @@ export const viewport: Viewport = {
  * deve ereditare font, intestazione, piè di pagina e dati strutturati.
  */
 export default async function SiteLayout({ children }: LayoutProps<"/">) {
-  const { site, nav, generale } = await getContenuti();
+  const { anteprima, site, nav, generale } = await getContenuti();
 
   return (
     <html
@@ -99,6 +100,7 @@ export default async function SiteLayout({ children }: LayoutProps<"/">) {
         />
         <main id="contenuto">{children}</main>
         <Footer />
+        {anteprima ? <BarraAnteprima /> : null}
       </body>
     </html>
   );

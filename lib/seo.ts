@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+
+import { testoSemplice } from "@/lib/content/testo-semplice";
 import { getSite, type Site } from "@/lib/site";
 
 /**
@@ -121,14 +124,14 @@ export async function serviceGraph({
   };
 }
 
-export function faqGraph(items: readonly { q: string; a: string }[]) {
+export function faqGraph(items: readonly { q: string; a: SerializedEditorState }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
+      acceptedAnswer: { "@type": "Answer", text: testoSemplice(item.a) },
     })),
   };
 }

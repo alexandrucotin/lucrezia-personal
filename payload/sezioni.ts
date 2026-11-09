@@ -1,5 +1,7 @@
 import type { GlobalConfig } from "payload"
 
+import { SEZIONI_HOME } from "@/lib/content/sezioni-home"
+
 import {
   descrizioneFoto,
   domande,
@@ -10,6 +12,7 @@ import {
   meta,
   paragrafo,
   testo,
+  testoRicco,
   voceValore,
 } from "./campi"
 import { rivalidaDopoSalvataggio } from "./rivalida"
@@ -26,11 +29,20 @@ const sezione = (
   slug: string,
   label: string,
   group: "Pagine" | "Generale",
+  /* La pagina del sito che mostra questa sezione, per l'anteprima. */
+  percorso: string,
   fields: GlobalConfig["fields"]
 ): GlobalConfig => ({
   slug,
   label,
-  admin: { group },
+  admin: {
+    group,
+    /* "Anteprima" apre la pagina con le bozze al posto dei testi pubblicati. */
+    preview: () => `/anteprima?percorso=${encodeURIComponent(percorso)}`,
+  },
+  /* Bozze: "Salva bozza" non tocca il sito, "Pubblica" lo aggiorna.
+     Si tengono le ultime 30 versioni, per poter tornare indietro. */
+  versions: { drafts: true, max: 30 },
   hooks: { afterChange: [rivalidaDopoSalvataggio] },
   fields,
 })
@@ -43,7 +55,7 @@ const apertura = (conScheda: boolean) =>
     ...(conScheda ? [voceValore()] : []),
   ])
 
-export const generale = sezione("generale", "Generale e contatti", "Generale", [
+export const generale = sezione("generale", "Generale e contatti", "Generale", "/", [
   gruppo("identita", "Identità", [
     testo("nome", "Nome"),
     testo("monogramma", "Monogramma"),
@@ -85,8 +97,44 @@ export const generale = sezione("generale", "Generale e contatti", "Generale", [
   gruppo("intestazione", "Intestazione", [testo("pulsante", "Pulsante in alto a destra")]),
 ])
 
-export const home = sezione("home", "Home", "Pagine", [
+export const home = sezione("home", "Home", "Pagine", "/", [
   meta(),
+  {
+    name: "ordine",
+    label: "Sezioni della home",
+    type: "array",
+    admin: {
+      initCollapsed: true,
+      description:
+        "Trascina le righe per cambiare l'ordine delle sezioni. Per nascondere una sezione elimina la sua riga; per farla ricomparire aggiungi una riga e sceglila. L'apertura resta sempre in cima.",
+      components: {
+        RowLabel: {
+          path: "/components/payload/etichetta-riga#EtichettaRiga",
+          clientProps: {
+            campo: "sezione",
+            etichette: Object.fromEntries(SEZIONI_HOME.map((s) => [s.value, s.label])),
+          },
+        },
+      },
+    },
+    defaultValue: SEZIONI_HOME.map((s) => ({ sezione: s.value })),
+    fields: [
+      {
+        name: "sezione",
+        label: "Sezione",
+        type: "select",
+        required: true,
+        options: SEZIONI_HOME.map((s) => ({ label: s.label, value: s.value })),
+      },
+    ],
+    validate: (righe: unknown) => {
+      const scelte = (Array.isArray(righe) ? righe : []).map((r) => (r as { sezione?: string }).sezione)
+      const doppia = scelte.find((v, i) => v && scelte.indexOf(v) !== i)
+      if (!doppia) return true
+      const nome = SEZIONI_HOME.find((s) => s.value === doppia)?.label ?? doppia
+      return `La sezione "${nome}" compare due volte: tienine una sola.`
+    },
+  },
   gruppo("hero", "Apertura", [
     testo("occhiello", "Occhiello"),
     paragrafo("titolo", "Titolo", "La prima parte, in nero"),
@@ -134,20 +182,20 @@ export const home = sezione("home", "Home", "Pagine", [
   gruppo("chiSono", "Sezione chi sono", [
     testo("occhiello", "Occhiello"),
     paragrafo("titolo", "Titolo"),
-    elencoTesti("paragrafi", "Paragrafi", "Paragrafo"),
+    elencoTesti("paragrafi", "Paragrafi", "Paragrafo", { ricco: true }),
     foto("immagine"),
     descrizioneFoto("immagineDescrizione"),
   ]),
   gruppo("contatti", "Cosa succede dopo", [elencoTesti("passi", "Passi", "Passo")]),
 ])
 
-export const servizi = sezione("servizi", "Servizi", "Pagine", [
+export const servizi = sezione("servizi", "Servizi", "Pagine", "/servizi", [
   meta(),
   apertura(true),
   gruppo("prezzi", "Prezzi", [
     testo("occhiello", "Occhiello"),
     paragrafo("titolo", "Titolo"),
-    paragrafo("testo", "Testo"),
+    testoRicco("testo", "Testo"),
     elenco(
       "pacchetti",
       "Pacchetti",
@@ -176,7 +224,7 @@ export const servizi = sezione("servizi", "Servizi", "Pagine", [
       paragrafo("lead", "Apertura della pagina dedicata"),
       elencoTesti("deliverables", "Cosa ricevi", "Voce"),
       elencoTesti("forWhom", "Per chi è", "Voce"),
-      paragrafo("notFor", "Per chi non è"),
+      testoRicco("notFor", "Per chi non è"),
       elencoTesti("needs", "Cosa serve da te", "Voce"),
       {
         name: "diagram",
@@ -198,13 +246,13 @@ export const servizi = sezione("servizi", "Servizi", "Pagine", [
   ),
 ])
 
-export const metodo = sezione("metodo", "Metodo", "Pagine", [
+export const metodo = sezione("metodo", "Metodo", "Pagine", "/metodo", [
   meta(),
   apertura(true),
   gruppo("grafico", "Sezione del grafico", [
     testo("occhiello", "Occhiello"),
     testo("titolo", "Titolo"),
-    paragrafo("testo", "Testo"),
+    testoRicco("testo", "Testo"),
   ]),
   elenco(
     "fasi",
@@ -214,7 +262,7 @@ export const metodo = sezione("metodo", "Metodo", "Pagine", [
       testo("title", "Titolo"),
       testo("duration", "Durata"),
       paragrafo("body", "Testo breve"),
-      paragrafo("detail", "Testo esteso"),
+      testoRicco("detail", "Testo esteso"),
       paragrafo("output", "Cosa esce da questa fase"),
     ],
     { etichetta: "title", minimo: 1 }
@@ -222,13 +270,13 @@ export const metodo = sezione("metodo", "Metodo", "Pagine", [
   domande(),
 ])
 
-export const risultati = sezione("risultati", "Risultati", "Pagine", [
+export const risultati = sezione("risultati", "Risultati", "Pagine", "/risultati", [
   meta(),
   apertura(true),
   gruppo("lettura", "Come leggere i numeri", [
     testo("occhiello", "Occhiello"),
     paragrafo("titolo", "Titolo"),
-    elencoTesti("paragrafi", "Paragrafi", "Paragrafo"),
+    elencoTesti("paragrafi", "Paragrafi", "Paragrafo", { ricco: true }),
   ]),
   gruppo("invito", "Invito finale della pagina", [paragrafo("titolo", "Titolo"), paragrafo("testo", "Testo")]),
   elenco(
@@ -275,7 +323,7 @@ export const risultati = sezione("risultati", "Risultati", "Pagine", [
   }),
 ])
 
-export const chiSono = sezione("chi-sono", "Chi sono", "Pagine", [
+export const chiSono = sezione("chi-sono", "Chi sono", "Pagine", "/chi-sono", [
   meta(),
   apertura(false),
   gruppo("foto", "Foto", [foto("immagine"), descrizioneFoto("descrizione")]),
@@ -284,7 +332,7 @@ export const chiSono = sezione("chi-sono", "Chi sono", "Pagine", [
     elenco(
       "tappe",
       "Tappe",
-      [testo("anno", "Anno"), testo("titolo", "Titolo"), paragrafo("testo", "Testo")],
+      [testo("anno", "Anno"), testo("titolo", "Titolo"), testoRicco("testo", "Testo")],
       { etichetta: "anno", minimo: 1 }
     ),
   ]),
@@ -292,7 +340,7 @@ export const chiSono = sezione("chi-sono", "Chi sono", "Pagine", [
   gruppo("tecnologia", "Tecnologia", [
     testo("occhiello", "Occhiello"),
     paragrafo("titolo", "Titolo"),
-    paragrafo("testo", "Testo"),
+    testoRicco("testo", "Testo"),
     testo("collaborazione", "Riga della collaborazione"),
     elenco(
       "progetti",
@@ -308,7 +356,7 @@ export const chiSono = sezione("chi-sono", "Chi sono", "Pagine", [
   gruppo("testimonianze", "Sezione testimonianze", [testo("occhiello", "Occhiello")]),
 ])
 
-export const contatti = sezione("contatti", "Contatti", "Pagine", [
+export const contatti = sezione("contatti", "Contatti", "Pagine", "/contatti", [
   meta(),
   apertura(false),
   elencoTesti("passi", "Cosa succede dopo", "Passo"),

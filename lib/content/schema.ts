@@ -1,4 +1,7 @@
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 import { z } from "zod"
+
+import { SEZIONI_HOME } from "./sezioni-home"
 
 /**
  * Schemi dei testi che arrivano dal pannello (Payload).
@@ -28,6 +31,25 @@ const testi = z
   .array(z.object({ testo }))
   .transform((righe) => righe.map((riga) => riga.testo))
 
+/* Testo con grassetto, corsivo e link: arriva come albero di nodi (Lexical)
+   e si disegna con <TestoRicco>. Vuoto se non contiene nemmeno un carattere. */
+const haTesto = (nodo: unknown): boolean => {
+  if (!nodo || typeof nodo !== "object") return false
+  const n = nodo as { text?: unknown; children?: unknown[] }
+  if (typeof n.text === "string" && n.text.trim()) return true
+  return (n.children ?? []).some(haTesto)
+}
+const ricco = z
+  .object({ root: z.object({ children: z.array(z.unknown()) }).loose() })
+  .loose()
+  .refine((v) => haTesto(v.root), "non può restare vuoto")
+  .transform((v) => v as unknown as SerializedEditorState)
+
+/* Elenco di paragrafi con formattazione: righe { testo } come sopra. */
+const testiRicchi = z
+  .array(z.object({ testo: ricco }))
+  .transform((righe) => righe.map((riga) => riga.testo))
+
 /* Campo facoltativo: Payload salva `null` quando resta vuoto. */
 const facoltativo = z
   .string()
@@ -45,7 +67,7 @@ const conDescrizione = (immagine: z.infer<typeof foto>, descrizione?: string | n
 })
 
 const voceValore = z.object({ voce: testo, valore: testo })
-const domanda = z.object({ q: testo, a: testo })
+const domanda = z.object({ q: testo, a: ricco })
 const meta = z.object({ titolo: testo, descrizione: testo })
 
 export const generaleSchema = z.object({
@@ -84,8 +106,17 @@ export const generaleSchema = z.object({
   intestazione: z.object({ pulsante: testo }),
 })
 
+const sezioniHome = SEZIONI_HOME.map((s) => s.value) as [
+  (typeof SEZIONI_HOME)[number]["value"],
+  ...(typeof SEZIONI_HOME)[number]["value"][],
+]
+
 export const homeSchema = z.object({
   meta,
+  /* Quali sezioni mostrare e in che ordine. Doppioni ignorati. */
+  ordine: z
+    .array(z.object({ sezione: z.enum(sezioniHome) }))
+    .transform((righe) => [...new Set(righe.map((r) => r.sezione))]),
   hero: z.object({
     occhiello: testo,
     titolo: testo,
@@ -120,7 +151,7 @@ export const homeSchema = z.object({
     .object({
       occhiello: testo,
       titolo: testo,
-      paragrafi: testi,
+      paragrafi: testiRicchi,
       immagine: foto,
       immagineDescrizione: descrizioneFoto,
     })
@@ -141,7 +172,7 @@ const servizio = z.object({
   lead: testo,
   deliverables: testi,
   forWhom: testi,
-  notFor: testo,
+  notFor: ricco,
   needs: testi,
   diagram: z
     .enum(["matrix", "calendar", "kpi"])
@@ -165,7 +196,7 @@ export const serviziSchema = z.object({
   prezzi: z.object({
     occhiello: testo,
     titolo: testo,
-    testo,
+    testo: ricco,
     pacchetti: z.array(
       z.object({
         name: testo,
@@ -189,14 +220,14 @@ export const metodoSchema = z.object({
     sottotitolo: testo,
     scheda: z.array(voceValore),
   }),
-  grafico: z.object({ occhiello: testo, titolo: testo, testo }),
+  grafico: z.object({ occhiello: testo, titolo: testo, testo: ricco }),
   fasi: z.array(
     z.object({
       index: testo,
       title: testo,
       duration: testo,
       body: testo,
-      detail: testo,
+      detail: ricco,
       output: testo,
     })
   ),
@@ -214,7 +245,7 @@ export const risultatiSchema = z.object({
   lettura: z.object({
     occhiello: testo,
     titolo: testo,
-    paragrafi: testi,
+    paragrafi: testiRicchi,
   }),
   invito: z.object({ titolo: testo, testo }),
   numeri: z.array(
@@ -271,13 +302,13 @@ export const chiSonoSchema = z.object({
     .transform(({ immagine, descrizione }) => conDescrizione(immagine, descrizione)),
   percorso: z.object({
     occhiello: testo,
-    tappe: z.array(z.object({ anno: testo, titolo: testo, testo })),
+    tappe: z.array(z.object({ anno: testo, titolo: testo, testo: ricco })),
   }),
   credenziali: z.array(voceValore),
   tecnologia: z.object({
     occhiello: testo,
     titolo: testo,
-    testo,
+    testo: ricco,
     collaborazione: testo,
     progetti: z.array(z.object({ stato: testo, titolo: testo, testo })),
   }),
