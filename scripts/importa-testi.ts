@@ -8,9 +8,13 @@
  * Usa le variabili d'ambiente di .env: DATABASE_URL decide in quale
  * database scrive, le chiavi R2 (se ci sono) dove finiscono le foto.
  *
- * Si puo' rilanciare senza danni: le foto gia' importate vengono riusate,
- * non duplicate. Ma i testi del database vengono SOVRASCRITTI con quelli dei
- * file JSON: non lanciarlo dopo che il pannello e' in uso.
+ * ATTENZIONE: i testi del database vengono SOVRASCRITTI con quelli dei file
+ * JSON, e ogni lancio completo ricarica le foto nella libreria. Non lanciarlo
+ * dopo che il pannello e' in uso.
+ *
+ * Per reimportare solo alcune sezioni (senza toccare le foto):
+ *
+ *   SEZIONI=generale,servizi npm run importa-testi
  */
 
 import { createHash } from "node:crypto"
@@ -21,6 +25,8 @@ import config from "@payload-config"
 import { getPayload, type GlobalSlug, type Payload } from "payload"
 
 const radice = process.cwd()
+
+const soloAlcune = process.env.SEZIONI?.split(",").map((s) => s.trim()).filter(Boolean)
 
 /* Sezione del pannello → file di partenza. */
 const SEZIONI: [GlobalSlug, string][] = [
@@ -120,6 +126,7 @@ const payload = await getPayload({ config })
 const fotoImportate = new Map<string, number | string>()
 
 for (const [slug, file] of SEZIONI) {
+  if (soloAlcune && !soloAlcune.includes(slug)) continue
   const json = JSON.parse(readFileSync(path.join(radice, "content", `${file}.json`), "utf8"))
   const descrizione = DESCRIZIONI_FOTO[slug]?.(json) ?? ""
 
@@ -137,7 +144,7 @@ for (const [slug, file] of SEZIONI) {
 /* Le altre foto del sito finiscono in libreria, cosi' restano fra quelle
    che si possono scegliere. La descrizione si ricava dal nome del file:
    va riletta dal pannello. */
-for (const file of readdirSync(path.join(radice, "public/images"))) {
+for (const file of soloAlcune ? [] : readdirSync(path.join(radice, "public/images"))) {
   if (!/\.(jpe?g|png|webp|avif)$/i.test(file)) continue
   const alt = file
     .replace(/\.[^.]+$/, "")
