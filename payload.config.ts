@@ -21,7 +21,7 @@ import { sezioni } from "./payload/sezioni"
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 /* Cloudflare mostra l'endpoint con il nome del bucket in fondo
-   (.../lucrezia-media). Copiato cosi', ogni foto finirebbe in una
+   (.../nome-del-bucket). Copiato cosi', ogni foto finirebbe in una
    sottocartella con il nome del bucket: lo si toglie qui. */
 const r2Endpoint = process.env.R2_ENDPOINT?.replace(
   new RegExp(`/${process.env.R2_BUCKET ?? ""}/?$`),
