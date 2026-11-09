@@ -335,7 +335,10 @@ export default async function HomePage() {
           anche una foto non nitidissima regge, e il testo resta leggibile.
       ---------------------------------------------------------------- */}
       <Section as="div" rhythm="loose" className={cn("pt-12 sm:pt-16", sfondo && "pt-0 sm:pt-0")}>
-        <div className={cn(sfondo && "relative isolate overflow-hidden bg-ink py-24 sm:py-32")}>
+        {/* Fondo color terra e non nero: ai bordi la foto sfocata sfuma nel
+            fondo, e un bruno caldo si confonde con la foto invece di fare
+            da cornice scura. */}
+        <div className={cn(sfondo && "relative isolate overflow-hidden bg-terra py-24 sm:py-32")}>
           {sfondo ? (
             <>
               {/* Decorativa: alt vuoto. Sfocata, una risoluzione bassa
@@ -346,9 +349,14 @@ export default async function HomePage() {
                 fill
                 priority
                 sizes="50vw"
-                className="-z-20 scale-110 object-cover blur-xl"
+                className="-z-20 scale-105 object-cover blur-lg"
               />
-              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/50" />
+              {/* Il velo scurisce solo dove serve: piu' denso a sinistra,
+                  sotto il testo bianco, quasi trasparente a destra. */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 -z-10 bg-linear-to-r from-ink/55 via-ink/30 to-ink/5"
+              />
             </>
           ) : null}
 
