@@ -25,7 +25,7 @@
     "pacchetti": [
       {
         "name": "Audit",
-        "price": "da 250 €",
+        "price": "da 650 €",
         "unit": "una tantum",
         "duration": "1-3 settimane",
         "body": "Analisi completa del portafoglio, benchmark e report con le principali priorità di intervento. La consulenza si conclude con una call di presentazione e condivisione dei risultati.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*\n",
@@ -38,12 +38,12 @@
       },
       {
         "name": "Continuativo",
-        "price": "da 900 €",
+        "price": "da 300 €",
         "unit": "al mese",
         "duration": "minimo 6 mesi",
         "body": "Analisi completa del portafoglio, e definizione delle strategie future.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*",
         "items": [
-          "Servizi inclusi nel pacchetto \"Audit\"",
+          "previo obbligo acquisto pacchetto \"Audit\"",
           "Determinazione degli obiettivi e pianificazione strategica",
           "Revisione settimanale"
         ],
@@ -63,7 +63,7 @@
       },
       {
         "name": "Audit di Aggiornamento",
-        "price": "da 200€",
+        "price": "da 350€",
         "unit": "una tantum",
         "duration": "1 settimana",
         "body": "Un’analisi aggiuntiva del portafoglio per verificare l’andamento delle performance, del pricing e del posizionamento rispetto al mercato. Individuiamo eventuali criticità e nuove opportunità, definendo le priorità di intervento.\n\n*Prezzo e tempistiche variabili in base al numero di unità gestite.*",
@@ -78,21 +78,18 @@
       "index": "01",
       "eyebrow": "Diagnosi",
       "title": "Analisi del portafoglio",
-      "claim": "Prima di toccare una tariffa, guardo i numeri che hai già.",
-      "summary": "Ventiquattro mesi di storico, unità per unità: dove hai svenduto, dove hai tenuto il prezzo troppo alto e per quante notti, quali competitor ti stanno battendo e su quale finestra di prenotazione.",
-      "lead": "Quasi tutti i portafogli che analizzo hanno già i dati per capire dove stanno perdendo. Il problema è che sono aggregati, sparsi su tre sistemi diversi e nessuno ha il tempo di guardarli. Questo è il lavoro che li rende una decisione.",
+      "claim": "Lo storico è la base per comprendere i processi decisionali aziendali e per creare la tua timeline di priorità.",
+      "summary": "Due anni di storico, unità per unità: verifichiamo insieme le motivazioni che hanno portato a quella specifica scelta strategica e, valutiamo insieme la correttezza, la fattibilità e la frequenza con cui è stata applicata.",
+      "lead": "Tutti i portafogli possono essere valutati con i KPI, insieme ci soffermeremo ad indagare le cause di un buon rendimento o di un rendimento in negativo. In entrambi i casi scopriremo se gli obiettivi aziendali sono adeguati, sovrastimati o sottostimati.",
       "deliverables": [
         "Audit dei KPI storici: RevPAR, ADR, occupancy, lead time, lunghezza media del soggiorno",
-        "Benchmark sul competitor set reale, non sulla media di città",
-        "Mappa del potenziale inespresso per singola unità, con stima in euro",
-        "Analisi del mix canali e del costo di distribuzione effettivo",
-        "Report con le prime cinque azioni ordinate per impatto"
+        "Benchmark sul competitor set",
+        "Analisi del mix canali e del costo di distribuzione effettivo"
       ],
       "forWhom": [
-        "Hai fra le 10 e le 150 unità e almeno dodici mesi di storico",
-        "Sospetti di lasciare margine sul tavolo ma non sai dove",
-        "Devi decidere se vale la pena assumere un revenue manager interno",
-        "Stai per prendere in gestione un nuovo blocco di immobili"
+        "Hai fra le 10 e le 150 unità e almeno dodici mesi di storico e vuoi verificare l'andamento del tuo portafoglio",
+        "Sei insoddisfatto dei tuoi risultati e vorresti applicare una nuova strategia per la prossima stagione.",
+        "Ti sei posto degli obiettivi aziendali ma non riesci a conseguirne il risultato sperato."
       ],
       "notFor": "Se gestisci meno di dieci unità, il margine di manovra è troppo stretto perché l'analisi si ripaghi. Preferisco dirlo prima che dopo.",
       "needs": [
@@ -100,7 +97,7 @@
         "Accesso agli extranet OTA in lettura",
         "Un'ora del tuo tempo per la call iniziale, un'ora per la presentazione"
       ],
-      "diagram": "matrix",
+      "diagram": "kpi",
       "keyword": "analisi portafoglio affitti brevi",
       "duration": "3 settimane",
       "metaTitle": "Analisi del portafoglio affitti brevi | Audit revenue e benchmark",
@@ -111,12 +108,12 @@
           "a": "Dodici mesi sono il minimo per avere un confronto stagionale sensato, ventiquattro sono l'ideale perché permettono di distinguere una tendenza da un anno anomalo. Con meno di dodici mesi si può fare comunque, ma il report sarà più prudente nelle conclusioni."
         },
         {
-          "q": "Che differenza c'è rispetto ai report che mi dà già il mio tool?",
-          "a": "I tool di pricing riportano quello che è successo. Qui la domanda è un'altra: quanto avresti potuto incassare, unità per unità, e quale decisione ha prodotto lo scarto. È un lavoro di interpretazione, non di estrazione."
+          "q": "Che differenza c'è rispetto ai report che mi dà già il mio PMS?",
+          "a": "I tool di pricing riportano i dati numerici rispetto al passato. Insieme effettuiamo un'analisi dei dati per comprendere le cause dei risultati ottenuti (in positivo o negativo) per comprendere se sia possibile mantenerli o COME migliorarli."
         },
         {
           "q": "Il report resta mio anche se non proseguiamo?",
-          "a": "Sì. È un lavoro chiuso in sé: paghi l'analisi, ricevi il documento e le priorità, e sei libero di eseguirle da solo o con chiunque preferisca."
+          "a": "Sì. Paghi l'analisi, ricevi il documento e le priorità, e sei libero di eseguirle in autonomia o con me se preferisci un supporto continuativo."
         }
       ]
     },
@@ -125,22 +122,21 @@
       "index": "02",
       "eyebrow": "Esecuzione",
       "title": "Definizione degli obiettivi aziendali",
-      "claim": "La strategia non vale niente se non arriva sul calendario.",
-      "summary": "Costruisco il piano tariffario e lo eseguo: prezzi dinamici, restrizioni, min stay, gestione della bassa stagione e dei buchi di calendario. Sul tuo gestionale, senza migrazioni.",
-      "lead": "Il piano tariffario più intelligente del mondo non serve a niente se resta in un documento. Questo è il servizio in cui la strategia diventa il prezzo che l'ospite vede stanotte su Booking, e resta tarata settimana dopo settimana.",
+      "claim": "Valutiamo la fattibilità degli obiettivi per ritararli secondo le possibilità aziendali.",
+      "summary": "Gli obiettivi possono essere singoli: migliorare il fatturato; migliorare l'occupazione; migliorare l'ADR; tagliare i costi.\nL'obiettivo migliore in assoluto è quello che considera tutti gli aspetti e che viene plasmato in base alla struttura aziendale esistente.",
+      "lead": "Conoscere i costi delle strutture e il margine disponibile per ognuna di esse ci permette di stimare degli obiettivi reali e concreti, confrontarli con il mercato e di posizionarci correttamente sui canali di distribuzione.",
       "deliverables": [
         "Setup e taratura dello strumento di dynamic pricing (PriceLabs, Smartpricing)",
         "Calendario tariffario stagionale, con eventi e finestre di domanda locale",
         "Politica di min stay, restrizioni e regole di last minute",
         "Ottimizzazione dei contenuti e del posizionamento sulle OTA",
-        "Revisione settimanale del pick-up e correzioni in corsa",
+        "Revisione settimanale del pick-up di mercato.",
         "Report mensile con scostamento su budget e anno precedente"
       ],
       "forWhom": [
-        "Hai un tool di pricing attivo ma nessuno lo tara davvero",
-        "Il tuo team è bravo sull'operativo e non ha tempo per il revenue",
-        "Vuoi una figura responsabile del risultato, non un consiglio una tantum",
-        "Sei sopra le trenta unità e il pricing manuale non regge più"
+        "Hai un tool di pricing attivo ma non sai come utilizzarlo",
+        "Il tuo team non prevede una figura dedicata al revenue",
+        "Sei stanco di modificare i prezzi manualmente e vorresti affidarti ad un software di price dinamico, ma non sai come orientarti"
       ],
       "notFor": "Se cerchi qualcuno che imposti tutto una volta e sparisca, questo non è il formato giusto: il revenue è una manutenzione, non un'installazione.",
       "needs": [
@@ -150,21 +146,21 @@
       ],
       "diagram": "calendar",
       "keyword": "consulenza dynamic pricing affitti brevi",
-      "duration": "Continuativo",
+      "duration": "Audit/Continuativo",
       "metaTitle": "Consulenza dynamic pricing affitti brevi | Revenue e OTA",
       "metaDescription": "Piano tariffario, dynamic pricing, restrizioni e ottimizzazione OTA eseguiti sul tuo gestionale. Revisione settimanale del pick-up e report mensile.",
       "faq": [
         {
           "q": "Devo cambiare channel manager o PMS?",
-          "a": "No. Lavoro sugli strumenti che hai già. Se durante il lavoro emerge che il tuo stack ti sta costando opportunità te lo dico con i numeri, ma la migrazione non è mai una condizione per iniziare."
+          "a": "No. Lavoro sugli strumenti che hai già. Se durante l'analisi dei costi emerge che il tuo stack ti sta costando troppo possiamo valutare un'alternativa, ma la migrazione non è mai una condizione per iniziare."
         },
         {
           "q": "Chi decide i prezzi, tu o io?",
-          "a": "La strategia si approva insieme, all'inizio e a ogni cambio di stagione. Dentro quei paletti le correzioni settimanali le faccio io, altrimenti servirebbe la tua firma su ogni singolo giorno di calendario e il vantaggio del dinamico sparirebbe."
+          "a": "La strategia si approva insieme, all'inizio e a cadenza decisa in caso di continuità. I prezzi giornalieri e le correzioni settimanali sono fatte a seguito di decisioni condivise dal team di competenza."
         },
         {
           "q": "Come si misura se sta funzionando?",
-          "a": "Su RevPAR e sul confronto con lo stesso periodo dell'anno precedente, non sull'occupancy. Il report mensile mostra lo scostamento e cosa l'ha prodotto, incluse le settimane andate peggio."
+          "a": "Ogni settimana verifichiamo l'andamento delle prenotazioni, verifichiamo i KPI e lasciamo circa 3 settimane di \"lavoro\" al software per permettergli di recuperare sufficienti informazioni legate alla strategia applicata."
         }
       ]
     },
@@ -173,21 +169,18 @@
       "index": "03",
       "eyebrow": "Autonomia",
       "title": "Affiancamento e formazione",
-      "claim": "Deve funzionare anche nelle settimane in cui non ci sono io.",
-      "summary": "Se il revenue dipende da una persona sola, è un rischio. Metto il tuo team in condizione di leggere i dati e prendere decisioni tariffarie da solo, con processi scritti e una dashboard che si guarda in cinque minuti.",
-      "lead": "Alcuni portafogli non hanno bisogno di un revenue manager esterno a tempo indeterminato: hanno bisogno che qualcuno metta ordine, scriva i processi e insegni al team a leggerli. Poi si toglie di mezzo.",
+      "claim": "Il tuo team deve essere autonomo nell'utilizzo degli strumenti principali\n",
+      "summary": "Metto il tuo team in condizione di leggere i dati e prendere decisioni tariffarie in autonomia. Questo passaggio è fondamentale se vuoi minimizzare gli errori e la necessità di consulenze esterne frequenti. ",
+      "lead": "Vuoi formare una figura di revenue manager interna oppure imparare tu stesso quali strategie applicare e che strumenti usare per renderle operative?",
       "deliverables": [
-        "Setup da zero dello stack di revenue management",
-        "Processi documentati: chi guarda cosa, quando, e con quale soglia di intervento",
-        "Quattro sessioni di formazione sul portafoglio reale, non su casi teorici",
-        "Dashboard KPI con le sole metriche su cui si decide",
-        "Tre mesi di supporto asincrono dopo la consegna"
+        "Cinque sessioni di formazione",
+        "Interpretazione autonoma delle KPI ",
+        "Formazione degli strumenti di base e della logica su cui si basa il tuo PMS"
       ],
       "forWhom": [
         "Hai già una persona interna che potrebbe occuparsi di revenue",
         "Vuoi ridurre la dipendenza da consulenti esterni",
-        "Il know-how oggi è nella testa di una persona sola",
-        "Stai strutturando l'azienda e ti servono processi scritti"
+        "Stai strutturando l'azienda e ti serve tempo per individuare la figura adeguata"
       ],
       "notFor": "Se non c'è nessuno in azienda che possa dedicare qualche ora a settimana al revenue, la formazione non attecchisce. Meglio il formato continuativo.",
       "needs": [
@@ -203,11 +196,11 @@
       "faq": [
         {
           "q": "La formazione è in presenza o da remoto?",
-          "a": "Da remoto per impostazione, in presenza a Verona o Milano se preferisci e il calendario lo permette. Le sessioni si fanno sul vostro portafoglio, con i vostri dati aperti davanti: non sono lezioni."
+          "a": "Da remoto per impostazione, in presenza a Verona o Milano se preferisci e il calendario lo permette. Le sessioni si fanno sul vostro portafoglio, con i vostri dati aperti davanti: non sono lezioni teoriche."
         },
         {
           "q": "Cosa resta al team alla fine?",
-          "a": "I processi scritti, la dashboard configurata, le registrazioni delle sessioni e tre mesi in cui potete scrivermi. L'obiettivo dichiarato è che dopo non vi serva più."
+          "a": "I processi scritti, la dashboard configurata, le registrazioni delle sessioni e due mesi in cui potete richiedere ulteriore supporto."
         }
       ]
     }

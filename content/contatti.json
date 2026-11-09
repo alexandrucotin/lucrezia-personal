@@ -5,17 +5,16 @@
   },
   "pagina": {
     "occhiello": "Contatti",
-    "titolo": "Trenta minuti, e sai se ha senso lavorare insieme.",
-    "sottotitolo": "Se dai numeri non emerge margine sufficiente te lo dico in call, senza mandarti una proposta. È il modo più rapido di non farci perdere tempo a entrambi."
+    "titolo": "Una call conoscitiva in 30min",
+    "sottotitolo": "Verifichiamo insieme se posso offrirti il supporto desiderato, a seguito della call verrà effettuato un preventivo personalizzato sulla base delle richieste raccolte."
   },
   "passi": [
     "Fissiamo una call conoscitiva gratuita.",
     "Mi descrivi il tuo portafogli e mi parli dei tuoi obiettivi.",
     "Analizziamo due appartamenti: uno che performa bene e uno che rende meno.",
-    "Al termine della call, preparerò un’analisi dettagliata dei due appartamenti.",
-    "Dopo l’analisi, definiamo insieme gli obiettivi e il percorso da seguire."
+    "Al termine della call, preparerò preventivo dettagliato sulla base delle richieste ricevute"
   ],
-  "nota": "Rispondo entro un giorno lavorativo. I dati che invii servono solo a ricontattarti.",
+  "nota": "Rispondo entro un giorno lavorativo. I dati che invii saranno utilizzati esclusivamente per ricontattarti.\n",
   "modulo": {
     "etichette": {
       "nome": "Nome e cognome",
@@ -23,11 +22,11 @@
       "azienda": "Azienda",
       "unita": "Unità gestite",
       "mercato": "Mercato",
-      "messaggio": "Cosa ti sta dando problemi"
+      "messaggio": "Una breve descrizione della tuà realtà aziendale e un sito web di riferimento"
     },
     "segnaposto": {
-      "email": "tu@azienda.it",
-      "messaggio": "Quante strutture gestisci, con quali strumenti, e cosa non sta funzionando."
+      "email": "tua@azienda.com",
+      "messaggio": "Quante strutture gestisci, quali strumenti utilizzi, quali aspetti vorresti migliorare, ..."
     },
     "dimensioni": [
       "Meno di 10 unità",
@@ -36,26 +35,14 @@
       "61-120 unità",
       "Oltre 120 unità"
     ],
-    "consenso": "Acconsento al trattamento dei dati per essere ricontattato, secondo la",
+    "consenso": "Acconsento al trattamento dei dati per essere ricontattato, secondo la Privacy Policy.",
     "invia": "Invia la richiesta",
     "inviaInCorso": "Invio in corso…"
   },
   "faq": [
     {
       "q": "In quanto tempo si vedono i risultati?",
-      "a": "I primi effetti sul pick-up si vedono in tre o quattro settimane, perché le prenotazioni che entrano dopo l'intervento seguono già le nuove tariffe. Sul RevPAR serve un ciclo stagionale completo per un confronto onesto: prima di allora ogni numero è un'indicazione, non un risultato."
-    },
-    {
-      "q": "Devo cambiare channel manager o PMS?",
-      "a": "No. Lavoro sugli strumenti che hai già. Se durante l'audit emerge che il tuo stack ti sta costando opportunità te lo dico, con i numeri, ma la migrazione non è mai una condizione per iniziare."
-    },
-    {
-      "q": "Da quante unità ha senso partire?",
-      "a": "Sopra le dieci unità il lavoro di revenue si ripaga quasi sempre. Sotto le dieci il margine di manovra è troppo stretto per giustificare una consulenza continuativa: in quel caso ha più senso un audit una tantum."
-    },
-    {
-      "q": "Lavori in esclusiva su una città?",
-      "a": "Non prendo due portafogli che competono sullo stesso segmento nella stessa zona. È un limite che mi impongo, e vale anche a tuo favore."
+      "a": "Dopo l'applicazione di una strategia è opportuno attendere qualche settimana prima di trarre delle conclusioni generali. Già nei primi giorni possono essere messe in atto delle correzioni per migliorare la struttura impostata."
     },
     {
       "q": "Come accedi ai miei dati?",
@@ -63,12 +50,12 @@
     },
     {
       "q": "Lavori anche con host singoli?",
-      "a": "Il servizio è costruito per property manager e aziende di gestione. Su un singolo appartamento il costo della consulenza non si ripaga, e preferisco dirlo prima."
+      "a": "Il servizio è costruito per property manager e aziende di gestione. Su un singolo appartamento l'incidenza del costo della consulenza è più alto!"
     }
   ],
   "grazie": {
     "occhiello": "Richiesta inviata",
-    "titolo": "Ricevuto. Ti scrivo entro un giorno lavorativo.",
+    "titolo": "Grazie per la tua richiesta, risponderò nel più breve tempo possibile!",
     "testo": "Nel frattempo, se vuoi arrivare preparato alla call: le tre cose che guardo per prime sono lo storico degli ultimi dodici mesi, il mix dei canali e la politica di min stay. Se li hai a portata di mano, partiamo più veloci."
   }
 }

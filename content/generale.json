@@ -4,18 +4,18 @@
     "monogramma": "LuCe",
     "ruolo": "Revenue Manager Short-Term Rental",
     "tagline": "Revenue & Strategy",
-    "url": "https://www.lucreziaceleste.it",
+    "url": "https://www.lucreziaceleste.com",
     "descrizione": "Consulenza di revenue management per property manager e aziende di short-term rental. Analisi del portafoglio, dynamic pricing e ottimizzazione OTA."
   },
   "contatti": {
-    "email": "lucrezia@lucreziaceleste.it",
+    "email": "lucrezia.celeste.rm@gmail.com",
     "telefono": "+39 393 138 4561",
     "telefonoHref": "+393931384561",
     "linkedin": "https://www.linkedin.com/in/lucrezia-celeste"
   },
   "legale": {
     "entita": "Lucrezia Celeste",
-    "partitaIva": "IT 0000000000",
+    "partitaIva": "IT05183190239",
     "citta": "Verona",
     "paese": "IT"
   },
@@ -32,7 +32,8 @@
     "KrossBooking",
     "Booking.com",
     "Airbnb",
-    "Vrbo"
+    "Vrbo",
+    "Marriott Bonvoy - Homes & Villas"
   ],
   "navigazione": [
     {
@@ -56,10 +57,10 @@
     "descrizione": "Consulenza di revenue management per property manager e aziende di short-term rental."
   },
   "invitoFinale": {
-    "occhiello": "Inizia da qui",
-    "titolo": "Trenta minuti, e sai se ha senso lavorare insieme.",
-    "testo": "Raccontami quante unità gestisci, in quale mercato e cosa ti sta dando problemi. Se dai numeri non emerge margine sufficiente te lo dico in call, senza proposta.",
-    "pulsante": "Prenota la call"
+    "occhiello": "Contatti",
+    "titolo": "Una call conoscitiva in 30min",
+    "testo": "Verifichiamo insieme se posso offrirti il supporto desiderato, a seguito della call verrà effettuato un preventivo personalizzato sulla base delle richieste raccolte.",
+    "pulsante": "Prenota una call"
   },
   "intestazione": {
     "pulsante": "Prenota una call"

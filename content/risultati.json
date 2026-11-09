@@ -5,12 +5,12 @@
   },
   "pagina": {
     "occhiello": "Risultati",
-    "titolo": "Tre portafogli, tre problemi diversi.",
-    "sottotitolo": "Ogni caso riporta il problema di partenza, cosa è stato cambiato e in quanto tempo. Senza l'orizzonte temporale una percentuale non vuol dire niente, quindi è sempre scritto.",
+    "titolo": "Case Study",
+    "sottotitolo": "Alcuni esempi di come vengono applicate le strategie in ambiti diversi, con obiettivi diversi, in mercati diversi.",
     "scheda": [
       {
         "voce": "Portafogli",
-        "valore": "Da 14 a 120 unità"
+        "valore": "Da 10 a 120 unità"
       },
       {
         "voce": "Mercati",
@@ -32,8 +32,8 @@
     ]
   },
   "invito": {
-    "titolo": "Il tuo portafoglio somiglia a uno di questi?",
-    "testo": "In trenta minuti capiamo se il problema è lo stesso e se i margini di recupero sono paragonabili."
+    "titolo": "Il tuo portafoglio somiglia a uno di questi? Questa e' una prova",
+    "testo": "Se hai riscontrato delle somiglianze con i casi studio citati possiamo analizzare il tuo portafogli insieme."
   },
   "numeri": [
     {
@@ -49,70 +49,61 @@
     {
       "value": "2021",
       "label": "nel settore",
-      "note": "prima operativa, poi revenue"
-    },
-    {
-      "value": "+18%",
-      "label": "RevPAR medio",
-      "note": "sui portafogli seguiti, primi 12 mesi"
+      "note": "dalla gestione operativa alla gestione strategica"
     }
   ],
   "casi": [
     {
-      "slug": "verona-centro",
-      "client": "Property manager",
-      "units": 42,
+      "slug": "Verona",
+      "client": "Minimum Stay",
+      "units": 60,
       "market": "Verona, centro storico",
-      "horizon": "8 mesi",
-      "problem": "Tariffa fissa per stagione e min stay identico su tutte le unità. I bilocali venivano svenduti nei weekend di fiera, i monolocali restavano vuoti in settimana.",
-      "action": "Segmentazione del portafoglio in tre cluster tariffari, calendario eventi locale, min stay differenziato per taglia e giorno della settimana.",
+      "horizon": "6 mesi",
+      "problem": "La gestione in property manager aveva fissato il miminum stay pari a 1 notte per tutto l'anno. I costi di gestione della singola notte erano troppo alti.",
+      "action": "L'inserimento di un minimum stay pari a 2 notti per il Venerdì di tutte le unità per l'alta stagione ed un soggiorno minimo di 2 notti per le unità con una max occupancy più alta ha permesso un miglioramento della length of stay con un abbattimento dei costi di gestione su 2 o più notti.",
       "results": [
         {
-          "value": "+19%",
-          "label": "RevPAR"
+          "value": "+4%",
+          "label": "RevPar rispetto all'anno precedente"
         },
         {
-          "value": "+7 pt",
-          "label": "occupancy"
+          "value": "10%",
+          "label": "LOS (length of stay)"
         },
         {
-          "value": "-11%",
-          "label": "notti sotto costo"
+          "value": "-10%",
+          "label": "Impatto del costo delle pulizie sulla singola notte"
         }
       ],
-      "quote": "Avevamo i dati, non sapevamo leggerli. In due mesi abbiamo capito quali unità stavamo svendendo."
+      "quote": "Pensavo che aumentare il minimum stay avrebbe limitato la visibilità sui canali di vendita, invece ha portato ad un miglioramento generale delle prenotazioni entrate"
     },
     {
-      "slug": "milano-business",
-      "client": "Azienda short-term rental",
-      "units": 115,
-      "market": "Milano, zona Fiera e Navigli",
-      "horizon": "11 mesi",
-      "problem": "Il 78% delle notti arrivava da un solo canale. Nessun controllo sul mix, cancellazioni alte e ADR schiacciato in bassa stagione.",
-      "action": "Riequilibrio del mix canali, politiche di cancellazione differenziate per finestra di prenotazione, tariffe corporate per i soggiorni lunghi.",
+      "slug": "Verona",
+      "client": "Strategie non STR",
+      "units": 70,
+      "market": "Verona",
+      "horizon": "1 mese",
+      "problem": "La strategia applicata al portafogli aziendale non considerava le dinamiche di mercato legate agli sconti Last Minute tipici degli STR. \nUn mese di alta stagione aveva occupazione sotto la soglia di mercato indicata per la booking window.",
+      "action": "Inserimento di politiche last minute, inserimento di tool specifici di prezzo legati all'occupazione. \nI risultati citati si sono verificati in 7gg dall'inserimento delle politiche.",
       "results": [
         {
-          "value": "+12%",
-          "label": "ADR bassa stagione"
+          "value": "+24k",
+          "label": "Fatturato sul mese target"
         },
         {
-          "value": "-22%",
-          "label": "cancellazioni"
-        },
-        {
-          "value": "54%",
-          "label": "dipendenza dal canale principale, da 78%"
+          "value": "+6pt",
+          "label": "%occupazione rispetto al mercato sul mese target"
         }
       ]
     },
     {
-      "slug": "lago-di-garda",
-      "client": "Gestore boutique",
-      "units": 14,
-      "market": "Lago di Garda",
-      "horizon": "una stagione",
-      "problem": "Sconti aggressivi da aprile e a ottobre per riempire il calendario. Il calendario si riempiva, il fatturato no.",
-      "action": "Stop agli sconti a tappeto, prezzi minimi per unità, apertura graduale delle disponibilità e last minute solo sotto i sette giorni.",
+      "slug": "Verona - Milano - Garda",
+      "client": "Suddivisione dei Cluster Strategici",
+      "units": 120,
+      "market": "Verona - Milano - Garda",
+      "horizon": "10 mesi",
+      "problem": "Tutte le unità presenti nel portafoglio rispondevano alla stessa logica strategica. Questo può impedire la massimizzazione dei profitti.",
+      "action": "Suddivisione delle unità in base alla tipologia di struttura, applicazione di strategie distinte per gruppo: prezzo di partenza, min stay, tariffe disponibili.",
       "results": [
         {
           "value": "+24%",
@@ -147,18 +138,5 @@
       "detail": "42 unità, Verona"
     }
   ],
-  "clienti": [
-    {
-      "name": "Bhomy",
-      "city": "Torino"
-    },
-    {
-      "name": "Domusverona",
-      "city": "Verona"
-    },
-    {
-      "name": "Italian Flat",
-      "city": "Verona"
-    }
-  ]
+  "clienti": []
 }
