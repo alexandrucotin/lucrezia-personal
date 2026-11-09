@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { site } from "@/lib/site";
-import { services } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 /* Priorita' assegnate per intento commerciale, non per profondita' di URL:
    le pagine servizio valgono quanto la home perche' e' li' che atterrano
    le ricerche a intento alto. */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { site, services } = await getContenuti();
   const now = new Date();
 
   const pages: { path: string; priority: number; changeFrequency: "monthly" | "yearly" }[] = [

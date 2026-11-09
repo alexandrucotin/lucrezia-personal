@@ -1,152 +1,110 @@
 # Come si cambiano i testi del sito
 
-Tutti i testi vivono in file dentro la cartella `content/`. Il sito li legge da
-lì: non esiste un database, e non c'è niente da mantenere.
+I testi e le foto del sito si modificano dal pannello su **`/admin`**. Stanno in
+un database (Neon), le foto su Cloudflare R2.
 
-## Per Lucrezia — il pannello
+## Per Lucrezia: il pannello
 
-Vai su **`indirizzo-del-sito/keystatic`**, accedi con GitHub, scegli la pagina
-nel menu a sinistra, cambia il testo e premi **Save**.
+Vai su **`indirizzo-del-sito/admin`**, accedi con email e password, scegli la
+pagina dal menu, cambia il testo e premi **Salva**.
 
-Il sito si aggiorna da solo in un paio di minuti.
+La modifica compare sul sito subito, alla prima visita della pagina.
 
 Qualche nota utile:
 
-- **Occhiello** è la scritta piccola in maiuscolo sopra i titoli.
-- I campi con l'asterisco rosso non possono restare vuoti. Se provi a salvarli
-  vuoti il pannello te lo impedisce.
+- L'**occhiello** è la scritta piccola in maiuscolo sopra i titoli.
+- I campi con l'asterisco non possono restare vuoti: se provi a salvarli vuoti,
+  il pannello te lo impedisce.
 - Le liste (sintomi, fasi, servizi, casi studio) si possono riordinare
   trascinandole, e si possono aggiungere o togliere voci.
-- **Indirizzo** dentro un servizio è la parte finale dell'URL. Cambiarlo rompe i
-  link già condivisi e fa perdere il posizionamento su Google: cambialo solo se
-  serve davvero.
+- **Indirizzo**, dentro un servizio, è la parte finale dell'URL. Se lo cambi, i
+  link già condivisi smettono di funzionare e si perde il posizionamento su
+  Google: cambialo solo se serve davvero.
 - **Titolo e descrizione per Google** sono quello che si legge nei risultati di
   ricerca. La descrizione funziona meglio intorno ai 155 caratteri.
-- **La foto** si cambia da _Generale e contatti → Immagini_. Va bene qualsiasi
-  proporzione: viene ritagliata, non deformata. Meglio restare sotto i 2 MB,
-  perché ogni foto caricata resta per sempre nella cronologia del progetto.
-  Ricordati di aggiornare anche la _Descrizione della foto_: la leggono Google e
-  chi naviga con uno screen reader.
+- **Le foto**: nel campo foto puoi scegliere una foto già caricata oppure
+  caricarne una nuova. Va bene qualsiasi proporzione: la foto viene ritagliata,
+  mai deformata. Il limite è 5 MB per foto.
+- **La descrizione della foto** la leggono Google e chi naviga con uno screen
+  reader. Si scrive una volta sola, sulla foto nella libreria (_Impostazioni →
+  Foto_). Accanto alla foto, nella pagina, puoi scriverne una diversa solo se in
+  quel punto serve.
 
 **Se sbagli qualcosa il sito non si rompe.** Nel peggiore dei casi la modifica
-non viene pubblicata e resta online la versione precedente.
+non compare e resta online la versione precedente della pagina.
 
-## Per lo sviluppatore — accesso e configurazione
+## Per lo sviluppatore
 
-Keystatic ha due modalità, e da quale è attiva dipende chi può entrare.
+### Come funziona
 
-**In sviluppo** (`npm run dev`) la modalità è `local`: scrive sui file del disco
-e **non autentica nessuno**. Va bene perché il server sta sulla tua macchina —
-ma `next dev` si espone anche sull'indirizzo di rete locale, quindi su una Wi-Fi
-condivisa chiunque sia sulla stessa rete potrebbe aprire il pannello. Su reti non
-fidate usa `npm run dev -- -H 127.0.0.1`.
+- `payload.config.ts` configura il pannello: database, foto, lingua italiana.
+- `payload/sezioni.ts` definisce le sezioni del pannello, una per pagina più
+  "Generale e contatti". La loro forma ricalca quella dei vecchi file
+  `content/*.json`.
+- `lib/content/` legge le sezioni dal database, le valida con zod
+  (`schema.ts`) e le consegna alle pagine. Le pagine chiamano
+  `await getContenuti()` e non sanno da dove arrivano i dati.
+- Le pagine sono statiche: i testi si leggono al build e restano in cache.
+  Quando qualcuno salva dal pannello, `payload/rivalida.ts` invalida la cache e
+  la pagina si rigenera alla visita successiva.
+- Le foto le serve Payload da `/api/media/file/...`. Il bucket R2 resta
+  privato.
 
-**In produzione** la modalità `local` non è accettabile: sarebbe un pannello di
-amministrazione senza login. Per questo `/keystatic` e `/api/keystatic/*`
-**rispondono 404** finché non è configurato l'accesso con GitHub. Non ci si
-affida al filesystem in sola lettura dell'hosting: è un dettaglio
-dell'infrastruttura, non un controllo di accesso.
+### Variabili d'ambiente
 
-Configurato l'accesso GitHub, può salvare **solo chi ha permesso di scrittura sul
-repository**. Aggiungere o togliere Lucrezia si fa dalle impostazioni del
-repository, non da qui.
+Vanno impostate su Netlify. In locale stanno in `.env` (vedi `.env.example`).
 
-Il repository è `alexandrucotin/lucrezia-personal`, scritto in
-`keystatic.config.ts`: non è una variabile d'ambiente, così non si può
-dimenticare. Se il repository viene rinominato, si cambia quella riga.
+| Variabile              | A cosa serve                                                           |
+| ---------------------- | ---------------------------------------------------------------------- |
+| `DATABASE_URL`         | Postgres su Neon. In produzione usa l'indirizzo **pooled** (`-pooler`) |
+| `PAYLOAD_SECRET`       | Stringa casuale, firma i login: `openssl rand -hex 32`                 |
+| `R2_BUCKET`            | Nome del bucket su Cloudflare R2                                       |
+| `R2_ENDPOINT`          | `https://<account-id>.r2.cloudflarestorage.com`                        |
+| `R2_ACCESS_KEY_ID`     | Dal token API di R2, limitato a quel bucket                            |
+| `R2_SECRET_ACCESS_KEY` | Dal token API di R2                                                    |
 
-### Creare la GitHub App
-
-Keystatic ha una procedura guidata che crea l'App al posto tuo e scrive i segreti
-nel file `.env`. Si esegue **in locale**, prima di pubblicare.
-
-1. Crea `.env.local` con **una riga sola**:
-
-   ```
-   NEXT_PUBLIC_KEYSTATIC_MODE=github
-   ```
-
-   Serve solo a forzare la modalità GitHub in sviluppo, dove normalmente il
-   pannello lavora sui file locali. In produzione non ha effetto.
-
-   > ⚠️ Non copiare `.env.example` dentro `.env.local`. In Next.js `.env.local`
-   > ha priorità su `.env`, e una variabile lasciata **vuota** lì sovrascrive
-   > quella vera. Al passo 6 Keystatic scrive i segreti in `.env`: se le stesse
-   > chiavi esistono vuote in `.env.local`, vincono le vuote e il pannello
-   > risponde 404 senza spiegare perché.
-
-2. `npm run dev`, poi apri **`http://127.0.0.1:3000/keystatic/setup`**.
-   L'indirizzo è `127.0.0.1` e non `localhost`: è quello che GitHub accetta
-   come callback OAuth, e Keystatic ci reindirizza da solo.
-
-3. Compila due campi:
-   - **Deployed App URL**: l'indirizzo di produzione, per esempio
-     `https://lucreziaceleste.it`. Se non lo sai ancora, lascialo vuoto e lo
-     aggiungi dopo dalle impostazioni dell'App.
-   - **GitHub organization**: lascialo vuoto, il repository è su un account
-     personale.
-
-4. **Create GitHub App** ti porta su GitHub con l'App già compilata. Il nome
-   proposto è `alexandrucotin Keystatic`. I permessi richiesti sono:
-   _contents: write_ (scrivere i file dei testi), _metadata: read_,
-   _pull requests: read_. Sono i minimi per fare commit sul repository.
-
-5. Conferma, e quando GitHub lo chiede **installa l'App sul repository**
-   `lucrezia-personal`.
-
-6. Vieni riportato indietro e Keystatic scrive da solo `KEYSTATIC_GITHUB_CLIENT_ID`,
-   `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET` e
-   `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` nel file `.env`.
-
-7. Copia quelle quattro variabili nelle impostazioni di Netlify.
-
-> Se al primo login locale GitHub rifiuta il callback, aggiungi
-> `http://127.0.0.1:3000/api/keystatic/github/oauth/callback` fra i _Callback URL_
-> nelle impostazioni dell'App: la procedura ne registra una senza numero di porta.
-
-Finito il setup puoi togliere `NEXT_PUBLIC_KEYSTATIC_MODE` da `.env.local` per
-tornare a lavorare sui file locali, oppure lasciarlo per provare il login vero
-da locale.
-
-### Le variabili
-
-Le variabili d'ambiente da impostare sull'hosting sono quattro:
-
-| Variabile                               | A cosa serve                            |
-| --------------------------------------- | --------------------------------------- |
-| `KEYSTATIC_GITHUB_CLIENT_ID`            | Dalla GitHub App                        |
-| `KEYSTATIC_GITHUB_CLIENT_SECRET`        | Dalla GitHub App                        |
-| `KEYSTATIC_SECRET`                      | Stringa casuale: `openssl rand -hex 32` |
-| `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Nome della GitHub App                   |
-
-**Finché le prime tre mancano, in produzione `/keystatic` risponde 404** e il
-build passa comunque: si può pubblicare il sito prima di configurare il pannello,
-senza lasciare online una porta aperta.
+Senza le quattro variabili R2 le foto caricate finiscono nella cartella
+`media/`. In sviluppo va bene, in produzione no: su Netlify il disco non è
+scrivibile.
 
 Per il modulo di contatto:
 
 | Variabile        | A cosa serve                                                                                                                                  |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `RESEND_API_KEY` | Invio delle email. Senza, in sviluppo il messaggio finisce in console; in produzione il modulo dichiara l'errore e rimanda alla mail diretta. |
-| `CONTACT_TO`     | Destinatario. Default: l'email in `content/generale.json`.                                                                                    |
+| `CONTACT_TO`     | Destinatario. Default: l'email in _Generale e contatti_.                                                                                      |
 | `CONTACT_FROM`   | Mittente verificato su Resend.                                                                                                                |
 
-## Struttura dei file
+### Il database
 
-| File                     | Contenuto                                                            |
-| ------------------------ | -------------------------------------------------------------------- |
-| `content/generale.json`  | Identità, contatti, dati fiscali, menu, invito finale                |
-| `content/home.json`      | Tutta la home                                                        |
-| `content/servizi.json`   | Pagina servizi, prezzi, e i tre servizi con le loro pagine           |
-| `content/metodo.json`    | Pagina metodo, le quattro fasi, le domande frequenti                 |
-| `content/risultati.json` | Numeri, casi studio, testimonianze, clienti                          |
-| `content/chi-sono.json`  | Percorso, credenziali, progetti                                      |
-| `content/contatti.json`  | Pagina contatti, modulo, domande frequenti, pagina di ringraziamento |
+`npm run build` esegue prima `payload migrate`, che porta lo schema del
+database alla versione del codice, e poi `next build`. Il build legge i testi
+dal database, quindi `DATABASE_URL` deve esserci anche in fase di build.
 
-Gli schemi che validano questi file stanno in `lib/content/schema.ts`. Aggiungere
-un campo significa toccare tre punti: il JSON, lo schema, e `keystatic.config.ts`.
+In sviluppo (`npm run dev`) lo schema si allinea da solo a ogni modifica di
+`payload/sezioni.ts`. Prima di pubblicare una modifica allo schema, crea la
+migrazione:
 
-**Keystatic è opzionale.** Il sito legge i JSON direttamente: se un giorno il
-pannello va rimosso, si cancellano `keystatic.config.ts`, `app/keystatic/` e
-`app/api/keystatic/` e tutto continua a funzionare. I testi si modificherebbero
-dall'editor web di GitHub.
+```bash
+npx payload migrate:create nome-della-modifica
+```
+
+e committala insieme al codice (cartella `payload/migrazioni/`).
+
+### Primo avvio su un database nuovo
+
+1. Imposta le variabili d'ambiente.
+2. `npx payload migrate` crea le tabelle.
+3. `npm run importa-testi` copia nel database i testi di `content/*.json` e le
+   foto di `public/images`. Non lanciarlo quando il pannello è già in uso:
+   sovrascrive i testi.
+4. Apri `/admin`: la prima volta chiede di creare il primo utente. Gli altri si
+   aggiungono da _Impostazioni → Utenti_.
+
+I file `content/*.json` servono solo per questa importazione: una volta
+importati in produzione si possono cancellare.
+
+### Aggiungere un campo
+
+Si tocca in due punti: la sezione in `payload/sezioni.ts` e lo schema in
+`lib/content/schema.ts`. Poi si crea la migrazione.

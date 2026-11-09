@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { LegalPage } from "@/components/site/legal-page";
-import { site } from "@/lib/site";
+import { getSite } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Cookie policy",
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function CookiePage() {
+export default async function CookiePage() {
+  const site = await getSite();
+
   return (
     <LegalPage
       title="Cookie policy"
@@ -43,7 +46,7 @@ export default function CookiePage() {
       <h2>Contatti</h2>
       <p>
         Per qualsiasi chiarimento: <a href={`mailto:${site.email}`}>{site.email}</a>. Vedi anche la{" "}
-        <a href="/privacy">privacy policy</a>.
+        <Link href="/privacy">privacy policy</Link>.
       </p>
     </LegalPage>
   );

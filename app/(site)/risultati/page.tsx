@@ -7,24 +7,28 @@ import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
-import { caseStudies, clients, stats } from "@/lib/content";
-import { home, risultatiContenuto } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
   { name: "Risultati", path: "/risultati" },
 ];
 
-export const metadata: Metadata = pageMetadata({
-  title: risultatiContenuto.meta.titolo,
-  description: risultatiContenuto.meta.descrizione,
-  path: "/risultati",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { risultatiContenuto } = await getContenuti();
+  return pageMetadata({
+    title: risultatiContenuto.meta.titolo,
+    description: risultatiContenuto.meta.descrizione,
+    path: "/risultati",
+  });
+}
 
-export default function RisultatiPage() {
+export default async function RisultatiPage() {
+  const { caseStudies, clients, home, risultatiContenuto, stats } = await getContenuti();
+
   return (
     <>
-      <JsonLd data={breadcrumbGraph(trail)} />
+      <JsonLd data={await breadcrumbGraph(trail)} />
 
       <PageHeader
         eyebrow={risultatiContenuto.pagina.occhiello}

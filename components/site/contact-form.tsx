@@ -7,19 +7,18 @@ import { useFormStatus } from "react-dom";
 import { sendEnquiry, type FormState } from "@/lib/actions/contatti";
 import { ActionButton } from "@/components/ui/action";
 import { cn } from "@/lib/utils";
-import { contattiContenuto } from "@/lib/content";
+import type { Modulo } from "@/lib/content/tipi";
 
 const initial: FormState = { ok: true };
 
 const field =
   "mt-2 w-full border border-rule-strong bg-surface px-4 py-3.5 text-ink transition-colors placeholder:text-ink-faint focus:border-sage focus:outline-none";
 
-/* Il campo dimensione portafoglio qualifica il contatto prima della call:
-   sotto le dieci unita' il servizio non si ripaga, ed e' meglio saperlo qui. */
-const { etichette, segnaposto, dimensioni: sizes } = contattiContenuto.modulo;
-
-export function ContactForm() {
+export function ContactForm({ modulo }: { modulo: Modulo }) {
   const [state, action] = useActionState(sendEnquiry, initial);
+  /* Il campo dimensione portafoglio qualifica il contatto prima della call:
+     sotto le dieci unita' il servizio non si ripaga, ed e' meglio saperlo qui. */
+  const { etichette, segnaposto, dimensioni: sizes } = modulo;
 
   return (
     <form action={action} className="max-w-xl" noValidate>
@@ -103,7 +102,7 @@ export function ContactForm() {
             className="mt-1 size-4 shrink-0 accent-[var(--color-sage)]"
           />
           <span>
-            {contattiContenuto.modulo.consenso}{" "}
+            {modulo.consenso}{" "}
             <Link href="/privacy" className="underline underline-offset-4 hover:text-ink">
               privacy policy
             </Link>
@@ -115,17 +114,17 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <Submit />
+      <Submit invia={modulo.invia} inviaInCorso={modulo.inviaInCorso} />
     </form>
   );
 }
 
-function Submit() {
+function Submit({ invia, inviaInCorso }: { invia: string; inviaInCorso: string }) {
   const { pending } = useFormStatus();
 
   return (
     <ActionButton type="submit" disabled={pending} className="mt-8 w-full sm:w-auto">
-      {pending ? contattiContenuto.modulo.inviaInCorso : contattiContenuto.modulo.invia}
+      {pending ? inviaInCorso : invia}
     </ActionButton>
   );
 }

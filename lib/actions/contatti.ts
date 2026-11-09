@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Resend } from "resend";
 import { z } from "zod";
 
-import { site } from "@/lib/site";
+import { getSite } from "@/lib/site";
 
 export type FormState = {
   ok: boolean;
@@ -27,6 +27,8 @@ const schema = z.object({
 });
 
 export async function sendEnquiry(_prev: FormState, formData: FormData): Promise<FormState> {
+  const site = await getSite();
+
   /* Campo esca: invisibile agli umani, compilato quasi solo dai bot.
      Si risponde con un successo finto per non insegnare loro a evitarlo. */
   if (formData.get("sito")) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { CaseStudy } from "@/lib/content";
+import type { CaseStudy } from "@/lib/content/tipi";
 
 
 /**

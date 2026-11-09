@@ -7,37 +7,41 @@ import { PageHeader } from "@/components/site/page-header";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
-import { site } from "@/lib/site";
-import { chiSonoContenuto, testimonials, tools } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
   { name: "Chi sono", path: "/chi-sono" },
 ];
 
-/* Il percorso: la sequenza conta piu' dei titoli, perche' e' l'ordine
-   che spiega perche' l'analisi arriva dopo l'operativo e non prima. */
-const timeline = chiSonoContenuto.percorso.tappe;
-const projects = chiSonoContenuto.tecnologia.progetti;
+export async function generateMetadata(): Promise<Metadata> {
+  const { chiSonoContenuto } = await getContenuti();
+  return pageMetadata({
+    title: chiSonoContenuto.meta.titolo,
+    description: chiSonoContenuto.meta.descrizione,
+    path: "/chi-sono",
+  });
+}
 
-/* Alle credenziali scritte a mano si aggiungono mercati e strumenti, che
-   vivono in generale.json ed evitano di doverli aggiornare in due posti. */
-const credentials = [
-  ...chiSonoContenuto.credenziali,
-  { voce: "Mercati", valore: site.markets.join(" · ") },
-  { voce: "Strumenti", valore: tools.join(" · ") },
-];
+export default async function ChiSonoPage() {
+  const { chiSonoContenuto, site, testimonials, tools } = await getContenuti();
 
-export const metadata: Metadata = pageMetadata({
-  title: chiSonoContenuto.meta.titolo,
-  description: chiSonoContenuto.meta.descrizione,
-  path: "/chi-sono",
-});
+  /* Il percorso: la sequenza conta piu' dei titoli, perche' e' l'ordine
+     che spiega perche' l'analisi arriva dopo l'operativo e non prima. */
+  const timeline = chiSonoContenuto.percorso.tappe;
+  const projects = chiSonoContenuto.tecnologia.progetti;
 
-export default function ChiSonoPage() {
+  /* Alle credenziali scritte a mano si aggiungono mercati e strumenti, che
+     vivono in "Generale" ed evitano di doverli aggiornare in due posti. */
+  const credentials = [
+    ...chiSonoContenuto.credenziali,
+    { voce: "Mercati", valore: site.markets.join(" · ") },
+    { voce: "Strumenti", valore: tools.join(" · ") },
+  ];
+
   return (
     <>
-      <JsonLd data={breadcrumbGraph(trail)} />
+      <JsonLd data={await breadcrumbGraph(trail)} />
 
       <PageHeader
         eyebrow={chiSonoContenuto.pagina.occhiello}

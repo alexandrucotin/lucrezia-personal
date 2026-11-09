@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Display, Eyebrow, Lead } from "@/components/ui/section";
 import { TextLink } from "@/components/ui/action";
 import { cn } from "@/lib/utils";
-import { method } from "@/lib/content";
+import type { Fase } from "@/lib/content/tipi";
 
 /**
  * Metodo: colonna sinistra fissa che fa da indice e segue lo scroll,
@@ -18,7 +18,13 @@ import { method } from "@/lib/content";
 
 const ACTIVE_LINE = 0.42;
 
-export function MethodSticky({ diagrams }: { diagrams: (ReactNode | null)[] }) {
+export function MethodSticky({
+  method,
+  diagrams,
+}: {
+  method: Fase[];
+  diagrams: (ReactNode | null)[];
+}) {
   const [active, setActive] = useState(0);
   const blocks = useRef<(HTMLLIElement | null)[]>([]);
 

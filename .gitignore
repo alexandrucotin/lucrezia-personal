@@ -34,3 +34,9 @@ pnpm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# env di esempio, senza segreti
+!.env.example
+
+# foto caricate dal pannello in sviluppo (in produzione vanno su R2)
+/media

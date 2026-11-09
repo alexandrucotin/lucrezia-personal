@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { site } from "@/lib/site";
+import { getSite, type Site } from "@/lib/site";
 
 /**
  * Metadati e dati strutturati.
@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
  * consigli per il revenue management degli affitti brevi", il nome esce.
  */
 
-export function pageMetadata({
+export async function pageMetadata({
   title,
   description,
   path,
@@ -19,7 +19,8 @@ export function pageMetadata({
   title: string;
   description: string;
   path: string;
-}): Metadata {
+}): Promise<Metadata> {
+  const site = await getSite();
   const url = `${site.url}${path}`;
 
   return {
@@ -38,7 +39,7 @@ export function pageMetadata({
   };
 }
 
-const person = {
+const person = (site: Site) => ({
   "@type": "Person",
   "@id": `${site.url}/#lucrezia`,
   name: site.name,
@@ -55,9 +56,9 @@ const person = {
     "Smartpricing",
   ],
   worksFor: { "@id": `${site.url}/#business` },
-};
+});
 
-const business = {
+const business = (site: Site) => ({
   "@type": "ProfessionalService",
   "@id": `${site.url}/#business`,
   name: `${site.name} — ${site.tagline}`,
@@ -74,23 +75,27 @@ const business = {
     addressLocality: site.legal.city,
     addressCountry: site.legal.country,
   },
-};
+});
 
-const website = {
+const website = (site: Site) => ({
   "@type": "WebSite",
   "@id": `${site.url}/#website`,
   url: site.url,
   name: `${site.name} — ${site.tagline}`,
   inLanguage: "it-IT",
   publisher: { "@id": `${site.url}/#business` },
-};
+});
 
 /** Entita' di base, incluse una volta sola nel layout. */
-export function rootGraph() {
-  return { "@context": "https://schema.org", "@graph": [person, business, website] };
+export async function rootGraph() {
+  const site = await getSite();
+  return {
+    "@context": "https://schema.org",
+    "@graph": [person(site), business(site), website(site)],
+  };
 }
 
-export function serviceGraph({
+export async function serviceGraph({
   name,
   description,
   path,
@@ -99,6 +104,7 @@ export function serviceGraph({
   description: string;
   path: string;
 }) {
+  const site = await getSite();
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -127,7 +133,8 @@ export function faqGraph(items: readonly { q: string; a: string }[]) {
   };
 }
 
-export function breadcrumbGraph(trail: { name: string; path: string }[]) {
+export async function breadcrumbGraph(trail: { name: string; path: string }[]) {
+  const site = await getSite();
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

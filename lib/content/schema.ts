@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 /**
- * Schemi dei file in content/.
+ * Schemi dei testi che arrivano dal pannello (Payload).
  *
  * Qui si valida la FORMA: che le chiavi ci siano, che i tipi siano giusti,
  * che i testi non siano stringhe vuote. Non si valida la *completezza*: che
@@ -10,22 +10,40 @@ import { z } from "zod"
  * una trappola, non una difesa: blocca la pubblicazione senza dire niente a
  * chi ha fatto la modifica.
  *
- * Girano al build: se un testo viene svuotato o una virgoletta salta, la
- * pubblicazione si ferma con un messaggio che dice quale file e quale campo.
- * Su Netlify e Vercel un build fallito non manda giu' il sito: resta online
+ * Il pannello impedisce gia' di salvare un campo obbligatorio vuoto: questi
+ * schemi sono la rete di sicurezza, e in piu' riportano i dati alla forma che
+ * le pagine si aspettano. Nel database un elenco di testi e' un elenco di
+ * righe { testo }, una foto e' un riferimento alla libreria: qui tornano a
+ * essere un elenco di stringhe e un percorso.
+ *
+ * Se un testo non passa, la pagina non viene rigenerata e resta online
  * l'ultima versione buona. Il caso peggiore e' "la modifica non e' comparsa",
  * non "il sito e' rotto".
  */
 
 const testo = z.string().min(1, "non può restare vuoto")
 
-/* Il campo foto del pannello e' condizionale — "scegli fra quelle del sito"
-   oppure "caricane una nuova" — quindi arriva come { discriminant, value }.
-   Entrambi i rami producono un percorso, percio' si appiattisce subito a
-   stringa: le pagine non devono sapere come e' stata scelta la foto. */
-const foto = z
-  .object({ discriminant: z.enum(["esistente", "nuova"]), value: testo })
-  .transform((v) => v.value)
+/* Elenco di testi semplici: nel database ogni voce e' una riga { testo }. */
+const testi = z
+  .array(z.object({ testo }))
+  .transform((righe) => righe.map((riga) => riga.testo))
+
+/* Campo facoltativo: Payload salva `null` quando resta vuoto. */
+const facoltativo = z
+  .string()
+  .nullish()
+  .transform((v) => v ?? undefined)
+
+/* La foto arriva come documento della libreria (con descrizione propria);
+   la descrizione scritta accanto, se c'e', vince su quella della libreria.
+   Le pagine ricevono un percorso e un testo alternativo, come prima. */
+const foto = z.object({ url: testo, alt: testo })
+const descrizioneFoto = z.string().nullish()
+const conDescrizione = (immagine: z.infer<typeof foto>, descrizione?: string | null) => ({
+  immagine: immagine.url,
+  descrizione: descrizione?.trim() || immagine.alt,
+})
+
 const voceValore = z.object({ voce: testo, valore: testo })
 const domanda = z.object({ q: testo, a: testo })
 const meta = z.object({ titolo: testo, descrizione: testo })
@@ -53,8 +71,8 @@ export const generaleSchema = z.object({
     citta: testo,
     paese: testo,
   }),
-  mercati: z.array(testo),
-  strumenti: z.array(testo),
+  mercati: testi,
+  strumenti: testi,
   navigazione: z.array(z.object({ href: testo, label: testo })),
   footer: z.object({ descrizione: testo }),
   invitoFinale: z.object({
@@ -71,7 +89,7 @@ export const homeSchema = z.object({
   hero: z.object({
     occhiello: testo,
     titolo: testo,
-    titoloEvidenziato: z.string(),
+    titoloEvidenziato: z.string().nullish().transform((v) => v ?? ""),
     sottotitolo: testo,
     pulsantePrimario: testo,
     pulsanteSecondario: testo,
@@ -98,14 +116,19 @@ export const homeSchema = z.object({
     sottotitolo: testo,
     link: testo,
   }),
-  chiSono: z.object({
-    occhiello: testo,
-    titolo: testo,
-    paragrafi: z.array(testo),
-    immagine: foto,
-    immagineDescrizione: testo,
-  }),
-  contatti: z.object({ passi: z.array(testo) }),
+  chiSono: z
+    .object({
+      occhiello: testo,
+      titolo: testo,
+      paragrafi: testi,
+      immagine: foto,
+      immagineDescrizione: descrizioneFoto,
+    })
+    .transform(({ immagine, immagineDescrizione, ...resto }) => {
+      const scelta = conDescrizione(immagine, immagineDescrizione)
+      return { ...resto, immagine: scelta.immagine, immagineDescrizione: scelta.descrizione }
+    }),
+  contatti: z.object({ passi: testi }),
 })
 
 const servizio = z.object({
@@ -116,11 +139,14 @@ const servizio = z.object({
   claim: testo,
   summary: testo,
   lead: testo,
-  deliverables: z.array(testo),
-  forWhom: z.array(testo),
+  deliverables: testi,
+  forWhom: testi,
   notFor: testo,
-  needs: z.array(testo),
-  diagram: z.enum(["matrix", "calendar", "kpi"]).nullable(),
+  needs: testi,
+  diagram: z
+    .enum(["matrix", "calendar", "kpi"])
+    .nullish()
+    .transform((v) => v ?? null),
   keyword: testo,
   duration: testo,
   metaTitle: testo,
@@ -147,8 +173,8 @@ export const serviziSchema = z.object({
         unit: testo,
         duration: testo,
         body: testo,
-        items: z.array(testo),
-        highlight: z.boolean(),
+        items: testi,
+        highlight: z.boolean().nullish().transform(Boolean),
       })
     ),
   }),
@@ -188,11 +214,11 @@ export const risultatiSchema = z.object({
   lettura: z.object({
     occhiello: testo,
     titolo: testo,
-    paragrafi: z.array(testo),
+    paragrafi: testi,
   }),
   invito: z.object({ titolo: testo, testo }),
   numeri: z.array(
-    z.object({ value: testo, label: testo, note: z.string().optional() })
+    z.object({ value: testo, label: testo, note: facoltativo })
   ),
   casi: z.array(
     z.object({
@@ -204,7 +230,7 @@ export const risultatiSchema = z.object({
       problem: testo,
       action: testo,
       results: z.array(z.object({ value: testo, label: testo })),
-      quote: z.string().optional(),
+      quote: facoltativo,
     })
   ),
   testimonianze: z.array(
@@ -216,7 +242,7 @@ export const risultatiSchema = z.object({
 export const contattiSchema = z.object({
   meta,
   pagina: z.object({ occhiello: testo, titolo: testo, sottotitolo: testo }),
-  passi: z.array(testo),
+  passi: testi,
   nota: testo,
   modulo: z.object({
     etichette: z.object({
@@ -228,7 +254,7 @@ export const contattiSchema = z.object({
       messaggio: testo,
     }),
     segnaposto: z.object({ email: testo, messaggio: testo }),
-    dimensioni: z.array(testo),
+    dimensioni: testi,
     consenso: testo,
     invia: testo,
     inviaInCorso: testo,
@@ -240,7 +266,9 @@ export const contattiSchema = z.object({
 export const chiSonoSchema = z.object({
   meta,
   pagina: z.object({ occhiello: testo, titolo: testo, sottotitolo: testo }),
-  foto: z.object({ immagine: foto, descrizione: testo }),
+  foto: z
+    .object({ immagine: foto, descrizione: descrizioneFoto })
+    .transform(({ immagine, descrizione }) => conDescrizione(immagine, descrizione)),
   percorso: z.object({
     occhiello: testo,
     tappe: z.array(z.object({ anno: testo, titolo: testo, testo })),
@@ -256,9 +284,9 @@ export const chiSonoSchema = z.object({
   testimonianze: z.object({ occhiello: testo }),
 })
 
-/** Valida un file di contenuto e ferma il build con un messaggio leggibile. */
+/** Valida una sezione del pannello e dice con precisione quale campo non va. */
 export function load<T extends z.ZodType>(
-  file: string,
+  sezione: string,
   schema: T,
   data: unknown
 ): z.infer<T> {
@@ -269,14 +297,14 @@ export function load<T extends z.ZodType>(
       .map((issue) => {
         const campo = issue.path.length
           ? issue.path.join(" → ")
-          : "(radice del file)"
+          : "(intera sezione)"
         return `  • ${campo}: ${issue.message}`
       })
       .join("\n")
 
     throw new Error(
-      `\n\nErrore nel file dei testi: content/${file}.json\n\n${dettagli}\n\n` +
-        `Correggi il file e ripubblica. Fino ad allora resta online la versione precedente del sito.\n`
+      `\n\nErrore nei testi della sezione "${sezione}" del pannello\n\n${dettagli}\n\n` +
+        `Correggi il campo dal pannello e salva. Fino ad allora resta online la versione precedente della pagina.\n`
     )
   }
 

@@ -1,35 +1,12 @@
 /**
- * Identita' del sito, derivata dai testi in content/generale.json.
- *
- * I valori marcati MOCK nel file JSON sono ipotesi da sostituire con i dati
- * reali: dominio, email sul dominio, partita IVA, LinkedIn.
+ * Identita' del sito (nome, contatti, dati fiscali) e menu.
+ * Derivati dalla sezione "Generale e contatti" del pannello.
  */
 
-import { generale } from "@/lib/content";
+import { getContenuti } from "@/lib/content"
 
-const { identita, contatti, legale } = generale;
+export async function getSite() {
+  return (await getContenuti()).site
+}
 
-export const site = {
-  url: identita.url,
-  name: identita.nome,
-  monogram: identita.monogramma,
-  role: identita.ruolo,
-  tagline: identita.tagline,
-  description: identita.descrizione,
-
-  email: contatti.email,
-  phone: contatti.telefono,
-  phoneHref: contatti.telefonoHref,
-  linkedin: contatti.linkedin,
-
-  legal: {
-    entity: legale.entita,
-    vat: legale.partitaIva,
-    city: legale.citta,
-    country: legale.paese,
-  },
-
-  markets: generale.mercati,
-} as const;
-
-export const nav = generale.navigazione;
+export type { Site } from "@/lib/content/tipi"

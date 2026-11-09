@@ -8,24 +8,28 @@ import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
-import { packages, services } from "@/lib/content";
-import { serviziContenuto } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
   { name: "Servizi", path: "/servizi" },
 ];
 
-export const metadata: Metadata = pageMetadata({
-  title: serviziContenuto.meta.titolo,
-  description: serviziContenuto.meta.descrizione,
-  path: "/servizi",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const { serviziContenuto } = await getContenuti();
+  return pageMetadata({
+    title: serviziContenuto.meta.titolo,
+    description: serviziContenuto.meta.descrizione,
+    path: "/servizi",
+  });
+}
 
-export default function ServiziPage() {
+export default async function ServiziPage() {
+  const { packages, services, serviziContenuto } = await getContenuti();
+
   return (
     <>
-      <JsonLd data={breadcrumbGraph(trail)} />
+      <JsonLd data={await breadcrumbGraph(trail)} />
 
       <PageHeader
         eyebrow={serviziContenuto.pagina.occhiello}

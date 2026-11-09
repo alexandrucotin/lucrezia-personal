@@ -11,9 +11,7 @@ import { ActionLink, TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { StatRow } from "@/components/ui/stat";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
-import { site } from "@/lib/site";
-import { caseStudies, clients, home, services, stats } from "@/lib/content";
-import { generale } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 /* Ogni fase del metodo porta il proprio diagramma. La terza no, di proposito:
    un diagramma per casella renderebbe la sezione meccanica. */
@@ -24,7 +22,10 @@ const methodDiagrams = [
   <KpiPanel key="kpi" />,
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { caseStudies, clients, generale, home, method, services, site, stats } =
+    await getContenuti();
+
   /* Il titolo puo' avere o non avere una seconda parte evidenziata. Se c'e' e
      comincia con punteggiatura, lo spazio prima non ci va. */
   const evidenziato = home.hero.titoloEvidenziato.trim();
@@ -235,7 +236,7 @@ export default function HomePage() {
               {home.metodo.titolo}
             </Display>
           </div>
-          <MethodSticky diagrams={methodDiagrams} />
+          <MethodSticky method={method} diagrams={methodDiagrams} />
         </div>
       </Section>
 

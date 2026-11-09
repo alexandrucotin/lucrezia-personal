@@ -1,15 +1,15 @@
 import Link from "next/link";
 
-import { nav, site } from "@/lib/site";
-import { services } from "@/lib/content";
-import { generale } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 const legalNav = [
   { href: "/privacy", label: "Privacy" },
   { href: "/cookie", label: "Cookie" },
 ];
 
-export function Footer() {
+export async function Footer() {
+  const { nav, site, services, generale } = await getContenuti();
+
   return (
     <footer className="border-t border-rule bg-paper-deep">
       <div className="shell py-16 sm:py-20">

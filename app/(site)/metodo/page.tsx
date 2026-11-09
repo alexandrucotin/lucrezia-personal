@@ -8,26 +8,29 @@ import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, faqGraph, pageMetadata } from "@/lib/seo";
 import { FaqList } from "@/components/site/faq-list";
-import { method } from "@/lib/content";
-import { metodoContenuto } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
   { name: "Metodo", path: "/metodo" },
 ];
 
-const faq = metodoContenuto.faq;
+export async function generateMetadata(): Promise<Metadata> {
+  const { metodoContenuto } = await getContenuti();
+  return pageMetadata({
+    title: metodoContenuto.meta.titolo,
+    description: metodoContenuto.meta.descrizione,
+    path: "/metodo",
+  });
+}
 
-export const metadata: Metadata = pageMetadata({
-  title: metodoContenuto.meta.titolo,
-  description: metodoContenuto.meta.descrizione,
-  path: "/metodo",
-});
+export default async function MetodoPage() {
+  const { method, metodoContenuto } = await getContenuti();
+  const faq = metodoContenuto.faq;
 
-export default function MetodoPage() {
   return (
     <>
-      <JsonLd data={breadcrumbGraph(trail)} />
+      <JsonLd data={await breadcrumbGraph(trail)} />
       <JsonLd data={faqGraph(faq)} />
 
       <PageHeader

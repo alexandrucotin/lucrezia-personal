@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { ActionLink, TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
-import { site } from "@/lib/site";
-import { contattiContenuto } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Richiesta inviata",
@@ -13,7 +12,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function GraziePage() {
+export default async function GraziePage() {
+  const { contattiContenuto, site } = await getContenuti();
+
   return (
     <Section rhythm="vast">
       <div className="shell">

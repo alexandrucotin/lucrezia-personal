@@ -1,19 +1,20 @@
 /**
  * Punto unico di accesso ai testi del sito.
  *
- * I contenuti vivono in content/*.json e si modificano dal pannello su
- * /keystatic — oppure a mano, sono file di testo normali. Qui vengono
- * validati e tipizzati: da questo momento in poi il resto del codice non sa
- * piu' che arrivano da un file.
+ * I contenuti vivono nel database e si modificano dal pannello su /admin.
+ * Qui vengono letti, validati e tipizzati: da questo momento in poi il resto
+ * del codice non sa piu' da dove arrivano.
+ *
+ * Si leggono tutti insieme e una volta sola: sono poche pagine di testo, e
+ * una lettura unica tiene coerenti fra loro le sezioni che si citano a
+ * vicenda (il menu, i servizi nel piè di pagina...). Il risultato resta in
+ * cache finche' qualcuno non salva dal pannello (vedi payload/rivalida.ts).
  */
 
-import chiSonoData from "@/content/chi-sono.json";
-import contattiData from "@/content/contatti.json";
-import generaleData from "@/content/generale.json";
-import homeData from "@/content/home.json";
-import metodoData from "@/content/metodo.json";
-import risultatiData from "@/content/risultati.json";
-import serviziData from "@/content/servizi.json";
+import config from "@payload-config"
+import { unstable_cache } from "next/cache"
+import { getPayload } from "payload"
+import { cache } from "react"
 
 import {
   chiSonoSchema,
@@ -24,27 +25,70 @@ import {
   metodoSchema,
   risultatiSchema,
   serviziSchema,
-} from "./schema";
+} from "./schema"
+import { creaSite } from "./site"
+import { TAG_CONTENUTI } from "./tag"
 
-export const generale = load("generale", generaleSchema, generaleData);
-export const home = load("home", homeSchema, homeData);
-export const serviziContenuto = load("servizi", serviziSchema, serviziData);
-export const metodoContenuto = load("metodo", metodoSchema, metodoData);
-export const risultatiContenuto = load("risultati", risultatiSchema, risultatiData);
-export const contattiContenuto = load("contatti", contattiSchema, contattiData);
-export const chiSonoContenuto = load("chi-sono", chiSonoSchema, chiSonoData);
+const leggiDalPannello = unstable_cache(
+  async () => {
+    const payload = await getPayload({ config })
+    /* depth 1: le foto arrivano gia' risolte, con percorso e descrizione. */
+    const leggi = (slug: Parameters<typeof payload.findGlobal>[0]["slug"]) =>
+      payload.findGlobal({ slug, depth: 1 })
 
-/* Scorciatoie per i dati usati in piu' pagine. */
-export const services = serviziContenuto.elenco;
-export const packages = serviziContenuto.prezzi.pacchetti;
-export const method = metodoContenuto.fasi;
-export const stats = risultatiContenuto.numeri;
-export const caseStudies = risultatiContenuto.casi;
-export const testimonials = risultatiContenuto.testimonianze;
-export const clients = risultatiContenuto.clienti;
-export const faqs = contattiContenuto.faq;
-export const tools = generale.strumenti;
+    const [generale, home, servizi, metodo, risultati, chiSono, contatti] = await Promise.all([
+      leggi("generale"),
+      leggi("home"),
+      leggi("servizi"),
+      leggi("metodo"),
+      leggi("risultati"),
+      leggi("chi-sono"),
+      leggi("contatti"),
+    ])
 
-export type Service = (typeof services)[number];
-export type CaseStudy = (typeof caseStudies)[number];
-export type Testimonial = (typeof testimonials)[number];
+    return { generale, home, servizi, metodo, risultati, chiSono, contatti }
+  },
+  ["contenuti"],
+  { tags: [TAG_CONTENUTI] }
+)
+
+/** Tutti i testi del sito, validati. Una sola lettura per richiesta. */
+export const getContenuti = cache(async () => {
+  const dati = await leggiDalPannello()
+
+  const generale = load("Generale e contatti", generaleSchema, dati.generale)
+  const home = load("Home", homeSchema, dati.home)
+  const serviziContenuto = load("Servizi", serviziSchema, dati.servizi)
+  const metodoContenuto = load("Metodo", metodoSchema, dati.metodo)
+  const risultatiContenuto = load("Risultati", risultatiSchema, dati.risultati)
+  const contattiContenuto = load("Contatti", contattiSchema, dati.contatti)
+  const chiSonoContenuto = load("Chi sono", chiSonoSchema, dati.chiSono)
+
+  return {
+    generale,
+    home,
+    serviziContenuto,
+    metodoContenuto,
+    risultatiContenuto,
+    contattiContenuto,
+    chiSonoContenuto,
+
+    /* Identita' del sito e menu, derivati da "Generale". */
+    site: creaSite(generale),
+    nav: generale.navigazione,
+
+    /* Scorciatoie per i dati usati in piu' pagine. */
+    services: serviziContenuto.elenco,
+    packages: serviziContenuto.prezzi.pacchetti,
+    method: metodoContenuto.fasi,
+    stats: risultatiContenuto.numeri,
+    caseStudies: risultatiContenuto.casi,
+    testimonials: risultatiContenuto.testimonianze,
+    clients: risultatiContenuto.clienti,
+    faqs: contattiContenuto.faq,
+    tools: generale.strumenti,
+  }
+})
+
+export type Contenuti = Awaited<ReturnType<typeof getContenuti>>
+export type { CaseStudy, Fase, Modulo, NavItem, Service, Site, Testimonial } from "./tipi"

@@ -6,10 +6,19 @@ import { useEffect, useState } from "react";
 
 import { ActionLink } from "@/components/ui/action";
 import { cn } from "@/lib/utils";
-import { nav, site } from "@/lib/site";
-import { generale } from "@/lib/content";
+import type { NavItem, Site } from "@/lib/content/tipi";
 
-export function Header() {
+export function Header({
+  site,
+  nav,
+  pulsante,
+  pulsanteMobile,
+}: {
+  site: Pick<Site, "name" | "tagline" | "email" | "phone" | "phoneHref">;
+  nav: NavItem[];
+  pulsante: string;
+  pulsanteMobile: string;
+}) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -63,7 +72,7 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <ActionLink href="/contatti" className="hidden px-6 py-3 lg:inline-flex">
-            {generale.intestazione.pulsante}
+            {pulsante}
           </ActionLink>
 
           <button
@@ -116,7 +125,7 @@ export function Header() {
 
         <div className="shell space-y-6 py-10">
           <ActionLink href="/contatti" onClick={() => setOpen(false)} className="w-full">
-            {generale.invitoFinale.pulsante}
+            {pulsanteMobile}
           </ActionLink>
           <div className="space-y-1 text-sm text-ink-soft">
             <p>

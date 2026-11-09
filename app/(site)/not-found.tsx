@@ -1,14 +1,14 @@
-import { Footer } from "@/components/site/footer";
-import { Header } from "@/components/site/header";
 import { ActionLink, TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Lead, Section } from "@/components/ui/section";
-import { services } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
-export default function NotFound() {
+/* Gira dentro il layout del sito: intestazione e piè di pagina ci sono gia'. */
+export default async function NotFound() {
+  const { services } = await getContenuti();
+
   return (
     <>
-      <Header />
-      <Section as="main" rhythm="vast">
+      <Section as="div" rhythm="vast">
       <div className="shell">
         <Eyebrow>Errore 404</Eyebrow>
         <Display level={1} size="d1" className="mt-6 max-w-3xl">
@@ -35,7 +35,6 @@ export default function NotFound() {
           </div>
         </div>
       </Section>
-      <Footer />
     </>
   );
 }

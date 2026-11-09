@@ -13,7 +13,7 @@ import { TextLink } from "@/components/ui/action";
 import { Display, Eyebrow, Section } from "@/components/ui/section";
 import { Reveal, RevealItem } from "@/components/ui/reveal";
 import { breadcrumbGraph, faqGraph, pageMetadata, serviceGraph } from "@/lib/seo";
-import { services } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 const diagrams = {
   matrix: PortfolioMatrix,
@@ -21,12 +21,14 @@ const diagrams = {
   kpi: KpiPanel,
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const { services } = await getContenuti();
   return services.map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata(props: PageProps<"/servizi/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
+  const { services } = await getContenuti();
   const service = services.find((item) => item.slug === slug);
   if (!service) return {};
 
@@ -39,6 +41,7 @@ export async function generateMetadata(props: PageProps<"/servizi/[slug]">): Pro
 
 export default async function ServizioPage(props: PageProps<"/servizi/[slug]">) {
   const { slug } = await props.params;
+  const { services } = await getContenuti();
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
 
@@ -53,9 +56,9 @@ export default async function ServizioPage(props: PageProps<"/servizi/[slug]">) 
 
   return (
     <>
-      <JsonLd data={breadcrumbGraph(trail)} />
+      <JsonLd data={await breadcrumbGraph(trail)} />
       <JsonLd
-        data={serviceGraph({
+        data={await serviceGraph({
           name: service.title,
           description: service.metaDescription,
           path: `/servizi/${service.slug}`,

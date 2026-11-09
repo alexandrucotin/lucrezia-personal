@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { LegalPage } from "@/components/site/legal-page";
-import { site } from "@/lib/site";
+import { getSite } from "@/lib/site";
 
 /**
  * Bozza costruita su cio' che il sito fa davvero: un modulo di contatto,
@@ -15,7 +16,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const site = await getSite();
+
   return (
     <LegalPage
       title="Privacy policy"
@@ -72,7 +75,7 @@ export default function PrivacyPage() {
       <h2>Cookie</h2>
       <p>
         Il sito non usa cookie di profilazione né strumenti di analisi che tracciano le persone.
-        Vedi la <a href="/cookie">cookie policy</a>.
+        Vedi la <Link href="/cookie">cookie policy</Link>.
       </p>
 
       <h2>I tuoi diritti</h2>

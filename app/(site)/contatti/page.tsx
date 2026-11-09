@@ -7,27 +7,29 @@ import { PageHeader } from "@/components/site/page-header";
 import { Eyebrow, Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { breadcrumbGraph, faqGraph, pageMetadata } from "@/lib/seo";
-import { site } from "@/lib/site";
-import { faqs } from "@/lib/content";
-import { contattiContenuto } from "@/lib/content";
+import { getContenuti } from "@/lib/content";
 
 const trail = [
   { name: "Home", path: "/" },
   { name: "Contatti", path: "/contatti" },
 ];
 
-const steps = contattiContenuto.passi;
+export async function generateMetadata(): Promise<Metadata> {
+  const { contattiContenuto } = await getContenuti();
+  return pageMetadata({
+    title: contattiContenuto.meta.titolo,
+    description: contattiContenuto.meta.descrizione,
+    path: "/contatti",
+  });
+}
 
-export const metadata: Metadata = pageMetadata({
-  title: contattiContenuto.meta.titolo,
-  description: contattiContenuto.meta.descrizione,
-  path: "/contatti",
-});
+export default async function ContattiPage() {
+  const { contattiContenuto, faqs, site } = await getContenuti();
+  const steps = contattiContenuto.passi;
 
-export default function ContattiPage() {
   return (
     <>
-      <JsonLd data={breadcrumbGraph(trail)} />
+      <JsonLd data={await breadcrumbGraph(trail)} />
       <JsonLd data={faqGraph(faqs)} />
 
       <PageHeader
@@ -44,7 +46,7 @@ export default function ContattiPage() {
               <Reveal>
                 <Eyebrow numbered="01">Scrivimi</Eyebrow>
                 <div className="mt-10">
-                  <ContactForm />
+                  <ContactForm modulo={contattiContenuto.modulo} />
                 </div>
               </Reveal>
             </div>
