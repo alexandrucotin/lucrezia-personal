@@ -38,76 +38,85 @@ export function Header({
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 bg-paper/85 backdrop-blur-md transition-colors duration-300",
-        scrolled ? "border-b border-rule" : "border-b border-transparent",
-      )}
-    >
-      <div className="shell flex h-20 items-center justify-between gap-8">
-        <Link href="/" className="group flex items-baseline gap-3" aria-label={site.name}>
-          <span className="display text-[1.375rem] leading-none tracking-tight">{site.name}</span>
-          <span className="eyebrow hidden text-ink-faint transition-colors group-hover:text-sage sm:block">
-            {site.tagline}
-          </span>
-        </Link>
-
-        <nav aria-label="Navigazione principale" className="hidden items-center gap-9 lg:flex">
-          {nav.map((item) => {
-            const active = pathname.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "eyebrow py-2 transition-colors",
-                  active ? "text-sage" : "text-ink hover:text-sage",
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <ActionLink href="/contatti" className="hidden px-6 py-3 lg:inline-flex">
-            {pulsante}
-          </ActionLink>
-
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            className="eyebrow -mr-2 flex h-11 items-center gap-2 px-2 text-ink lg:hidden"
-          >
-            {open ? "Chiudi" : "Menu"}
-            <span aria-hidden="true" className="flex w-4 flex-col gap-[3px]">
-              <span
-                className={cn(
-                  "h-px w-full bg-ink transition-transform duration-300 ease-editorial",
-                  open && "translate-y-[2px] rotate-45",
-                )}
-              />
-              <span
-                className={cn(
-                  "h-px w-full bg-ink transition-transform duration-300 ease-editorial",
-                  open && "-translate-y-[2px] -rotate-45",
-                )}
-              />
+    <>
+      <header
+        className={cn(
+          "sticky top-0 z-50 bg-paper/85 backdrop-blur-md transition-colors duration-300",
+          scrolled ? "border-b border-rule" : "border-b border-transparent",
+        )}
+      >
+        <div className="shell flex h-20 items-center justify-between gap-8">
+          <Link href="/" className="group flex items-baseline gap-3" aria-label={site.name}>
+            <span className="display text-[1.375rem] leading-none tracking-tight">{site.name}</span>
+            <span className="eyebrow hidden text-ink-faint transition-colors group-hover:text-sage sm:block">
+              {site.tagline}
             </span>
-          </button>
-        </div>
-      </div>
+          </Link>
 
-      {/* Overlay mobile: pagina piena, niente drawer che scivola. */}
+          <nav aria-label="Navigazione principale" className="hidden items-center gap-9 lg:flex">
+            {nav.map((item) => {
+              const active = pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "eyebrow py-2 transition-colors",
+                    active ? "text-sage" : "text-ink hover:text-sage",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <ActionLink href="/contatti" className="hidden px-6 py-3 lg:inline-flex">
+              {pulsante}
+            </ActionLink>
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              className="eyebrow -mr-2 flex h-11 items-center gap-2 px-2 text-ink lg:hidden"
+            >
+              {open ? "Chiudi" : "Menu"}
+              <span aria-hidden="true" className="flex w-4 flex-col gap-[3px]">
+                <span
+                  className={cn(
+                    "h-px w-full bg-ink transition-transform duration-300 ease-editorial",
+                    open && "translate-y-[2px] rotate-45",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "h-px w-full bg-ink transition-transform duration-300 ease-editorial",
+                    open && "-translate-y-[2px] -rotate-45",
+                  )}
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Overlay mobile: pagina piena, niente drawer che scivola, solo dissolvenza.
+          Sta fuori dall'header: il backdrop-blur dell'header farebbe da
+          riferimento per `fixed` e l'overlay finirebbe alto 0px.
+          Resta sempre nel DOM per poter animare anche la chiusura; `inert`
+          lo toglie da tastiera e screen reader quando e' chiuso. */}
       <div
         id="mobile-nav"
-        hidden={!open}
-        className="fixed inset-x-0 top-20 bottom-0 z-40 flex flex-col justify-between overflow-y-auto bg-paper lg:hidden"
+        inert={!open}
+        className={cn(
+          "fixed inset-x-0 top-20 bottom-0 z-40 flex flex-col justify-between overflow-y-auto bg-paper transition-[opacity,visibility] duration-300 ease-editorial lg:hidden",
+          open ? "visible opacity-100" : "invisible opacity-0",
+        )}
       >
-        <nav aria-label="Navigazione principale" className="shell flex flex-col pt-6">
+        <nav aria-label="Navigazione principale" className="shell flex w-full flex-col pt-6">
           {nav.map((item, index) => (
             <Link
               key={item.href}
@@ -123,7 +132,7 @@ export function Header({
           ))}
         </nav>
 
-        <div className="shell space-y-6 py-10">
+        <div className="shell w-full space-y-6 py-10">
           <ActionLink href="/contatti" onClick={() => setOpen(false)} className="w-full">
             {pulsanteMobile}
           </ActionLink>
@@ -141,6 +150,6 @@ export function Header({
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

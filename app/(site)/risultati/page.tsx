@@ -53,8 +53,8 @@ export default async function RisultatiPage() {
       <Section rhythm="loose" ruled tone="surface">
         <div className="shell">
           <Reveal stagger={0.1}>
-            {caseStudies.map((item) => (
-              <RevealItem key={item.slug}>
+            {caseStudies.map((item, index) => (
+              <RevealItem key={`${item.slug}-${index}`}>
                 <article className="grid gap-10 border-t border-rule py-16 last:border-b lg:grid-cols-12 lg:gap-10">
                   <header className="lg:col-span-3">
                     <h2 className="display text-d3">{item.client}</h2>

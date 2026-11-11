@@ -113,9 +113,9 @@ export function CaseScroller({ items }: { items: CaseStudy[] }) {
           drag.current = null;
         }}
       >
-        {items.map((item) => (
+        {items.map((item, index) => (
           <article
-            key={item.slug}
+            key={`${item.slug}-${index}`}
             className="w-[85vw] shrink-0 snap-start border-t border-paper/25 pt-8 sm:w-[calc(50%-1rem)]"
           >
             {/* Il contenuto resta su misura leggibile anche quando la scheda
